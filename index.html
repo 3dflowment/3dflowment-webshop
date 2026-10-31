@@ -6,37 +6,29 @@
     <title>3DFlowment - Egyedi 3D nyomtatás</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      /* ALAP TÉMÁK ÉS VÁLTÁS */
       :root { --bg-color: #0f172a; --card-bg: #1e293b; --text-color: #f1f5f9; --muted-text: #94a3b8; --accent-color: #d4af37; --accent-text: #000000; --nav-bg: #020617; --subnav-bg: #090d16; --heading-font: 'Playfair Display', serif; }
       body.b2b { --bg-color: #0f172a; --card-bg: #1e293b; --text-color: #f8fafc; --muted-text: #cbd5e1; --accent-color: #38bdf8; --accent-text: #0f172a; --nav-bg: #090d16; --subnav-bg: #111827; --heading-font: 'Montserrat', sans-serif; }
       body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); }
       h1, h2, h3, .logo { font-family: var(--heading-font); }
       
-      /* FEJLÉC, KERESŐ ÉS KAPCSOLÓ */
       header { position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
       .top-bar { background-color: var(--nav-bg); padding: 12px 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-wrap: wrap; }
       .logo { font-size: 28px; color: var(--accent-color); text-decoration: none; font-weight: 700; cursor: pointer; }
-      
       .search-box { flex-grow: 1; max-width: 400px; display: flex; background: rgba(255,255,255,0.07); border-radius: 20px; padding: 6px 16px; border: 1px solid rgba(255,255,255,0.15); }
       .search-box input { background: transparent; border: none; color: white; width: 100%; outline: none; font-family: 'Montserrat'; }
-      
       .switch-container { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 13px; text-transform: uppercase; }
       .switch { position: relative; width: 50px; height: 26px; background: rgba(255,255,255,0.1); border-radius: 13px; cursor: pointer; border: 1px solid var(--accent-color); }
       .switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: var(--accent-color); border-radius: 50%; transition: 0.3s; }
       body.b2b .switch::after { transform: translateX(24px); }
-      
       .cart-btn { background-color: var(--accent-color); color: var(--accent-text); font-weight: 700; padding: 8px 16px; border-radius: 4px; cursor:pointer; }
       
-      /* NAVIGÁCIÓ */
       .category-bar { background-color: var(--subnav-bg); padding: 10px 40px; display: flex; justify-content: center; gap: 30px; border-bottom: 2px solid var(--accent-color); flex-wrap: wrap; }
       .category-bar a { color: var(--text-color); text-transform: uppercase; font-size: 12px; font-weight: 600; cursor: pointer; padding: 6px 12px; }
       .category-bar a:hover, .category-bar a.active { color: var(--accent-color); }
-      
       .subnav-bar { background-color: rgba(0,0,0,0.3); display: none; justify-content: center; gap: 20px; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
       .subnav-bar a { color: var(--muted-text); font-size: 12px; cursor: pointer; }
       .subnav-bar a:hover { color: white; }
 
-      /* CAROUSEL (BANNER) */
       .carousel { position: relative; height: 450px; overflow: hidden; display: none; }
       .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; background-size: cover; background-position: center; }
       .slide.active { opacity: 1; z-index: 1; }
@@ -46,17 +38,18 @@
       .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; }
       .dot.active { background: var(--accent-color); }
 
-      /* CIKCAKK TARTALOM (Z-PATTERN) */
+      /* ÚJRAÍRT Z-PATTERN CSS A HIBÁTLAN MEGJELENÉSHEZ */
       .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
-      .z-section { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; }
-      .z-section:nth-child(even) { flex-direction: row-reverse; }
-      .z-text { flex: 1; }
+      .z-section { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
+      @media (min-width: 768px) {
+        .z-section:nth-child(even) { flex-direction: row-reverse; }
+      }
+      .z-text { flex: 1; min-width: 300px; }
       .z-text h2 { color: var(--accent-color); font-size: 28px; margin-top: 0; }
-      .z-text p { line-height: 1.8; color: var(--muted-text); }
-      .z-image { flex: 1; }
-      .z-image img { width: 100%; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+      .z-text p { line-height: 1.8; color: var(--muted-text); white-space: pre-wrap; }
+      .z-image { flex: 1; min-width: 300px; text-align: center; }
+      .z-image img { width: 100%; max-width: 500px; max-height: 400px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
-      /* TERMÉKRÁCS */
       .section-title { text-align: center; color: var(--accent-color); font-size: 30px; margin-bottom: 35px; }
       .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
       .card { background-color: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; transition: transform 0.2s; }
@@ -64,7 +57,6 @@
       .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; }
       .price { font-size: 18px; font-weight: 700; color: var(--accent-color); margin: 10px 0; }
 
-      /* TERMÉK MODAL (KATTINTÁS UTÁN) */
       .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; }
       .modal-content { background:var(--card-bg); padding:30px; border-radius:8px; max-width:800px; width:90%; max-height:90vh; overflow-y:auto; display:flex; gap:30px; flex-wrap:wrap; position:relative; }
       .modal-close { position:absolute; top:15px; right:20px; font-size:24px; color:white; cursor:pointer; }
@@ -77,7 +69,6 @@
       .input-group select, .input-group textarea, .input-group input { width:100%; padding:10px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; border-radius:4px; font-family:'Montserrat'; box-sizing:border-box; }
       .add-to-cart-btn { background:var(--accent-color); color:var(--accent-text); padding:12px; width:100%; font-weight:700; border:none; border-radius:4px; cursor:pointer; margin-top:10px; }
 
-      /* FOOTER */
       footer { text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: var(--muted-text); }
       footer a { color: var(--accent-color); text-decoration: none; margin: 0 10px; }
     </style>
@@ -106,15 +97,12 @@
         <a onclick="switchPage('egyutt')">Együttműködések</a>
         <a onclick="switchPage('egyedi-b2c')">Egyedi megrendelések</a>
       </nav>
-
       <nav id="nav-b2b" class="category-bar" style="display:none;">
         <a onclick="switchPage('it')">IT kiegészítők</a>
         <a onclick="switchPage('rendszerezo')">Rendszerezők</a>
         <a onclick="switchPage('bernyomtatas')">Bérnyomtatás</a>
         <a onclick="switchPage('egyedi-b2b')">Egyedi megrendelések</a>
       </nav>
-
-      <!-- Alkategória sor (Csak Könyves esetén) -->
       <nav id="subnav-konyves" class="subnav-bar">
         <a onclick="filterSub('ACOTAR')">ACOTAR</a>
         <a onclick="filterSub('Fourth Wing')">Fourth Wing</a>
@@ -125,61 +113,28 @@
       </nav>
     </header>
 
-    <!-- CAROUSEL (Csak Főoldalon) -->
     <div id="home-carousel" class="carousel">
       <div id="carousel-slides"></div>
       <div id="carousel-dots" class="carousel-dots"></div>
     </div>
 
-    <!-- TARTALOM -->
     <div class="container">
       
-      <!-- Z-Pattern Rész (Csak Főoldalon) -->
-      <div id="home-content">
-        <div class="z-section">
-          <div class="z-text">
-            <h2>Milyen szolgáltatásokat nyújtunk?</h2>
-            <p>Legyen szó egyedi fantasy könyvtámaszokról, egyedi alkatrészekről vagy promóciós eszközökről, a 3D nyomtatás határtalan lehetőségeit kínáljuk. Tervezéstől a késztermékig mindent házon belül, prémium anyagokkal készítünk.</p>
-          </div>
-          <div class="z-image">
-            <img src="https://images.unsplash.com/photo-1581092921461-7031e4bf0e5e?ixlib=rb-4.0.3" alt="Szolgáltatásaink">
-          </div>
-        </div>
-        <div class="z-section">
-          <div class="z-text">
-            <h2>Kik vagyunk mi?</h2>
-            <p>Egy kis családi vállalkozás, amely a kreativitást és a precizitást ötvözi. Szenvedélyünk, hogy a legmerészebb elképzeléseket is kézzel fogható valósággá változtassuk.</p>
-          </div>
-          <div class="z-image">
-            <img src="https://images.unsplash.com/photo-1511108690759-009324a90311?ixlib=rb-4.0.3" alt="Rólunk">
-          </div>
-        </div>
-        <div class="z-section">
-          <div class="z-text">
-            <h2>Miben vagyunk mások?</h2>
-            <p>Nálunk nincsenek rejtett költségek. Átlátható árazással, fenntartható növényi (PLA) alapanyagokkal és teljesen személyre szabható gyártással dolgozunk.</p>
-          </div>
-          <div class="z-image">
-            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-4.0.3" alt="Különlegességünk">
-          </div>
-        </div>
-      </div>
+      <!-- AZ ADMINBÓL BETÖLTÖDŐ BEMUTATKOZÓ BLOKKOK HELYE -->
+      <div id="home-content"></div>
 
-      <!-- TERMÉKEK -->
       <div id="products-section" style="display:none;">
         <h2 id="products-title" class="section-title">Termékeink</h2>
         <div id="product-grid" class="grid"></div>
       </div>
 
-      <!-- KÜLSŐ ŰRLAP HELYE -->
       <div id="custom-order-section" style="display:none; text-align:center;">
         <h2 class="section-title">Egyedi Megrendelés</h2>
-        <p>Itt fog megjelenni a beágyazott külső űrlapod (Google Form vagy Typeform), ami nem tárol adatot az oldalon.</p>
+        <p>Itt fog megjelenni a beágyazott külső űrlapod (Google Form vagy Typeform).</p>
       </div>
 
     </div>
 
-    <!-- TERMÉK RÉSZLETEK MODAL -->
     <div id="product-modal" class="modal-overlay">
       <div class="modal-content">
         <span class="modal-close" onclick="closeModal()">×</span>
@@ -227,16 +182,20 @@
       let cartCount = 0;
       let activeProduct = null;
 
-      // BÉTA ADATOK BETÖLTÉSE
       window.onload = function() {
+        // Bannerek
         fetch('/api/banners.json').then(r=>r.json()).then(data => renderBanners(data.items)).catch(e=>console.log("Nincs banner."));
+        
+        // Bemutatkozó blokkok
+        fetch('/api/home_sections.json').then(r=>r.json()).then(data => renderHomeSections(data.items)).catch(e=> renderHomeSections([]));
+
+        // Termékek
         fetch('/api/products.json').then(r=>r.json()).then(data => {
           if(data && data.items) { allProducts = data.items; }
           switchPage('home');
         }).catch(e => switchPage('home'));
       };
 
-      // KAPCSOLÓ (B2C / B2B)
       function toggleMode() {
         const body = document.body;
         body.classList.toggle('b2b');
@@ -253,7 +212,6 @@
         switchPage('home');
       }
 
-      // OLDALVÁLTÁS
       function switchPage(page) {
         currentPage = page;
         currentSub = '';
@@ -295,7 +253,32 @@
         renderProducts();
       }
 
-      // TERMÉKEK MEGJELENÍTÉSE
+      // ADMINBÓL ÉRKEZŐ BEMUTATKOZÓ BLOKKOK GENERÁLÁSA
+      function renderHomeSections(items) {
+        const container = document.getElementById('home-content');
+        container.innerHTML = '';
+        
+        if(!items || items.length === 0) {
+          container.innerHTML = '<p style="text-align:center; padding: 40px; color:var(--muted-text);">Még nincsenek bemutatkozó blokkok. Töltsd fel őket az Admin felületen!</p>';
+          return;
+        }
+
+        items.forEach((item, index) => {
+          const imgSrc = item.image ? `<img src="${item.image}" alt="${item.title}">` : `<div style="width:100%; height:300px; background:rgba(255,255,255,0.05); border-radius:8px; display:flex; align-items:center; justify-content:center;">Nincs kép</div>`;
+          container.innerHTML += `
+            <div class="z-section">
+              <div class="z-text">
+                <h2>${item.title}</h2>
+                <p>${item.text}</p>
+              </div>
+              <div class="z-image">
+                ${imgSrc}
+              </div>
+            </div>
+          `;
+        });
+      }
+
       function renderProducts(searchQuery = '') {
         const grid = document.getElementById('product-grid');
         grid.innerHTML = '';
@@ -335,7 +318,7 @@
           card.onclick = () => openModal(row);
           
           const imgSrc = row.image || 'https://via.placeholder.com/250';
-          const altText = row.alt_text || row.title; // SEO alt text a CMS-ből
+          const altText = row.alt_text || row.title; 
           
           card.innerHTML = `
             <img src="${imgSrc}" alt="${altText}">
@@ -354,11 +337,10 @@
           document.getElementById('products-title').innerText = `Keresés: "${q}"`;
           renderProducts(q);
         } else if (q.length === 0) {
-          switchPage(currentPage); // Vissza az eredeti oldalra
+          switchPage(currentPage); 
         }
       }
 
-      // RÉSZLETES MODAL LOGIKA
       function openModal(product) {
         activeProduct = product;
         document.getElementById('modal-img').src = product.image || 'https://via.placeholder.com/500';
@@ -368,7 +350,6 @@
         document.getElementById('modal-desc').innerText = product.desc || '';
         document.getElementById('modal-qty').value = 1;
 
-        // Opciók legördülő
         const optContainer = document.getElementById('modal-options-container');
         const select = document.getElementById('modal-options');
         if (product.options && product.options.trim() !== '') {
@@ -379,7 +360,6 @@
           optContainer.style.display = 'none';
         }
 
-        // Megjegyzés mező
         const commContainer = document.getElementById('modal-comment-container');
         document.getElementById('modal-comment').value = '';
         commContainer.style.display = (product.allow_comment) ? 'block' : 'none';
@@ -403,12 +383,12 @@
         closeModal();
       }
 
-      // BANNER CAROUSEL LOGIKA
       let currentSlide = 0;
       function renderBanners(items) {
         if(!items || items.length === 0) return;
         const container = document.getElementById('carousel-slides');
         const dots = document.getElementById('carousel-dots');
+        document.getElementById('home-carousel').style.display = 'block'; // Csak akkor jelenjen meg, ha van banner
         items.forEach((b, i) => {
           container.innerHTML += `<div class="slide ${i===0?'active':''}" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('${b.image}')">
             <h1>${b.title}</h1><p>${b.subtitle || ''}</p>
