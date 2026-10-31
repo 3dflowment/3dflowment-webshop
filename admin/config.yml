@@ -6,13 +6,19 @@ media_folder: "images" # Ide menti a rendszer a feltöltött fotókat
 public_folder: "/images"
 
 collections:
-  - name: "products"
-    label: "Termékek"
-    folder: "content/products"
-    create: true
-    fields:
-      - {label: "Termék neve", name: "title", widget: "string"}
-      - {label: "Kategória", name: "category", widget: "select", options: ["Könyves", "Szezonális", "LEGO", "Montessori", "B2B"]}
-      - {label: "Ár (Ft)", name: "price", widget: "number"}
-      - {label: "Kép feltöltése", name: "image", widget: "image"}
-      - {label: "Termék leírása", name: "body", widget: "markdown"}
+  - name: "shop_data"
+    label: "Webshop Adatok"
+    files:
+      - label: "Terméktörzs"
+        name: "products"
+        file: "api/products.json"
+        fields:
+          - label: "Termékek"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Termék neve", name: "title", widget: "string"}
+              - {label: "Kategória", name: "category", widget: "select", options: ["Könyves", "Szezonális", "LEGO", "Montessori", "B2B"]}
+              - {label: "Ár (Ft)", name: "price", widget: "number"}
+              - {label: "Kép feltöltése", name: "image", widget: "image", required: false}
+              - {label: "Rövid leírás", name: "desc", widget: "string", required: false}
