@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DFlowment - Varázslat a polcodon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root { --bg-color: #0f172a; --card-bg: #1e293b; --text-color: #f1f5f9; --muted-text: #94a3b8; --accent-color: #d4af37; --accent-text: #000000; --nav-bg: #020617; --subnav-bg: #090d16; --heading-font: 'Playfair Display', serif; }
+      body.b2b { --bg-color: #0f172a; --card-bg: #1e293b; --text-color: #f8fafc; --muted-text: #cbd5e1; --accent-color: #38bdf8; --accent-text: #0f172a; --nav-bg: #090d16; --subnav-bg: #111827; --heading-font: 'Montserrat', sans-serif; }
+      body { margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); transition: all 0.3s ease; }
+      h1, h2, h3, .logo { font-family: var(--heading-font); }
+      header { position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }
+      .top-bar { background-color: var(--nav-bg); padding: 12px 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+      .logo { font-size: 28px; color: var(--accent-color); text-decoration: none; font-weight: 700; cursor: pointer; }
+      .top-links { display: flex; gap: 15px; align-items: center; }
+      .top-links a { color: var(--muted-text); text-decoration: none; font-size: 13px; font-weight: 500; cursor: pointer; padding: 6px 10px; transition: all 0.2s; }
+      .top-links a:hover, .top-links a.active { color: var(--accent-color); }
+      .b2b-highlight { border: 1px solid var(--accent-color); color: var(--accent-color) !important; font-weight: 600 !important; }
+      .cart-btn { background-color: var(--accent-color) !important; color: var(--accent-text) !important; font-weight: 700 !important; padding: 8px 16px !important; border-radius: 4px; }
+      .category-bar { background-color: var(--subnav-bg); padding: 10px 40px; display: flex; justify-content: center; gap: 35px; border-bottom: 2px solid var(--accent-color); flex-wrap: wrap; }
+      .category-bar a { color: var(--text-color); text-transform: uppercase; font-size: 13px; font-weight: 600; cursor: pointer; padding: 6px 12px; transition: all 0.2s; }
+      .category-bar a:hover, .category-bar a.active { color: var(--accent-color); }
+      .page-banner { text-align: center; padding: 55px 20px; background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.98)), url('https://images.unsplash.com/photo-1511108690759-009324a90311?ixlib=rb-4.0.3') center/cover; }
+      .page-banner h1 { font-size: 38px; color: var(--accent-color); margin: 0 0 10px 0; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 45px 20px; }
+      .section-title { text-align: center; color: var(--accent-color); font-size: 30px; margin-bottom: 35px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+      .card { background-color: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 25px 20px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s ease; }
+      .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+      .card img { width: 100%; height: 190px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; }
+      .card h3 { margin: 0 0 10px 0; color: var(--text-color); font-size: 19px; }
+      .price { font-size: 18px; font-weight: 700; color: var(--accent-color); margin: 8px 0; }
+      .card-btn { margin-top: 12px; padding: 10px 22px; background-color: var(--accent-color); color: var(--accent-text); font-weight: 700; font-size: 12px; border-radius: 4px; border: none; cursor: pointer; }
+    </style>
+  </head>
+  <body>
+    
+    <header>
+      <div class="top-bar">
+        <a onclick="switchPage('home')" class="logo">3DFlowment</a>
+        <div class="top-links">
+          <a id="nav-about" onclick="switchPage('about')">Rólunk</a>
+          <a id="nav-b2b" onclick="switchPage('b2b')" class="b2b-highlight">Vállalati partnerek</a>
+          <a class="cart-btn">🛒 KOSÁR (0)</a>
+        </div>
+      </div>
+      <nav class="category-bar">
+        <a id="nav-konyves" onclick="switchPage('konyves')">Könyves kiegészítők</a>
+        <a id="nav-szezon" onclick="switchPage('szezon')">Szezonális</a>
+        <a id="nav-lego" onclick="switchPage('lego')">LEGO</a>
+        <a id="nav-montessori" onclick="switchPage('montessori')">Montessori</a>
+      </nav>
+    </header>
+
+    <div id="page-banner" class="page-banner">
+      <h1 id="banner-title">Varázslat a polcodon</h1>
+      <p id="banner-desc">Prémium 3D nyomtatott kiegészítők könyvmolyoknak és egyedi ajándékok.</p>
+    </div>
+
+    <div class="container">
+      <h2 id="products-title" class="section-title">Kiemelt Termékeink</h2>
+      <div id="product-grid" class="grid">
+        <p style="text-align: center; grid-column: 1/-1;">Termékek betöltése...</p>
+      </div>
+    </div>
+
+    <script>
+      let currentPage = 'home';
+      let allProducts = [];
+
+      window.onload = function() {
+        // A Netlify CMS (Decap) API JSON beolvasása
+        fetch('/api/products.json')
+          .then(res => res.json())
+          .then(data => {
+            if(data && data.items) { allProducts = data.items; }
+            switchPage('home');
+          })
+          .catch(err => {
+            console.log("Még nincs termék feltöltve.", err);
+            switchPage('home');
+          });
+      };
+
+      function switchPage(page) {
+        currentPage = page;
+        document.body.className = (page === 'b2b') ? 'b2b' : '';
+        
+        ['konyves', 'szezon', 'lego', 'montessori', 'b2b', 'about'].forEach(id => {
+          const el = document.getElementById('nav-' + id);
+          if (el) el.classList.toggle('active', id === page);
+        });
+
+        if (page === 'b2b') {
+          document.getElementById('banner-title').innerText = 'B2B Megoldások';
+          document.getElementById('banner-desc').innerText = 'Precíz 3D nyomtatás és hardver-kiegészítők vállalatoknak.';
+        } else {
+          document.getElementById('banner-title').innerText = 'Varázslat a polcodon';
+          document.getElementById('banner-desc').innerText = 'Prémium 3D nyomtatott kiegészítők könyvmolyoknak és egyedi ajándékok.';
+        }
+
+        renderProducts();
+      }
+
+      function renderProducts() {
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = '';
+
+        const filtered = allProducts.filter(row => {
+          if (currentPage === 'home' || currentPage === 'about') return true;
+          const cat = (row.category || '').toLowerCase();
+          if (currentPage === 'konyves') return cat.includes('könyv');
+          if (currentPage === 'szezon') return cat.includes('szezon');
+          if (currentPage === 'lego') return cat.includes('lego');
+          if (currentPage === 'montessori') return cat.includes('montessori');
+          if (currentPage === 'b2b') return cat.includes('b2b');
+          return true;
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">Ide kerülnek a termékek, amint feltöltöd őket az adminban!</p>';
+          return;
+        }
+
+        filtered.forEach(row => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          const imgTag = row.image ? `<img src="${row.image}" alt="${row.title}">` : `<div style="height:190px; background:rgba(255,255,255,0.1); border-radius:6px; margin-bottom:15px; display:flex; align-items:center; justify-content:center;">Nincs kép</div>`;
+          card.innerHTML = `
+            <div>
+              ${imgTag}
+              <h3>${row.title}</h3>
+              <p style="font-size: 13px; color: var(--muted-text);">${row.category || ''}</p>
+            </div>
+            <div>
+              <div class="price">${row.price ? row.price.toLocaleString('hu-HU') + ' Ft' : 'Egyedi ár'}</div>
+              <button class="card-btn">KOSÁRBA</button>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+    </script>
+  </body>
+</html>
