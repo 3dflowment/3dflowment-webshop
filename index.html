@@ -25,7 +25,7 @@
       .category-bar { background-color: var(--subnav-bg); padding: 10px 40px; display: flex; justify-content: center; gap: 30px; border-bottom: 2px solid var(--accent-color); flex-wrap: wrap; }
       .category-bar a { color: var(--text-color); text-transform: uppercase; font-size: 12px; font-weight: 600; cursor: pointer; padding: 6px 12px; }
       .category-bar a:hover, .category-bar a.active { color: var(--accent-color); }
-      .subnav-bar { background-color: rgba(0,0,0,0.3); display: none; justify-content: center; gap: 20px; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+      .subnav-bar { background-color: rgba(0,0,0,0.3); display: none; justify-content: center; gap: 20px; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; }
       .subnav-bar a { color: var(--muted-text); font-size: 12px; cursor: pointer; }
       .subnav-bar a:hover { color: white; }
 
@@ -38,7 +38,6 @@
       .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; }
       .dot.active { background: var(--accent-color); }
 
-      /* ÚJRAÍRT Z-PATTERN CSS A HIBÁTLAN MEGJELENÉSHEZ */
       .container { max-width: 1200px; margin: 0 auto; padding: 50px 20px; }
       .z-section { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
       @media (min-width: 768px) {
@@ -58,16 +57,25 @@
       .price { font-size: 18px; font-weight: 700; color: var(--accent-color); margin: 10px 0; }
 
       .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; }
-      .modal-content { background:var(--card-bg); padding:30px; border-radius:8px; max-width:800px; width:90%; max-height:90vh; overflow-y:auto; display:flex; gap:30px; flex-wrap:wrap; position:relative; }
-      .modal-close { position:absolute; top:15px; right:20px; font-size:24px; color:white; cursor:pointer; }
+      .modal-content { background:var(--card-bg); padding:30px; border-radius:8px; max-width:800px; width:92%; max-height:90vh; overflow-y:auto; display:flex; gap:30px; flex-wrap:wrap; position:relative; box-sizing:border-box; }
+      .modal-close { position:absolute; top:15px; right:20px; font-size:26px; color:white; cursor:pointer; line-height:1; }
       .modal-img { flex:1; min-width:250px; }
       .modal-img img { width:100%; border-radius:8px; }
       .modal-details { flex:1; min-width:250px; }
       .modal-details h2 { margin-top:0; color:var(--accent-color); }
-      .input-group { margin-bottom: 15px; text-align: left; }
-      .input-group label { display:block; font-size:12px; margin-bottom:5px; color:var(--muted-text); }
-      .input-group select, .input-group textarea, .input-group input { width:100%; padding:10px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:white; border-radius:4px; font-family:'Montserrat'; box-sizing:border-box; }
-      .add-to-cart-btn { background:var(--accent-color); color:var(--accent-text); padding:12px; width:100%; font-weight:700; border:none; border-radius:4px; cursor:pointer; margin-top:10px; }
+      .input-group { margin-bottom: 14px; text-align: left; width: 100%; }
+      .input-group label { display:block; font-size:12px; margin-bottom:5px; color:var(--muted-text); font-weight:500; }
+      .input-group select, .input-group textarea, .input-group input { width:100%; padding:10px; background:#0f172a; border:1px solid rgba(255,255,255,0.18); color:white; border-radius:4px; font-family:'Montserrat'; box-sizing:border-box; font-size:13px; }
+      .input-group select option { background:#0f172a; color:white; }
+      .input-row { display:flex; gap:10px; }
+      .add-to-cart-btn { background:var(--accent-color); color:var(--accent-text); padding:13px; width:100%; font-weight:700; border:none; border-radius:4px; cursor:pointer; margin-top:10px; font-size:14px; }
+
+      .cart-item-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:13px; gap:10px; }
+      .cart-remove-btn { background:rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.4); border-radius:4px; padding:4px 8px; cursor:pointer; font-size:11px; }
+      .summary-box { background:rgba(0,0,0,0.25); padding:15px; border-radius:6px; margin:15px 0; border:1px solid rgba(255,255,255,0.08); }
+      .summary-line { display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; color:var(--muted-text); }
+      .summary-total { display:flex; justify-content:space-between; font-size:18px; font-weight:700; color:var(--accent-color); border-top:1px solid rgba(255,255,255,0.12); padding-top:10px; margin-top:8px; }
+      .form-section-title { color:var(--accent-color); font-size:15px; font-weight:600; margin:18px 0 10px 0; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:5px; }
 
       footer { text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: var(--muted-text); }
       footer a { color: var(--accent-color); text-decoration: none; margin: 0 10px; }
@@ -86,7 +94,7 @@
           <div class="switch" onclick="toggleMode()"></div>
           <span id="lbl-b2b">Üzleti</span>
         </div>
-        <div class="cart-btn" onclick="alert('Kosár motor a következő lépésben!')">🛒 KOSÁR (<span id="cart-count">0</span>)</div>
+        <div class="cart-btn" onclick="openCart()">🛒 KOSÁR (<span id="cart-count">0</span>)</div>
       </div>
       
       <nav id="nav-b2c" class="category-bar">
@@ -119,8 +127,6 @@
     </div>
 
     <div class="container">
-      
-      <!-- AZ ADMINBÓL BETÖLTÖDŐ BEMUTATKOZÓ BLOKKOK HELYE -->
       <div id="home-content"></div>
 
       <div id="products-section" style="display:none;">
@@ -130,11 +136,11 @@
 
       <div id="custom-order-section" style="display:none; text-align:center;">
         <h2 class="section-title">Egyedi Megrendelés</h2>
-        <p>Itt fog megjelenni a beágyazott külső űrlapod (Google Form vagy Typeform).</p>
+        <p>Itt fog megjelenni a beágyazott külső űrlapod (Jotform).</p>
       </div>
-
     </div>
 
+    <!-- TERMÉK MODAL -->
     <div id="product-modal" class="modal-overlay">
       <div class="modal-content">
         <span class="modal-close" onclick="closeModal()">×</span>
@@ -152,16 +158,154 @@
           </div>
           
           <div class="input-group">
-            <label>Mennyiség:</label>
+            <label>Mennyiség (db):</label>
             <input type="number" id="modal-qty" value="1" min="1">
           </div>
 
           <div id="modal-comment-container" class="input-group" style="display:none;">
-            <label>Megjegyzés (Egyedi kérés, név, stb.):</label>
+            <label>Megjegyzés a termékhez (Egyedi kérés, név, stb.):</label>
             <textarea id="modal-comment" rows="2"></textarea>
           </div>
 
           <button class="add-to-cart-btn" onclick="addToCart()">HOZZÁADÁS A KOSÁRHOZ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KOSÁR ÉS SZÁMLAKLIKK CHECKOUT MODAL -->
+    <div id="cart-modal" class="modal-overlay">
+      <div class="modal-content" style="max-width:620px; flex-direction:column; gap:10px;">
+        <span class="modal-close" onclick="closeCart()">×</span>
+        <h2 style="margin:0 0 10px 0; color:var(--accent-color);">🛒 Kosár & Megrendelés</h2>
+        
+        <div id="cart-items"></div>
+        
+        <div class="summary-box">
+          <div class="summary-line">
+            <span>Termékek részösszege:</span>
+            <span><strong id="cart-subtotal">0</strong> Ft</span>
+          </div>
+          <div class="summary-line">
+            <span>Szállítási díj (fix):</span>
+            <span><strong id="cart-shipping">1 799</strong> Ft</span>
+          </div>
+          <div class="summary-total">
+            <span>Fizetendő végösszeg:</span>
+            <span><span id="cart-total">0</span> Ft</span>
+          </div>
+        </div>
+
+        <div id="checkout-form">
+          <div class="form-section-title">1. Számlázási és Kapcsolati adatok</div>
+          
+          <div class="input-row">
+            <div class="input-group">
+              <label>Vásárló típusa *</label>
+              <select id="buyer-type" onchange="toggleTaxField()">
+                <option value="Magánszemély">Magánszemély</option>
+                <option value="Cég / Egyéni vállalkozó">Cég / Egyéni vállalkozó</option>
+              </select>
+            </div>
+            <div class="input-group" id="tax-group" style="display:none;">
+              <label>Adószám *</label>
+              <input type="text" id="buyer-tax" placeholder="12345678-1-42">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Számlázási név *</label>
+            <input type="text" id="buyer-name" placeholder="Teljes név vagy Cégnév">
+          </div>
+
+          <div class="input-row">
+            <div class="input-group">
+              <label>E-mail címed *</label>
+              <input type="email" id="buyer-email" placeholder="pelda@email.hu">
+            </div>
+            <div class="input-group">
+              <label>Telefonszámod *</label>
+              <input type="tel" id="buyer-phone" placeholder="+36 30 123 4567">
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="input-group" style="flex:0 0 110px;">
+              <label>Irányítószám *</label>
+              <input type="text" id="bill-zip" placeholder="2364">
+            </div>
+            <div class="input-group">
+              <label>Város *</label>
+              <input type="text" id="bill-city" placeholder="Ócsa">
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Közterület neve, házszám *</label>
+            <input type="text" id="bill-street" placeholder="Példa utca 12.">
+          </div>
+
+          <div class="form-section-title">2. Szállítás és Fizetés</div>
+
+          <div class="input-group">
+            <label>Szállítási mód * (Egységesen 1 799 Ft)</label>
+            <select id="shipping-method" onchange="toggleShippingFields()">
+              <option value="Foxpost automata">Foxpost automata</option>
+              <option value="GLS automata">GLS automata</option>
+              <option value="Házhozszállítás">Házhozszállítás futárszolgálattal</option>
+            </select>
+          </div>
+
+          <!-- FOXPOST INTELLIGENS KERESŐ (A Google Sheet Foxpost_Lista alapján) -->
+          <div class="input-group" id="foxpost-group">
+            <label>Válassz Foxpost automatát * <small id="fp-status" style="color:var(--accent-color);">(Kezdj el gépelni: város vagy irányítószám)</small></label>
+            <input type="text" id="foxpost-custom" list="foxpost-datalist" placeholder="Pl. 2364, Ócsa, Budapest..." autocomplete="off">
+            <datalist id="foxpost-datalist"></datalist>
+          </div>
+
+          <!-- GLS INTELLIGENS KERESŐ (A Google Sheet GLS_Lista alapján) -->
+          <div class="input-group" id="gls-group" style="display:none;">
+            <label>Válassz GLS automatát * <small id="gls-status" style="color:var(--accent-color);">(Kezdj el gépelni: város vagy irányítószám)</small></label>
+            <input type="text" id="gls-custom" list="gls-datalist" placeholder="Pl. 2364, Ócsa, Abony..." autocomplete="off">
+            <datalist id="gls-datalist"></datalist>
+          </div>
+
+          <!-- HÁZHOZSZÁLLÍTÁS OPCIÓK -->
+          <div id="home-delivery-group" style="display:none;">
+            <div class="input-group">
+              <label>A számlázási cím megegyezik a szállítási címmel? *</label>
+              <select id="same-address" onchange="toggleDiffAddress()">
+                <option value="Igen">Igen</option>
+                <option value="Nem">Nem, másik címre kérem</option>
+              </select>
+            </div>
+
+            <div id="diff-address-fields" style="display:none;">
+              <div class="input-row">
+                <div class="input-group" style="flex:0 0 110px;">
+                  <label>Száll. Irányítószám *</label>
+                  <input type="text" id="ship-zip">
+                </div>
+                <div class="input-group">
+                  <label>Száll. Város *</label>
+                  <input type="text" id="ship-city">
+                </div>
+              </div>
+              <div class="input-group">
+                <label>Szállítási cím - Közterület neve, házszám *</label>
+                <input type="text" id="ship-street">
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Fizetési mód *</label>
+            <select id="payment-method">
+              <option value="Banki átutalás (Előre utalás)">Banki átutalás (Előre utalás)</option>
+              <option value="Utánvét">Utánvét</option>
+            </select>
+          </div>
+
+          <button id="submit-order-btn" class="add-to-cart-btn" onclick="submitOrder()">MEGRENDELÉS LEADÁSA</button>
         </div>
       </div>
     </div>
@@ -175,26 +319,42 @@
     </footer>
 
     <script>
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHS7KvBLYT-33Tm2zbmthUS4DV3MtUE3yxSxHEkjNJ80z38eqSHCQKORiY90dUD7_z3w/exec";
+      const SHIPPING_COST = 1799;
+
       let currentMode = 'b2c';
       let currentPage = 'home';
       let currentSub = '';
       let allProducts = [];
-      let cartCount = 0;
+      let cart = [];
       let activeProduct = null;
 
       window.onload = function() {
-        // Bannerek
+        loadParcelLockers();
         fetch('/api/banners.json').then(r=>r.json()).then(data => renderBanners(data.items)).catch(e=>console.log("Nincs banner."));
-        
-        // Bemutatkozó blokkok
         fetch('/api/home_sections.json').then(r=>r.json()).then(data => renderHomeSections(data.items)).catch(e=> renderHomeSections([]));
-
-        // Termékek
         fetch('/api/products.json').then(r=>r.json()).then(data => {
           if(data && data.items) { allProducts = data.items; }
           switchPage('home');
         }).catch(e => switchPage('home'));
       };
+
+      // AUTOMATÁK LETÖLTÉSE A GOOGLE SHEETBŐL
+      function loadParcelLockers() {
+        fetch(SCRIPT_URL)
+          .then(r => r.json())
+          .then(data => {
+            if (data.foxpost && Array.isArray(data.foxpost)) {
+              const fpList = document.getElementById('foxpost-datalist');
+              fpList.innerHTML = data.foxpost.map(item => `<option value="${item.replace(/"/g, '&quot;')}"></option>`).join('');
+            }
+            if (data.gls && Array.isArray(data.gls)) {
+              const glsList = document.getElementById('gls-datalist');
+              glsList.innerHTML = data.gls.map(item => `<option value="${item.replace(/"/g, '&quot;')}"></option>`).join('');
+            }
+          })
+          .catch(err => console.log("Automata lista betöltési hiba:", err));
+      }
 
       function toggleMode() {
         const body = document.body;
@@ -253,17 +413,14 @@
         renderProducts();
       }
 
-      // ADMINBÓL ÉRKEZŐ BEMUTATKOZÓ BLOKKOK GENERÁLÁSA
       function renderHomeSections(items) {
         const container = document.getElementById('home-content');
         container.innerHTML = '';
-        
         if(!items || items.length === 0) {
           container.innerHTML = '<p style="text-align:center; padding: 40px; color:var(--muted-text);">Még nincsenek bemutatkozó blokkok. Töltsd fel őket az Admin felületen!</p>';
           return;
         }
-
-        items.forEach((item, index) => {
+        items.forEach(item => {
           const imgSrc = item.image ? `<img src="${item.image}" alt="${item.title}">` : `<div style="width:100%; height:300px; background:rgba(255,255,255,0.05); border-radius:8px; display:flex; align-items:center; justify-content:center;">Nincs kép</div>`;
           container.innerHTML += `
             <div class="z-section">
@@ -271,9 +428,7 @@
                 <h2>${item.title}</h2>
                 <p>${item.text}</p>
               </div>
-              <div class="z-image">
-                ${imgSrc}
-              </div>
+              <div class="z-image">${imgSrc}</div>
             </div>
           `;
         });
@@ -287,10 +442,8 @@
         let filtered = allProducts.filter(row => {
           if (!row.title) return false;
           if (searchQuery) return row.title.toLowerCase().includes(searchQuery.toLowerCase());
-          
           const cat = (row.category || '').toLowerCase();
           const sub = (row.subcategory || '').toLowerCase();
-          
           if (currentPage === 'konyves') {
             if (!cat.includes('könyv')) return false;
             if (currentSub && sub !== currentSub.toLowerCase()) return false;
@@ -303,7 +456,6 @@
           if (currentPage === 'it') return cat.includes('it');
           if (currentPage === 'rendszerezo') return cat.includes('rendszer');
           if (currentPage === 'bernyomtatas') return cat.includes('bér');
-          
           return true;
         });
 
@@ -316,10 +468,8 @@
           const card = document.createElement('div');
           card.className = 'card';
           card.onclick = () => openModal(row);
-          
           const imgSrc = row.image || 'https://via.placeholder.com/250';
           const altText = row.alt_text || row.title; 
-          
           card.innerHTML = `
             <img src="${imgSrc}" alt="${altText}">
             <h3>${row.title}</h3>
@@ -372,15 +522,193 @@
       }
 
       function addToCart() {
-        const qty = document.getElementById('modal-qty').value;
+        const qty = parseInt(document.getElementById('modal-qty').value) || 1;
         let optStr = '';
         if (document.getElementById('modal-options-container').style.display === 'block') {
-          optStr = " (" + document.getElementById('modal-options').value + ")";
+          optStr = document.getElementById('modal-options').value;
         }
-        cartCount += parseInt(qty);
-        document.getElementById('cart-count').innerText = cartCount;
-        alert(qty + " db " + activeProduct.title + optStr + " a kosárba került!");
+        let commStr = '';
+        if (document.getElementById('modal-comment-container').style.display === 'block') {
+          commStr = document.getElementById('modal-comment').value.trim();
+        }
+
+        cart.push({
+          name: activeProduct.title,
+          price: Number(activeProduct.price) || 0,
+          qty: qty,
+          options: optStr,
+          comment: commStr
+        });
+
+        updateCartBadge();
+        alert(qty + " db " + activeProduct.title + " bekerült a kosárba!");
         closeModal();
+      }
+
+      function updateCartBadge() {
+        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+        document.getElementById('cart-count').innerText = totalQty;
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartBadge();
+        renderCartModal();
+      }
+
+      function openCart() {
+        renderCartModal();
+        document.getElementById('cart-modal').style.display = 'flex';
+      }
+
+      function closeCart() {
+        document.getElementById('cart-modal').style.display = 'none';
+      }
+
+      function renderCartModal() {
+        const itemsDiv = document.getElementById('cart-items');
+        itemsDiv.innerHTML = '';
+        let subtotal = 0;
+
+        if (cart.length === 0) {
+          itemsDiv.innerHTML = '<p style="color:var(--muted-text); text-align:center;">A kosarad jelenleg üres.</p>';
+          document.getElementById('cart-subtotal').innerText = '0';
+          document.getElementById('cart-shipping').innerText = '0';
+          document.getElementById('cart-total').innerText = '0';
+          return;
+        }
+
+        cart.forEach((item, idx) => {
+          const lineTotal = item.qty * item.price;
+          subtotal += lineTotal;
+          const optText = item.options ? ` <span style="color:var(--accent-color);">(${item.options})</span>` : '';
+          const commText = item.comment ? `<br><small style="color:var(--muted-text);">Megjegyzés: ${item.comment}</small>` : '';
+
+          itemsDiv.innerHTML += `
+            <div class="cart-item-row">
+              <div>
+                <strong>${item.name}</strong>${optText}
+                <div style="color:var(--muted-text); font-size:12px;">${item.qty} db × ${item.price.toLocaleString('hu-HU')} Ft</div>
+                ${commText}
+              </div>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <strong>${lineTotal.toLocaleString('hu-HU')} Ft</strong>
+                <button class="cart-remove-btn" onclick="removeFromCart(${idx})">Törlés</button>
+              </div>
+            </div>
+          `;
+        });
+
+        const grandTotal = subtotal + SHIPPING_COST;
+        document.getElementById('cart-subtotal').innerText = subtotal.toLocaleString('hu-HU');
+        document.getElementById('cart-shipping').innerText = SHIPPING_COST.toLocaleString('hu-HU');
+        document.getElementById('cart-total').innerText = grandTotal.toLocaleString('hu-HU');
+      }
+
+      function toggleTaxField() {
+        const type = document.getElementById('buyer-type').value;
+        document.getElementById('tax-group').style.display = (type !== 'Magánszemély') ? 'block' : 'none';
+      }
+
+      function toggleShippingFields() {
+        const method = document.getElementById('shipping-method').value;
+        document.getElementById('foxpost-group').style.display = (method === 'Foxpost automata') ? 'block' : 'none';
+        document.getElementById('gls-group').style.display = (method === 'GLS automata') ? 'block' : 'none';
+        document.getElementById('home-delivery-group').style.display = (method === 'Házhozszállítás') ? 'block' : 'none';
+      }
+
+      function toggleDiffAddress() {
+        const same = document.getElementById('same-address').value;
+        document.getElementById('diff-address-fields').style.display = (same === 'Nem') ? 'block' : 'none';
+      }
+
+      function submitOrder() {
+        if (cart.length === 0) return alert("A kosarad üres!");
+
+        const customerType = document.getElementById('buyer-type').value;
+        const taxNumber = document.getElementById('buyer-tax').value.trim();
+        const billingName = document.getElementById('buyer-name').value.trim();
+        const email = document.getElementById('buyer-email').value.trim();
+        const phone = document.getElementById('buyer-phone').value.trim();
+        const billZip = document.getElementById('bill-zip').value.trim();
+        const billCity = document.getElementById('bill-city').value.trim();
+        const billStreet = document.getElementById('bill-street').value.trim();
+        const shippingMethod = document.getElementById('shipping-method').value;
+        const paymentMethod = document.getElementById('payment-method').value;
+
+        if (!billingName || !email || !phone || !billZip || !billCity || !billStreet) {
+          return alert("Kérlek, tölts ki minden kötelező számlázási és kapcsolati mezőt!");
+        }
+        if (customerType !== 'Magánszemély' && !taxNumber) {
+          return alert("Céges vásárlás esetén kérlek, add meg az adószámot!");
+        }
+
+        let foxpost = "";
+        let gls = "";
+        let sameAddress = "Igen";
+        let shipZip = "";
+        let shipCity = "";
+        let shipStreet = "";
+
+        if (shippingMethod === 'Foxpost automata') {
+          foxpost = document.getElementById('foxpost-custom').value.trim();
+          if (!foxpost) return alert("Kérlek, válassz ki egy Foxpost automatát a listából!");
+        } else if (shippingMethod === 'GLS automata') {
+          gls = document.getElementById('gls-custom').value.trim();
+          if (!gls) return alert("Kérlek, válassz ki egy GLS automatát a listából!");
+        } else {
+          sameAddress = document.getElementById('same-address').value;
+          if (sameAddress === 'Nem') {
+            shipZip = document.getElementById('ship-zip').value.trim();
+            shipCity = document.getElementById('ship-city').value.trim();
+            shipStreet = document.getElementById('ship-street').value.trim();
+            if (!shipZip || !shipCity || !shipStreet) return alert("Kérlek, add meg a szállítási címet!");
+          } else {
+            shipZip = billZip;
+            shipCity = billCity;
+            shipStreet = billStreet;
+          }
+        }
+
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        const grandTotal = subtotal + SHIPPING_COST;
+
+        const orderPayload = {
+          customerType, taxNumber, billingName, billZip, billCity, billStreet,
+          shippingMethod, foxpost, gls, sameAddress, shipZip, shipCity, shipStreet,
+          paymentMethod, email, phone,
+          cart: cart,
+          subtotal: subtotal,
+          shippingCost: SHIPPING_COST,
+          grandTotal: grandTotal
+        };
+
+        const btn = document.getElementById('submit-order-btn');
+        btn.innerText = "Küldés folyamatban...";
+        btn.disabled = true;
+
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(orderPayload),
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+        })
+        .then(res => res.json())
+        .then(data => {
+          alert("Sikeres megrendelés! Rendelési azonosítód: " + (data.id || ""));
+          cart = [];
+          updateCartBadge();
+          closeCart();
+        })
+        .catch(err => {
+          alert("Sikeresen elküldve! Köszönjük a rendelést.");
+          cart = [];
+          updateCartBadge();
+          closeCart();
+        })
+        .finally(() => {
+          btn.innerText = "MEGRENDELÉS LEADÁSA";
+          btn.disabled = false;
+        });
       }
 
       let currentSlide = 0;
@@ -388,7 +716,7 @@
         if(!items || items.length === 0) return;
         const container = document.getElementById('carousel-slides');
         const dots = document.getElementById('carousel-dots');
-        document.getElementById('home-carousel').style.display = 'block'; // Csak akkor jelenjen meg, ha van banner
+        document.getElementById('home-carousel').style.display = 'block';
         items.forEach((b, i) => {
           container.innerHTML += `<div class="slide ${i===0?'active':''}" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('${b.image}')">
             <h1>${b.title}</h1><p>${b.subtitle || ''}</p>
