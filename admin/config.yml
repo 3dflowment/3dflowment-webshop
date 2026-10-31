@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: <3dflowment>/3dflowment-webshop
+  name: git-gateway
   branch: main
 
 media_folder: "images" # Ide menti a rendszer a feltöltött fotókat
