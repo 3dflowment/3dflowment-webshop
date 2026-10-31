@@ -3,12 +3,12 @@
     {
       "alt_text": "Fourth Wing fantasy könyves LED hangulatlámpa, booknook sárkányokkal, csillagokkal és varázslatos könyvillusztrációval, meleg arany fényben.",
       "price": 4500,
-      "allow_comment": true,
+      "allow_comment": false,
       "desc": "\"Téged választottalak, és a sárkányok nem hibáznak.\" Te is legyél olyan magabiztos, mint Train és válassz helyesen! Fourth Wing által inspirált könyvtámasz (booknook).   Világítás nélkül is gyönyörű, de a háttérvilágítással lesz igazi kincse a polcodnak. \n\nA fényfüzér eleme a terméknek.",
       "title": "Fourth Wing booknook (könyvtámasz)",
       "image": "/images/fourth-wing-1-.jpg",
       "category": "Könyves kiegészítők",
-      "options": "Nagy,Kicsi",
+      "options": "",
       "subcategory": "Fourth Wing"
     }
   ]
