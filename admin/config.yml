@@ -18,9 +18,23 @@ collections:
             widget: "list"
             fields:
               - {label: "Címsor", name: "title", widget: "string"}
-              - {label: "Alcím", name: "subtitle", widget: "string"}
+              - {label: "Alcím", name: "subtitle", widget: "string", required: false}
               - {label: "Háttérkép", name: "image", widget: "image"}
-              - {label: "Gomb felirata", name: "btn_text", widget: "string"}
+              - {label: "Gomb felirata", name: "btn_text", widget: "string", required: false}
+      
+      - label: "Főoldali Bemutatkozás (Rólunk, Szolgáltatások)"
+        name: "about"
+        file: "api/about.json"
+        fields:
+          - label: "Blokkok (Automatikusan cikk-cakkban jelennek meg)"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Címsor", name: "title", widget: "string"}
+              - {label: "Szöveg", name: "text", widget: "text"}
+              - {label: "Kép", name: "image", widget: "image", required: false}
+              - {label: "Kép SEO (Alt szöveg)", name: "alt_text", widget: "string", required: false}
+
       - label: "Terméktörzs"
         name: "products"
         file: "api/products.json"
@@ -31,10 +45,13 @@ collections:
             fields:
               - {label: "Termék neve", name: "title", widget: "string"}
               - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
-              - {label: "Alkategória (Opcionális, pl. ACOTAR)", name: "subcategory", widget: "string", required: false}
-              - {label: "Ár (Ft)", name: "price", widget: "number"}
-              - {label: "Kép", name: "image", widget: "image"}
-              - {label: "Kép SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Vakoknak és a Google-nek (pl. Fekete sárkányos könyvtámasz)"}
+              - {label: "Alkategória (Opcionális)", name: "subcategory", widget: "string", required: false}
+              - {label: "Ár (Ft)", name: "price", widget: "number", required: false}
+              - {label: "Kép", name: "image", widget: "image", required: false}
+              - {label: "Kép SEO (Alt text)", name: "alt_text", widget: "string", required: false}
+              - {label: "Leírás", name: "desc", widget: "text", required: false}
+              - {label: "Választható opciók (Vesszővel elválasztva, pl: Piros, Kék)", name: "options", widget: "string", required: false}
+              - {label: "Kérhet a vevő egyedi megjegyzést?", name: "allow_comment", widget: "boolean", default: false, required: false}xt", widget: "string", hint: "Vakoknak és a Google-nek (pl. Fekete sárkányos könyvtámasz)"}
               - {label: "Leírás", name: "desc", widget: "text", required: false}
               - {label: "Választható opciók (Vesszővel elválasztva, pl: Piros, Kék, Zöld)", name: "options", widget: "string", required: false}
               - {label: "Kérhet a vevő egyedi megjegyzést?", name: "allow_comment", widget: "boolean", default: false, required: false}
