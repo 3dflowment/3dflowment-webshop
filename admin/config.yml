@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: <3dflowment>/3dflowment-webshop
+  branch: main
+
+media_folder: "images" # Ide menti a rendszer a feltöltött fotókat
+public_folder: "/images"
+
+collections:
+  - name: "products"
+    label: "Termékek"
+    folder: "content/products"
+    create: true
+    fields:
+      - {label: "Termék neve", name: "title", widget: "string"}
+      - {label: "Kategória", name: "category", widget: "select", options: ["Könyves", "Szezonális", "LEGO", "Montessori", "B2B"]}
+      - {label: "Ár (Ft)", name: "price", widget: "number"}
+      - {label: "Kép feltöltése", name: "image", widget: "image"}
+      - {label: "Termék leírása", name: "body", widget: "markdown"}
