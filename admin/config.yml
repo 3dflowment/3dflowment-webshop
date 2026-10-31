@@ -18,17 +18,37 @@ collections:
             widget: "list"
             fields:
               - {label: "Címsor", name: "title", widget: "string"}
-              - {label: "Alcím", name: "subtitle", widget: "string", required: false}
+              - {label: "Alcím", name: "subtitle", widget: "string"}
               - {label: "Háttérkép", name: "image", widget: "image"}
-              - {label: "Gomb felirata", name: "btn_text", widget: "string", required: false}
-      
-      - label: "Főoldali Bemutatkozás (Rólunk, Szolgáltatások)"
-        name: "about"
-        file: "api/about.json"
+              - {label: "Gomb felirata", name: "btn_text", widget: "string"}
+      - label: "Bemutatkozó Blokkok (Z-alakzat)"
+        name: "home_sections"
+        file: "api/home_sections.json"
         fields:
-          - label: "Blokkok (Automatikusan cikk-cakkban jelennek meg)"
+          - label: "Blokkok"
             name: "items"
             widget: "list"
+            fields:
+              - {label: "Címsor", name: "title", widget: "string"}
+              - {label: "Törzsszöveg", name: "text", widget: "text"}
+              - {label: "Kép", name: "image", widget: "image"}
+      - label: "Terméktörzs"
+        name: "products"
+        file: "api/products.json"
+        fields:
+          - label: "Termékek"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Termék neve", name: "title", widget: "string"}
+              - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
+              - {label: "Alkategória", name: "subcategory", widget: "string", required: false}
+              - {label: "Ár (Ft)", name: "price", widget: "number"}
+              - {label: "Kép", name: "image", widget: "image"}
+              - {label: "SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Vakoknak és a Google-nek"}
+              - {label: "Leírás", name: "desc", widget: "text", required: false}
+              - {label: "Választható opciók (Vesszővel elválasztva)", name: "options", widget: "string", required: false}
+              - {label: "Kérhet a vevő egyedi megjegyzést?", name: "allow_comment", widget: "boolean", default: false, required: false}
             fields:
               - {label: "Címsor", name: "title", widget: "string"}
               - {label: "Szöveg", name: "text", widget: "text"}
