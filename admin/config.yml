@@ -9,6 +9,18 @@ collections:
   - name: "shop_data"
     label: "Webshop Adatok"
     files:
+      - label: "Főoldali Bannerek (Carousel)"
+        name: "banners"
+        file: "api/banners.json"
+        fields:
+          - label: "Bannerek"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Címsor", name: "title", widget: "string"}
+              - {label: "Alcím", name: "subtitle", widget: "string"}
+              - {label: "Háttérkép", name: "image", widget: "image"}
+              - {label: "Gomb felirata", name: "btn_text", widget: "string"}
       - label: "Terméktörzs"
         name: "products"
         file: "api/products.json"
@@ -18,7 +30,11 @@ collections:
             widget: "list"
             fields:
               - {label: "Termék neve", name: "title", widget: "string"}
-              - {label: "Kategória", name: "category", widget: "select", options: ["Könyves", "Szezonális", "LEGO", "Montessori", "B2B"]}
+              - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
+              - {label: "Alkategória (Opcionális, pl. ACOTAR)", name: "subcategory", widget: "string", required: false}
               - {label: "Ár (Ft)", name: "price", widget: "number"}
-              - {label: "Kép feltöltése", name: "image", widget: "image", required: false}
-              - {label: "Rövid leírás", name: "desc", widget: "string", required: false}
+              - {label: "Kép", name: "image", widget: "image"}
+              - {label: "Kép SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Vakoknak és a Google-nek (pl. Fekete sárkányos könyvtámasz)"}
+              - {label: "Leírás", name: "desc", widget: "text", required: false}
+              - {label: "Választható opciók (Vesszővel elválasztva, pl: Piros, Kék, Zöld)", name: "options", widget: "string", required: false}
+              - {label: "Kérhet a vevő egyedi megjegyzést?", name: "allow_comment", widget: "boolean", default: false, required: false}
