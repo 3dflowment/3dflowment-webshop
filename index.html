@@ -50,22 +50,26 @@
       .z-image img { width: 100%; max-width: 500px; max-height: 400px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
       .section-title { text-align: center; color: var(--accent-color); font-size: 30px; margin-bottom: 35px; }
-   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+      
+      /* FIX 4 OSZLOPOS RÁCS ÉS VÁGÁSMENTES KÁRTYÁK */
+      .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
       @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
       @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
       @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
 
-      .card { background-color: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; text-align: left; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+      .card { background-color: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; text-align: center; cursor: pointer; transition: transform 0.2s, border-color 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
       .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
       .card img { width: 100%; height: 240px; object-fit: contain; background: rgba(0,0,0,0.25); border-radius: 6px; margin-bottom: 12px; }
-      .price { font-size: 18px; font-weight: 700; color: var(--accent-color); margin: 10px 0; }
+      .card h3 { font-size: 16px; margin: 6px 0; line-height: 1.4; }
+      .price { font-size: 18px; font-weight: 700; color: var(--accent-color); margin: 8px 0 0 0; }
 
+      /* MODALOK ÉS GALÉRIA */
       .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; }
-      .modal-content { background:var(--card-bg); padding:30px; border-radius:8px; max-width:800px; width:92%; max-height:90vh; overflow-y:auto; display:flex; gap:30px; flex-wrap:wrap; position:relative; box-sizing:border-box; }
+      .modal-content { background:var(--card-bg); padding:30px; border-radius:8px; max-width:850px; width:92%; max-height:90vh; overflow-y:auto; display:flex; gap:30px; flex-wrap:wrap; position:relative; box-sizing:border-box; }
       .modal-close { position:absolute; top:15px; right:20px; font-size:26px; color:white; cursor:pointer; line-height:1; }
-      .modal-img { flex:1; min-width:250px; }
-      .modal-img img { width:100%; border-radius:8px; }
-      .modal-details { flex:1; min-width:250px; }
+      .modal-img { flex:1; min-width:260px; }
+      .modal-img > img { width:100%; max-height:420px; object-fit:contain; background:rgba(0,0,0,0.25); border-radius:8px; }
+      .modal-details { flex:1; min-width:260px; }
       .modal-details h2 { margin-top:0; color:var(--accent-color); }
       .input-group { margin-bottom: 14px; text-align: left; width: 100%; }
       .input-group label { display:block; font-size:12px; margin-bottom:5px; color:var(--muted-text); font-weight:500; }
@@ -74,6 +78,7 @@
       .input-row { display:flex; gap:10px; }
       .add-to-cart-btn { background:var(--accent-color); color:var(--accent-text); padding:13px; width:100%; font-weight:700; border:none; border-radius:4px; cursor:pointer; margin-top:10px; font-size:14px; }
 
+      /* KOSÁR STÍLUSOK */
       .cart-item-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:13px; gap:10px; }
       .cart-remove-btn { background:rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.4); border-radius:4px; padding:4px 8px; cursor:pointer; font-size:11px; }
       .summary-box { background:rgba(0,0,0,0.25); padding:15px; border-radius:6px; margin:15px 0; border:1px solid rgba(255,255,255,0.08); }
@@ -144,19 +149,19 @@
       </div>
     </div>
 
-    <!-- TERMÉK MODAL -->
+    <!-- TERMÉK MODAL (GALÉRIÁVAL ÉS VIDEÓVAL) -->
     <div id="product-modal" class="modal-overlay">
       <div class="modal-content">
         <span class="modal-close" onclick="closeModal()">×</span>
-   <div class="modal-img">
+        <div class="modal-img">
           <img id="modal-img" src="" alt="">
-          <video id="modal-video" controls style="display:none; width:100%; border-radius:8px; max-height:400px; background:#000;"></video>
-          <div id="modal-thumbs" style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;"></div>
+          <video id="modal-video" controls style="display:none; width:100%; border-radius:8px; max-height:420px; background:#000;"></video>
+          <div id="modal-thumbs" style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;"></div>
         </div>
         <div class="modal-details">
           <h2 id="modal-title">Termék neve</h2>
           <div class="price" id="modal-price">0 Ft</div>
-          <p id="modal-desc" style="color:var(--muted-text); font-size:14px; line-height:1.6;"></p>
+          <p id="modal-desc" style="color:var(--muted-text); font-size:14px; line-height:1.6; white-space:pre-wrap;"></p>
           
           <div id="modal-options-container" class="input-group" style="display:none;">
             <label>Válassz opciót (Méret/Szín):</label>
@@ -261,16 +266,16 @@
             </select>
           </div>
 
-          <!-- FOXPOST INTELLIGENS KERESŐ (A Google Sheet Foxpost_Lista alapján) -->
+          <!-- FOXPOST INTELLIGENS KERESŐ -->
           <div class="input-group" id="foxpost-group">
-            <label>Válassz Foxpost automatát * <small id="fp-status" style="color:var(--accent-color);">(Kezdj el gépelni: város vagy irányítószám)</small></label>
+            <label>Válassz Foxpost automatát * <small style="color:var(--accent-color);">(Kezdj el gépelni: város vagy irányítószám)</small></label>
             <input type="text" id="foxpost-custom" list="foxpost-datalist" placeholder="Pl. 2364, Ócsa, Budapest..." autocomplete="off">
             <datalist id="foxpost-datalist"></datalist>
           </div>
 
-          <!-- GLS INTELLIGENS KERESŐ (A Google Sheet GLS_Lista alapján) -->
+          <!-- GLS INTELLIGENS KERESŐ -->
           <div class="input-group" id="gls-group" style="display:none;">
-            <label>Válassz GLS automatát * <small id="gls-status" style="color:var(--accent-color);">(Kezdj el gépelni: város vagy irányítószám)</small></label>
+            <label>Válassz GLS automatát * <small style="color:var(--accent-color);">(Kezdj el gépelni: város vagy irányítószám)</small></label>
             <input type="text" id="gls-custom" list="gls-datalist" placeholder="Pl. 2364, Ócsa, Abony..." autocomplete="off">
             <datalist id="gls-datalist"></datalist>
           </div>
@@ -345,7 +350,6 @@
         }).catch(e => switchPage('home'));
       };
 
-      // AUTOMATÁK LETÖLTÉSE A GOOGLE SHEETBŐL
       function loadParcelLockers() {
         fetch(SCRIPT_URL)
           .then(r => r.json())
@@ -477,8 +481,10 @@
           const imgSrc = row.image || 'https://via.placeholder.com/250';
           const altText = row.alt_text || row.title; 
           card.innerHTML = `
-            <img src="${imgSrc}" alt="${altText}">
-            <h3>${row.title}</h3>
+            <div>
+              <img src="${imgSrc}" alt="${altText}">
+              <h3>${row.title}</h3>
+            </div>
             <div class="price">${row.price ? row.price.toLocaleString('hu-HU') + ' Ft' : 'Egyedi ár'}</div>
           `;
           grid.appendChild(card);
@@ -499,8 +505,31 @@
 
       function openModal(product) {
         activeProduct = product;
-        document.getElementById('modal-img').src = product.image || 'https://via.placeholder.com/500';
-        document.getElementById('modal-img').alt = product.alt_text || product.title;
+        const mainImg = document.getElementById('modal-img');
+        const mainVid = document.getElementById('modal-video');
+        const thumbs = document.getElementById('modal-thumbs');
+        
+        mainVid.pause();
+        mainVid.style.display = 'none';
+        mainImg.style.display = 'block';
+        mainImg.src = product.image || 'https://via.placeholder.com/500';
+        mainImg.alt = product.alt_text || product.title;
+        
+        thumbs.innerHTML = '';
+        const galleryArr = Array.isArray(product.gallery) 
+          ? product.gallery.map(g => typeof g === 'string' ? g : g.image) 
+          : [];
+        const allImages = [product.image, ...galleryArr].filter(Boolean);
+        
+        if (allImages.length > 1 || product.video) {
+          allImages.forEach(imgUrl => {
+            thumbs.innerHTML += `<img src="${imgUrl}" onclick="showMedia('img', '${imgUrl}')" style="width:58px; height:58px; object-fit:cover; border-radius:4px; cursor:pointer; border:1px solid var(--accent-color);">`;
+          });
+          if (product.video) {
+            thumbs.innerHTML += `<div onclick="showMedia('vid', '${product.video}')" style="width:58px; height:58px; border-radius:4px; cursor:pointer; border:1px solid var(--accent-color); display:flex; align-items:center; justify-content:center; background:#000; color:var(--accent-color); font-size:11px; font-weight:bold;">▶ VIDEÓ</div>`;
+          }
+        }
+
         document.getElementById('modal-title').innerText = product.title;
         document.getElementById('modal-price').innerText = product.price ? product.price.toLocaleString('hu-HU') + ' Ft' : 'Egyedi ár';
         document.getElementById('modal-desc').innerText = product.desc || '';
@@ -524,7 +553,24 @@
       }
 
       function closeModal() {
+        document.getElementById('modal-video').pause();
         document.getElementById('product-modal').style.display = 'none';
+      }
+
+      function showMedia(type, src) {
+        const mainImg = document.getElementById('modal-img');
+        const mainVid = document.getElementById('modal-video');
+        if (type === 'vid') {
+          mainImg.style.display = 'none';
+          mainVid.src = src;
+          mainVid.style.display = 'block';
+          mainVid.play();
+        } else {
+          mainVid.pause();
+          mainVid.style.display = 'none';
+          mainImg.src = src;
+          mainImg.style.display = 'block';
+        }
       }
 
       function addToCart() {
