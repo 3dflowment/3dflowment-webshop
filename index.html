@@ -20,7 +20,7 @@
       .switch { position: relative; width: 50px; height: 26px; background: rgba(255,255,255,0.1); border-radius: 13px; cursor: pointer; border: 1px solid var(--accent-color); }
       .switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: var(--accent-color); border-radius: 50%; transition: 0.3s; }
       body.b2b .switch::after { transform: translateX(24px); }
-      .cart-btn { background-color: var(--accent-color); color: var(--accent-text); font-weight: 700; padding: 8px 16px; border-radius: 4px; cursor:pointer; }
+      .cart-btn { background-color: var(--accent-color); color: var(--accent-text); font-weight: 700; padding: 8px 16px; border-radius: 4px; cursor:pointer; border:none; font-family:'Montserrat'; }
       
       .category-bar { background-color: var(--subnav-bg); padding: 10px 40px; display: flex; justify-content: center; gap: 30px; border-bottom: 2px solid var(--accent-color); flex-wrap: wrap; }
       .category-bar a { color: var(--text-color); text-transform: uppercase; font-size: 12px; font-weight: 600; cursor: pointer; padding: 6px 12px; }
@@ -29,12 +29,16 @@
       .subnav-bar a { color: var(--muted-text); font-size: 12px; cursor: pointer; }
       .subnav-bar a:hover { color: white; }
 
-      .carousel { position: relative; height: 450px; overflow: hidden; display: none; }
-      .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; background-size: cover; background-position: center; }
+      /* TÖKÉLETESÍTETT BANNER ILLESZKEDÉS (VÁGÁS NÉLKÜL) */
+      .carousel { position: relative; height: 420px; overflow: hidden; display: none; background-color: #050811; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      @media (max-width: 768px) { .carousel { height: 300px; } }
+      .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; background-size: contain; background-repeat: no-repeat; background-position: center; }
       .slide.active { opacity: 1; z-index: 1; }
-      .slide h1 { font-size: 46px; color: var(--accent-color); margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
-      .slide p { font-size: 20px; margin-bottom: 25px; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); }
-      .carousel-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 10px; }
+      .slide-content { background: rgba(2, 6, 23, 0.72); padding: 22px 36px; border-radius: 10px; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1); max-width: 85%; }
+      .slide h1 { font-size: 38px; color: var(--accent-color); margin: 0 0 10px 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); }
+      .slide p { font-size: 18px; margin: 0 0 18px 0; text-shadow: 1px 1px 5px rgba(0,0,0,0.9); color: #fff; }
+      @media (max-width: 768px) { .slide h1 { font-size: 24px; } .slide p { font-size: 14px; } .slide-content { padding: 15px 20px; } }
+      .carousel-dots { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 10px; }
       .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; }
       .dot.active { background: var(--accent-color); }
 
@@ -47,11 +51,10 @@
       .z-text h2 { color: var(--accent-color); font-size: 28px; margin-top: 0; }
       .z-text p { line-height: 1.8; color: var(--muted-text); white-space: pre-wrap; }
       .z-image { flex: 1; min-width: 300px; text-align: center; }
-      .z-image img { width: 100%; max-width: 500px; max-height: 400px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+      .z-image img { width: 100%; max-width: 500px; max-height: 400px; object-fit: contain; background: rgba(0,0,0,0.2); border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
       .section-title { text-align: center; color: var(--accent-color); font-size: 30px; margin-bottom: 35px; }
       
-      /* FIX 4 OSZLOPOS RÁCS ÉS VÁGÁSMENTES KÁRTYÁK */
       .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
       @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
       @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
@@ -63,7 +66,6 @@
       .card h3 { font-size: 16px; margin: 6px 0; line-height: 1.4; }
       .price { font-size: 18px; font-weight: 700; color: var(--accent-color); margin: 8px 0 0 0; }
 
-      /* MODALOK ÉS GALÉRIA */
       .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; }
       .modal-content { background:var(--card-bg); padding:30px; border-radius:8px; max-width:850px; width:92%; max-height:90vh; overflow-y:auto; display:flex; gap:30px; flex-wrap:wrap; position:relative; box-sizing:border-box; }
       .modal-close { position:absolute; top:15px; right:20px; font-size:26px; color:white; cursor:pointer; line-height:1; }
@@ -73,12 +75,14 @@
       .modal-details h2 { margin-top:0; color:var(--accent-color); }
       .input-group { margin-bottom: 14px; text-align: left; width: 100%; }
       .input-group label { display:block; font-size:12px; margin-bottom:5px; color:var(--muted-text); font-weight:500; }
-      .input-group select, .input-group textarea, .input-group input { width:100%; padding:10px; background:#0f172a; border:1px solid rgba(255,255,255,0.18); color:white; border-radius:4px; font-family:'Montserrat'; box-sizing:border-box; font-size:13px; }
+      .input-group select, .input-group textarea, .input-group input[type="text"], .input-group input[type="email"], .input-group input[type="tel"], .input-group input[type="number"] { width:100%; padding:10px; background:#0f172a; border:1px solid rgba(255,255,255,0.18); color:white; border-radius:4px; font-family:'Montserrat'; box-sizing:border-box; font-size:13px; }
       .input-group select option { background:#0f172a; color:white; }
       .input-row { display:flex; gap:10px; }
       .add-to-cart-btn { background:var(--accent-color); color:var(--accent-text); padding:13px; width:100%; font-weight:700; border:none; border-radius:4px; cursor:pointer; margin-top:10px; font-size:14px; }
 
-      /* KOSÁR STÍLUSOK */
+      .same-addr-btn { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:10px 14px; border-radius:6px; border:1px solid var(--accent-color); cursor:pointer; margin-bottom:14px; font-size:13px; font-weight:600; color:var(--text-color); }
+      .same-addr-btn input { width:18px; height:18px; accent-color:var(--accent-color); cursor:pointer; }
+
       .cart-item-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:13px; gap:10px; }
       .cart-remove-btn { background:rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.4); border-radius:4px; padding:4px 8px; cursor:pointer; font-size:11px; }
       .summary-box { background:rgba(0,0,0,0.25); padding:15px; border-radius:6px; margin:15px 0; border:1px solid rgba(255,255,255,0.08); }
@@ -86,8 +90,9 @@
       .summary-total { display:flex; justify-content:space-between; font-size:18px; font-weight:700; color:var(--accent-color); border-top:1px solid rgba(255,255,255,0.12); padding-top:10px; margin-top:8px; }
       .form-section-title { color:var(--accent-color); font-size:15px; font-weight:600; margin:18px 0 10px 0; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:5px; }
 
-      footer { text-align: center; padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 11px; color: var(--muted-text); }
-      footer a { color: var(--accent-color); text-decoration: none; margin: 0 10px; }
+      footer { text-align: center; padding: 28px 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: var(--muted-text); line-height: 1.8; }
+      footer a { color: var(--accent-color); text-decoration: none; margin: 0 10px; font-weight: 600; }
+      footer a:hover { text-decoration: underline; }
     </style>
   </head>
   <body>
@@ -149,7 +154,7 @@
       </div>
     </div>
 
-    <!-- TERMÉK MODAL (GALÉRIÁVAL ÉS VIDEÓVAL) -->
+    <!-- TERMÉK MODAL -->
     <div id="product-modal" class="modal-overlay">
       <div class="modal-content">
         <span class="modal-close" onclick="closeModal()">×</span>
@@ -197,7 +202,7 @@
             <span><strong id="cart-subtotal">0</strong> Ft</span>
           </div>
           <div class="summary-line">
-            <span>Szállítási díj (fix):</span>
+            <span>Szállítási díj:</span>
             <span><strong id="cart-shipping">1 799</strong> Ft</span>
           </div>
           <div class="summary-total">
@@ -258,11 +263,11 @@
           <div class="form-section-title">2. Szállítás és Fizetés</div>
 
           <div class="input-group">
-            <label>Szállítási mód * (Egységesen 1 799 Ft)</label>
+            <label>Szállítási mód *</label>
             <select id="shipping-method" onchange="toggleShippingFields()">
-              <option value="Foxpost automata">Foxpost automata</option>
-              <option value="GLS automata">GLS automata</option>
-              <option value="Házhozszállítás">Házhozszállítás futárszolgálattal</option>
+              <option value="Foxpost automata">Foxpost automata (1 799 Ft)</option>
+              <option value="GLS automata">GLS automata (1 799 Ft)</option>
+              <option value="GLS házhozszállítás">GLS házhozszállítás (2 500 Ft)</option>
             </select>
           </div>
 
@@ -280,30 +285,27 @@
             <datalist id="gls-datalist"></datalist>
           </div>
 
-          <!-- HÁZHOZSZÁLLÍTÁS OPCIÓK -->
+          <!-- GLS HÁZHOZSZÁLLÍTÁS OPCIÓK -->
           <div id="home-delivery-group" style="display:none;">
-            <div class="input-group">
-              <label>A számlázási cím megegyezik a szállítási címmel? *</label>
-              <select id="same-address" onchange="toggleDiffAddress()">
-                <option value="Igen">Igen</option>
-                <option value="Nem">Nem, másik címre kérem</option>
-              </select>
-            </div>
+            <label class="same-addr-btn">
+              <input type="checkbox" id="same-address-chk" checked onchange="toggleDiffAddress()">
+              <span>A szállítási cím megegyezik a számlázási címmel</span>
+            </label>
 
             <div id="diff-address-fields" style="display:none;">
               <div class="input-row">
                 <div class="input-group" style="flex:0 0 110px;">
                   <label>Száll. Irányítószám *</label>
-                  <input type="text" id="ship-zip">
+                  <input type="text" id="ship-zip" placeholder="2364">
                 </div>
                 <div class="input-group">
                   <label>Száll. Város *</label>
-                  <input type="text" id="ship-city">
+                  <input type="text" id="ship-city" placeholder="Ócsa">
                 </div>
               </div>
               <div class="input-group">
                 <label>Szállítási cím - Közterület neve, házszám *</label>
-                <input type="text" id="ship-street">
+                <input type="text" id="ship-street" placeholder="Másik utca 10.">
               </div>
             </div>
           </div>
@@ -311,8 +313,8 @@
           <div class="input-group">
             <label>Fizetési mód *</label>
             <select id="payment-method">
+              <option value="Barion online bankkártyás fizetés">Barion online bankkártyás fizetés</option>
               <option value="Banki átutalás (Előre utalás)">Banki átutalás (Előre utalás)</option>
-              <option value="Utánvét">Utánvét</option>
             </select>
           </div>
 
@@ -322,33 +324,66 @@
     </div>
 
     <footer>
-      Kapcsolatok: 
-      <a href="#" target="_blank">Instagram</a> | 
-      <a href="#" target="_blank">Facebook</a> | 
-      <a href="#" target="_blank">TikTok</a><br><br>
-      © 2026 3DFlowment. Minden jog fenntartva.
+      <div>
+        Kapcsolat: <a href="mailto:3dflowment@gmail.com">3dflowment@gmail.com</a>
+      </div>
+      <div style="margin-top:6px;">
+        Kövess minket: 
+        <a href="https://www.instagram.com/3dflowment/" target="_blank" rel="noopener">Instagram</a> | 
+        <a href="https://www.facebook.com/profile.php?id=61587509863564" target="_blank" rel="noopener">Facebook</a> | 
+        <a href="https://www.tiktok.com/@3dflowment" target="_blank" rel="noopener">TikTok</a>
+      </div>
+      <div style="margin-top:10px; font-size:11px;">
+        © 2026 3DFlowment. Minden jog fenntartva.
+      </div>
     </footer>
 
     <script>
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHS7KvBLYT-33Tm2zbmthUS4DV3MtUE3yxSxHEkjNJ80z38eqSHCQKORiY90dUD7_z3w/exec";
-      const SHIPPING_COST = 1799;
+      const SHIPPING_LOCKER_COST = 1799;
+      const SHIPPING_HOME_COST = 2500;
 
       let currentMode = 'b2c';
       let currentPage = 'home';
       let currentSub = '';
       let allProducts = [];
+      let bannersData = { items: [], b2b_items: [] };
+      let homeSectionsData = { items: [], b2b_items: [] };
       let cart = [];
       let activeProduct = null;
+      let slideTimer = null;
+      let currentSlide = 0;
 
       window.onload = function() {
+        // Egységes kosár visszatöltése memóriából
+        try {
+          const savedCart = localStorage.getItem('3dflowment_cart');
+          if (savedCart) { cart = JSON.parse(savedCart); updateCartBadge(); }
+        } catch(e) {}
+
         loadParcelLockers();
-        fetch('/api/banners.json').then(r=>r.json()).then(data => renderBanners(data.items)).catch(e=>console.log("Nincs banner."));
-        fetch('/api/home_sections.json').then(r=>r.json()).then(data => renderHomeSections(data.items)).catch(e=> renderHomeSections([]));
+
+        fetch('/api/banners.json').then(r=>r.json()).then(data => {
+          bannersData = data || { items: [], b2b_items: [] };
+          renderBanners();
+        }).catch(e=>console.log("Nincs banner."));
+
+        fetch('/api/home_sections.json').then(r=>r.json()).then(data => {
+          homeSectionsData = data || { items: [], b2b_items: [] };
+          renderHomeSections();
+        }).catch(e=> renderHomeSections());
+
         fetch('/api/products.json').then(r=>r.json()).then(data => {
           if(data && data.items) { allProducts = data.items; }
           switchPage('home');
         }).catch(e => switchPage('home'));
       };
+
+      function getCurrentShippingCost() {
+        const methodEl = document.getElementById('shipping-method');
+        if (!methodEl) return SHIPPING_LOCKER_COST;
+        return (methodEl.value === 'GLS házhozszállítás') ? SHIPPING_HOME_COST : SHIPPING_LOCKER_COST;
+      }
 
       function loadParcelLockers() {
         fetch(SCRIPT_URL)
@@ -366,6 +401,7 @@
           .catch(err => console.log("Automata lista betöltési hiba:", err));
       }
 
+      // LAKOSSÁGI / ÜZLETI MÓDVÁLTÁS (KÖZÖS KOSÁRRAL, KÜLÖN BANNEREKKEL)
       function toggleMode() {
         const body = document.body;
         body.classList.toggle('b2b');
@@ -379,6 +415,8 @@
         document.getElementById('subnav-konyves').style.display = 'none';
         
         currentMode = isB2B ? 'b2b' : 'b2c';
+        renderBanners();
+        renderHomeSections();
         switchPage('home');
       }
 
@@ -390,7 +428,11 @@
         const isHome = (page === 'home');
         const isCustomOrder = (page === 'egyedi-b2c' || page === 'egyedi-b2b');
         
-        document.getElementById('home-carousel').style.display = isHome ? 'block' : 'none';
+        const activeBanners = (currentMode === 'b2b' && bannersData.b2b_items && bannersData.b2b_items.length > 0)
+          ? bannersData.b2b_items
+          : (bannersData.items || []);
+
+        document.getElementById('home-carousel').style.display = (isHome && activeBanners.length > 0) ? 'block' : 'none';
         document.getElementById('home-content').style.display = isHome ? 'block' : 'none';
         document.getElementById('subnav-konyves').style.display = (page === 'konyves') ? 'flex' : 'none';
         
@@ -423,9 +465,13 @@
         renderProducts();
       }
 
-      function renderHomeSections(items) {
+      function renderHomeSections() {
         const container = document.getElementById('home-content');
         container.innerHTML = '';
+        const items = (currentMode === 'b2b' && homeSectionsData.b2b_items && homeSectionsData.b2b_items.length > 0)
+          ? homeSectionsData.b2b_items
+          : (homeSectionsData.items || []);
+
         if(!items || items.length === 0) {
           container.innerHTML = '<p style="text-align:center; padding: 40px; color:var(--muted-text);">Még nincsenek bemutatkozó blokkok. Töltsd fel őket az Admin felületen!</p>';
           return;
@@ -573,6 +619,11 @@
         }
       }
 
+      // EGYSÉGES KOSÁR KEZELÉS (B2C + B2B KÖZÖS)
+      function saveCart() {
+        try { localStorage.setItem('3dflowment_cart', JSON.stringify(cart)); } catch(e) {}
+      }
+
       function addToCart() {
         const qty = parseInt(document.getElementById('modal-qty').value) || 1;
         let optStr = '';
@@ -592,6 +643,7 @@
           comment: commStr
         });
 
+        saveCart();
         updateCartBadge();
         alert(qty + " db " + activeProduct.title + " bekerült a kosárba!");
         closeModal();
@@ -604,6 +656,7 @@
 
       function removeFromCart(index) {
         cart.splice(index, 1);
+        saveCart();
         updateCartBadge();
         renderCartModal();
       }
@@ -651,9 +704,10 @@
           `;
         });
 
-        const grandTotal = subtotal + SHIPPING_COST;
+        const shipCost = getCurrentShippingCost();
+        const grandTotal = subtotal + shipCost;
         document.getElementById('cart-subtotal').innerText = subtotal.toLocaleString('hu-HU');
-        document.getElementById('cart-shipping').innerText = SHIPPING_COST.toLocaleString('hu-HU');
+        document.getElementById('cart-shipping').innerText = shipCost.toLocaleString('hu-HU');
         document.getElementById('cart-total').innerText = grandTotal.toLocaleString('hu-HU');
       }
 
@@ -666,12 +720,13 @@
         const method = document.getElementById('shipping-method').value;
         document.getElementById('foxpost-group').style.display = (method === 'Foxpost automata') ? 'block' : 'none';
         document.getElementById('gls-group').style.display = (method === 'GLS automata') ? 'block' : 'none';
-        document.getElementById('home-delivery-group').style.display = (method === 'Házhozszállítás') ? 'block' : 'none';
+        document.getElementById('home-delivery-group').style.display = (method === 'GLS házhozszállítás') ? 'block' : 'none';
+        renderCartModal();
       }
 
       function toggleDiffAddress() {
-        const same = document.getElementById('same-address').value;
-        document.getElementById('diff-address-fields').style.display = (same === 'Nem') ? 'block' : 'none';
+        const isSame = document.getElementById('same-address-chk').checked;
+        document.getElementById('diff-address-fields').style.display = isSame ? 'none' : 'block';
       }
 
       function submitOrder() {
@@ -709,8 +764,9 @@
           gls = document.getElementById('gls-custom').value.trim();
           if (!gls) return alert("Kérlek, válassz ki egy GLS automatát a listából!");
         } else {
-          sameAddress = document.getElementById('same-address').value;
-          if (sameAddress === 'Nem') {
+          const isSame = document.getElementById('same-address-chk').checked;
+          sameAddress = isSame ? "Igen" : "Nem";
+          if (!isSame) {
             shipZip = document.getElementById('ship-zip').value.trim();
             shipCity = document.getElementById('ship-city').value.trim();
             shipStreet = document.getElementById('ship-street').value.trim();
@@ -723,7 +779,8 @@
         }
 
         const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-        const grandTotal = subtotal + SHIPPING_COST;
+        const shipCost = getCurrentShippingCost();
+        const grandTotal = subtotal + shipCost;
 
         const orderPayload = {
           customerType, taxNumber, billingName, billZip, billCity, billStreet,
@@ -731,8 +788,9 @@
           paymentMethod, email, phone,
           cart: cart,
           subtotal: subtotal,
-          shippingCost: SHIPPING_COST,
-          grandTotal: grandTotal
+          shippingCost: shipCost,
+          grandTotal: grandTotal,
+          originUrl: window.location.href
         };
 
         const btn = document.getElementById('submit-order-btn');
@@ -746,14 +804,20 @@
         })
         .then(res => res.json())
         .then(data => {
-          alert("Sikeres megrendelés! Rendelési azonosítód: " + (data.id || ""));
           cart = [];
+          saveCart();
           updateCartBadge();
           closeCart();
+          if (data.paymentUrl) {
+            window.location.href = data.paymentUrl; // Barion átirányítás
+          } else {
+            alert("Sikeres megrendelés! Rendelési azonosítód: " + (data.id || ""));
+          }
         })
         .catch(err => {
           alert("Sikeresen elküldve! Köszönjük a rendelést.");
           cart = [];
+          saveCart();
           updateCartBadge();
           closeCart();
         })
@@ -763,21 +827,63 @@
         });
       }
 
-      let currentSlide = 0;
-      function renderBanners(items) {
-        if(!items || items.length === 0) return;
+      // BANNEREK ÉS BEÁGYAZOTT GOMB LINKEK KEZELÉSE
+      function handleBannerClick(link) {
+        if (!link || link.trim() === '') {
+          switchPage(currentMode === 'b2b' ? 'it' : 'konyves');
+          return;
+        }
+        const clean = link.trim();
+        const knownCategories = ['konyves', 'lego', 'szezon', 'gyerek', 'egyutt', 'egyedi-b2c', 'it', 'rendszerezo', 'bernyomtatas', 'egyedi-b2b'];
+        if (knownCategories.includes(clean)) {
+          switchPage(clean);
+        } else {
+          window.location.href = clean;
+        }
+      }
+
+      function renderBanners() {
         const container = document.getElementById('carousel-slides');
         const dots = document.getElementById('carousel-dots');
-        document.getElementById('home-carousel').style.display = 'block';
+        container.innerHTML = '';
+        dots.innerHTML = '';
+        if (slideTimer) clearInterval(slideTimer);
+
+        const items = (currentMode === 'b2b' && bannersData.b2b_items && bannersData.b2b_items.length > 0)
+          ? bannersData.b2b_items
+          : (bannersData.items || []);
+
+        if(!items || items.length === 0) {
+          document.getElementById('home-carousel').style.display = 'none';
+          return;
+        }
+
+        if (currentPage === 'home') {
+          document.getElementById('home-carousel').style.display = 'block';
+        }
+
+        currentSlide = 0;
         items.forEach((b, i) => {
-          container.innerHTML += `<div class="slide ${i===0?'active':''}" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('${b.image}')">
-            <h1>${b.title}</h1><p>${b.subtitle || ''}</p>
-            ${b.btn_text ? `<button class="cart-btn" onclick="document.getElementById('products-section').scrollIntoView()">${b.btn_text}</button>` : ''}
-          </div>`;
+          const hasText = (b.title && b.title.trim() !== '') || (b.subtitle && b.subtitle.trim() !== '') || (b.btn_text && b.btn_text.trim() !== '');
+          const safeLink = (b.btn_link || '').replace(/'/g, "\\'");
+          container.innerHTML += `
+            <div class="slide ${i===0?'active':''}" style="background-image: url('${b.image}')">
+              ${hasText ? `
+                <div class="slide-content">
+                  ${b.title ? `<h1>${b.title}</h1>` : ''}
+                  ${b.subtitle ? `<p>${b.subtitle}</p>` : ''}
+                  ${b.btn_text ? `<button class="cart-btn" onclick="handleBannerClick('${safeLink}')">${b.btn_text}</button>` : ''}
+                </div>
+              ` : ''}
+            </div>`;
           dots.innerHTML += `<span class="dot ${i===0?'active':''}" onclick="setSlide(${i})"></span>`;
         });
-        setInterval(() => setSlide((currentSlide + 1) % items.length), 4000);
+
+        if (items.length > 1) {
+          slideTimer = setInterval(() => setSlide((currentSlide + 1) % items.length), 4500);
+        }
       }
+
       function setSlide(idx) {
         currentSlide = idx;
         document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === idx));
