@@ -1,9 +1,15 @@
 {
   "items": [
     {
-      "title": "Karácsonyi díszgömbök",
+      "title": "Karácsonyfa díszek",
       "subtitle": "Rendeld meg még most a karácsonyi díszeket, hogy biztosan ott legyen a karácsonyfádon.",
       "image": "/images/img_6513.jpeg",
+      "btn_text": "Ünnepi dekorok"
+    },
+    {
+      "title": "Karácsonyfa díszgömbök",
+      "subtitle": "Rendeld meg még most a karácsonyi díszeket, hogy biztosan ott legyen a karácsonyfádon.",
+      "image": "/images/rendeld-meg-még-a-karácsonyi-szezon-előtt-.gif",
       "btn_text": "Ünnepi dekorok"
     }
   ]
