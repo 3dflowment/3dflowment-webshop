@@ -32,7 +32,7 @@ collections:
               - {label: "Címsor", name: "title", widget: "string"}
               - {label: "Törzsszöveg", name: "text", widget: "text"}
               - {label: "Kép", name: "image", widget: "image"}
-      - label: "Terméktörzs"
+     - label: "Terméktörzs"
         name: "products"
         file: "api/products.json"
         fields:
@@ -44,7 +44,13 @@ collections:
               - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
               - {label: "Alkategória", name: "subcategory", widget: "string", required: false}
               - {label: "Ár (Ft)", name: "price", widget: "number"}
-              - {label: "Kép", name: "image", widget: "image"}
+              - {label: "Főkép (Borítókép)", name: "image", widget: "image"}
+              - label: "További képek (Galéria)"
+                name: "gallery"
+                widget: "list"
+                required: false
+                field: {label: "Kép", name: "image", widget: "image"}
+              - {label: "Termékvideó (MP4 fájl)", name: "video", widget: "file", required: false}
               - {label: "SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Vakoknak és a Google-nek"}
               - {label: "Leírás", name: "desc", widget: "text", required: false}
               - {label: "Választható opciók (Vesszővel elválasztva)", name: "options", widget: "string", required: false}
