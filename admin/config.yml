@@ -9,25 +9,42 @@ collections:
   - name: "webshop_data"
     label: "Webshop Adatok"
     files:
-      - label: "Kezdőlap Bannerek (Carousel)"
+      - label: "Kezdőlap Bannerek (Lakossági & Üzleti)"
         name: "banners"
         file: "api/banners.json"
         fields:
-          - label: "Bannerek"
+          - label: "Lakossági (B2C) Bannerek"
             name: "items"
             widget: "list"
             fields:
-              - {label: "Főcím", name: "title", widget: "string"}
+              - {label: "Főcím", name: "title", widget: "string", required: false}
               - {label: "Alcím", name: "subtitle", widget: "string", required: false}
               - {label: "Háttérkép", name: "image", widget: "image"}
               - {label: "Gomb felirata", name: "btn_text", widget: "string", required: false}
+              - {label: "Gomb Linkje (URL vagy kategória: konyves, lego, szezon, gyerek, egyutt, egyedi-b2c)", name: "btn_link", widget: "string", required: false}
+          - label: "Üzleti (B2B) Bannerek"
+            name: "b2b_items"
+            widget: "list"
+            fields:
+              - {label: "Főcím", name: "title", widget: "string", required: false}
+              - {label: "Alcím", name: "subtitle", widget: "string", required: false}
+              - {label: "Háttérkép", name: "image", widget: "image"}
+              - {label: "Gomb felirata", name: "btn_text", widget: "string", required: false}
+              - {label: "Gomb Linkje (URL vagy kategória: it, rendszerezo, bernyomtatas, egyedi-b2b)", name: "btn_link", widget: "string", required: false}
 
       - label: "Bemutatkozó Blokkok (Kezdőlap)"
         name: "home_sections"
         file: "api/home_sections.json"
         fields:
-          - label: "Szekciók"
+          - label: "Lakossági (B2C) Szekciók"
             name: "items"
+            widget: "list"
+            fields:
+              - {label: "Cím", name: "title", widget: "string"}
+              - {label: "Szöveg", name: "text", widget: "text"}
+              - {label: "Kép", name: "image", widget: "image", required: false}
+          - label: "Üzleti (B2B) Szekciók"
+            name: "b2b_items"
             widget: "list"
             fields:
               - {label: "Cím", name: "title", widget: "string"}
