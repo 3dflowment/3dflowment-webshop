@@ -2,14 +2,14 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "images"
-public_folder: "/images"
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
-  - name: "shop_data"
+  - name: "webshop_data"
     label: "Webshop Adatok"
     files:
-      - label: "Főoldali Bannerek (Carousel)"
+      - label: "Kezdőlap Bannerek (Carousel)"
         name: "banners"
         file: "api/banners.json"
         fields:
@@ -17,22 +17,24 @@ collections:
             name: "items"
             widget: "list"
             fields:
-              - {label: "Címsor", name: "title", widget: "string"}
-              - {label: "Alcím", name: "subtitle", widget: "string"}
+              - {label: "Főcím", name: "title", widget: "string"}
+              - {label: "Alcím", name: "subtitle", widget: "string", required: false}
               - {label: "Háttérkép", name: "image", widget: "image"}
               - {label: "Gomb felirata", name: "btn_text", widget: "string", required: false}
-      - label: "Bemutatkozó Blokkok (Z-alakzat)"
+
+      - label: "Bemutatkozó Blokkok (Kezdőlap)"
         name: "home_sections"
         file: "api/home_sections.json"
         fields:
-          - label: "Blokkok"
+          - label: "Szekciók"
             name: "items"
             widget: "list"
             fields:
-              - {label: "Címsor", name: "title", widget: "string"}
-              - {label: "Törzsszöveg", name: "text", widget: "text"}
-              - {label: "Kép", name: "image", widget: "image"}
-     - label: "Terméktörzs"
+              - {label: "Cím", name: "title", widget: "string"}
+              - {label: "Szöveg", name: "text", widget: "text"}
+              - {label: "Kép", name: "image", widget: "image", required: false}
+
+      - label: "Terméktörzs"
         name: "products"
         file: "api/products.json"
         fields:
@@ -41,7 +43,7 @@ collections:
             widget: "list"
             fields:
               - {label: "Termék neve", name: "title", widget: "string"}
-              - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
+              - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "Együttműködések", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
               - {label: "Alkategória", name: "subcategory", widget: "string", required: false}
               - {label: "Ár (Ft)", name: "price", widget: "number"}
               - {label: "Főkép (Borítókép)", name: "image", widget: "image"}
@@ -51,7 +53,7 @@ collections:
                 required: false
                 field: {label: "Kép", name: "image", widget: "image"}
               - {label: "Termékvideó (MP4 fájl)", name: "video", widget: "file", required: false}
-              - {label: "SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Vakoknak és a Google-nek"}
+              - {label: "SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Vakoknak és a Google-nek", required: false}
               - {label: "Leírás", name: "desc", widget: "text", required: false}
               - {label: "Választható opciók (Vesszővel elválasztva)", name: "options", widget: "string", required: false}
               - {label: "Kérhet a vevő egyedi megjegyzést?", name: "allow_comment", widget: "boolean", default: false, required: false}
