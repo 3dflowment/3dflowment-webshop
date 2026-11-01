@@ -50,10 +50,14 @@
       .z-image img { width: 100%; max-width: 500px; max-height: 400px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
 
       .section-title { text-align: center; color: var(--accent-color); font-size: 30px; margin-bottom: 35px; }
-      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-      .card { background-color: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; transition: transform 0.2s; }
+   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+      @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+      @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+      @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+
+      .card { background-color: var(--card-bg); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; text-align: left; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
       .card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
-      .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; }
+      .card img { width: 100%; height: 240px; object-fit: contain; background: rgba(0,0,0,0.25); border-radius: 6px; margin-bottom: 12px; }
       .price { font-size: 18px; font-weight: 700; color: var(--accent-color); margin: 10px 0; }
 
       .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; }
