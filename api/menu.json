@@ -1,0 +1,67 @@
+{
+  "b2c_menus": [
+    {
+      "title": "Könyves kiegészítők",
+      "url": "/konyves-kiegeszitok/",
+      "type": "Termékkategória",
+      "subcategories": ["ACOTAR", "Fourth Wing", "Könyvjelzők", "Könyvtámaszok, Booknook", "Egyéb"]
+    },
+    {
+      "title": "LEGO-kiegészítők",
+      "url": "/lego-kiegeszitok/",
+      "type": "Termékkategória"
+    },
+    {
+      "title": "Ünnepi & Szezonális",
+      "url": "/unnepi-es-szezonalis-termekek/",
+      "type": "Termékkategória"
+    },
+    {
+      "title": "Gyerekeknek",
+      "url": "/gyerekeknek/",
+      "type": "Termékkategória"
+    },
+    {
+      "title": "IT-kiegészítők",
+      "url": "/it-kiegeszitok/",
+      "type": "Termékkategória"
+    },
+    {
+      "title": "Rendszerezők",
+      "url": "/rendszerezok/",
+      "type": "Termékkategória"
+    },
+    {
+      "title": "Együttműködések",
+      "url": "/egyuttmukodesek/",
+      "type": "Termékkategória"
+    },
+    {
+      "title": "Egyedi megrendelések",
+      "url": "/egyedi-megrendelesek/",
+      "type": "Egyedi megrendelés / Szolgáltatás"
+    }
+  ],
+  "b2b_menus": [
+    {
+      "title": "IT-kiegészítők",
+      "url": "/uzleti/it-kiegeszitok/",
+      "type": "Termékkategória"
+    },
+    {
+      "title": "Rendszerezők",
+      "url": "/uzleti/rendszerezok/",
+      "type": "Termékkategória"
+    },
+    {
+      "title": "Bérnyomtatás",
+      "url": "/uzleti/3d-bernyomtatas/",
+      "type": "Egyedi megrendelés / Szolgáltatás"
+    },
+    {
+      "title": "Egyedi megrendelések",
+      "url": "/uzleti/egyedi-megrendelesek/",
+      "type": "Egyedi megrendelés / Szolgáltatás"
+    }
+  ]
+}
