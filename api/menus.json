@@ -1,0 +1,12 @@
+{
+  "b2c_menus": [
+    {
+      "type": "Termékkategória",
+      "title": "Könyves kiegészítők",
+      "subcategories": [
+        "ACOTAR",
+        "Fourth Wing"
+      ]
+    }
+  ]
+}
