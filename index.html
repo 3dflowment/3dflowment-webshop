@@ -585,7 +585,7 @@
       let slideTimer = null;
       let currentSlide = 0;
 
-      window.onload = function() {
+window.onload = function() {
         try {
           const savedCart = localStorage.getItem('3dflowment_cart');
           if (savedCart) { cart = JSON.parse(savedCart); updateCartBadge(); }
@@ -594,10 +594,29 @@
         loadParcelLockers();
 
         Promise.all([
+          fetch('/api/menu.json').then(r=>r.json()).catch(()=>null),
           fetch('/api/banners.json').then(r=>r.json()).catch(()=>({items:[], b2b_items:[]})),
           fetch('/api/home_sections.json').then(r=>r.json()).catch(()=>({items:[], b2b_items:[]})),
           fetch('/api/products.json').then(r=>r.json()).catch(()=>({items:[]}))
-        ]).then(([bData, hData, pData]) => {
+        ]).then(([mData, bData, hData, pData]) => {
+          if (mData) {
+            if (mData.b2c_menus && mData.b2c_menus.length > 0) {
+              document.getElementById('nav-b2c').innerHTML = mData.b2c_menus.map(m =>
+                `<a href="${m.url}" onclick="return navClick(event, '${m.url}')">${m.title}</a>`
+              ).join('');
+              const konyvesMenu = mData.b2c_menus.find(m => m.url === '/konyves-kiegeszitok/');
+              if (konyvesMenu && Array.isArray(konyvesMenu.subcategories)) {
+                document.getElementById('subnav-konyves').innerHTML = konyvesMenu.subcategories.map(sub =>
+                  `<a onclick="filterSub('${sub}')">${sub}</a>`
+                ).join('');
+              }
+            }
+            if (mData.b2b_menus && mData.b2b_menus.length > 0) {
+              document.getElementById('nav-b2b').innerHTML = mData.b2b_menus.map(m =>
+                `<a href="${m.url}" onclick="return navClick(event, '${m.url}')">${m.title}</a>`
+              ).join('');
+            }
+          }
           bannersData = bData || { items: [], b2b_items: [] };
           homeSectionsData = hData || { items: [], b2b_items: [] };
           allProducts = (pData && pData.items) ? pData.items : [];
