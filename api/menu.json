@@ -7,7 +7,7 @@
       "subcategories": ["ACOTAR", "Fourth Wing", "Könyvjelzők", "Könyvtámaszok, Booknook", "Egyéb"]
     },
     {
-      "title": "LEGO-kiegészítők",
+      "title": "LEGO-szerelmeseinek",
       "url": "/lego-kiegeszitok/",
       "type": "Termékkategória"
     },
@@ -19,16 +19,6 @@
     {
       "title": "Gyerekeknek",
       "url": "/gyerekeknek/",
-      "type": "Termékkategória"
-    },
-    {
-      "title": "IT-kiegészítők",
-      "url": "/it-kiegeszitok/",
-      "type": "Termékkategória"
-    },
-    {
-      "title": "Rendszerezők",
-      "url": "/rendszerezok/",
       "type": "Termékkategória"
     },
     {
