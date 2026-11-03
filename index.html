@@ -176,29 +176,9 @@
         <button class="cart-btn" onclick="openCart()">🛒 KOSÁR (<span id="cart-count">0</span>)</button>
       </div>
       
-      <nav id="nav-b2c" class="category-bar">
-        <a href="/konyves-kiegeszitok/" onclick="return navClick(event, '/konyves-kiegeszitok/')">Könyves kiegészítők</a>
-        <a href="/lego-kiegeszitok/" onclick="return navClick(event, '/lego-kiegeszitok/')">LEGO-kiegészítők</a>
-        <a href="/unnepi-es-szezonalis-termekek/" onclick="return navClick(event, '/unnepi-es-szezonalis-termekek/')">Ünnepi & Szezonális</a>
-        <a href="/gyerekeknek/" onclick="return navClick(event, '/gyerekeknek/')">Gyerekeknek</a>
-        <a href="/it-kiegeszitok/" onclick="return navClick(event, '/it-kiegeszitok/')">IT-kiegészítők</a>
-        <a href="/rendszerezok/" onclick="return navClick(event, '/rendszerezok/')">Rendszerezők</a>
-        <a href="/egyuttmukodesek/" onclick="return navClick(event, '/egyuttmukodesek/')">Együttműködések</a>
-        <a href="/egyedi-megrendelesek/" onclick="return navClick(event, '/egyedi-megrendelesek/')">Egyedi megrendelések</a>
-      </nav>
-      <nav id="nav-b2b" class="category-bar" style="display:none;">
-        <a href="/uzleti/it-kiegeszitok/" onclick="return navClick(event, '/uzleti/it-kiegeszitok/')">IT-kiegészítők</a>
-        <a href="/uzleti/rendszerezok/" onclick="return navClick(event, '/uzleti/rendszerezok/')">Rendszerezők</a>
-        <a href="/uzleti/3d-bernyomtatas/" onclick="return navClick(event, '/uzleti/3d-bernyomtatas/')">Bérnyomtatás</a>
-        <a href="/uzleti/egyedi-megrendelesek/" onclick="return navClick(event, '/uzleti/egyedi-megrendelesek/')">Egyedi megrendelések</a>
-      </nav>
-      <nav id="subnav-konyves" class="subnav-bar">
-        <a onclick="filterSub('ACOTAR')">ACOTAR</a>
-        <a onclick="filterSub('Fourth Wing')">Fourth Wing</a>
-        <a onclick="filterSub('Könyvjelzők')">Könyvjelzők</a>
-        <a onclick="filterSub('Könyvtámaszok, Booknook')">Könyvtámaszok, Booknook</a>
-        <a onclick="filterSub('Egyéb')">Egyéb</a>
-      </nav>
+<nav id="nav-b2c" class="category-bar"></nav>
+      <nav id="nav-b2b" class="category-bar" style="display:none;"></nav>
+      <nav id="subnav-bar" class="subnav-bar"></nav>
     </header>
 
     <div id="home-carousel" class="carousel">
@@ -574,12 +554,14 @@
         }
       };
 
-      let currentMode = 'b2c';
+let currentMode = 'b2c';
       let currentPage = 'home';
       let currentSub = '';
+      let activeMenuTitle = '';
       let allProducts = [];
       let bannersData = { items: [], b2b_items: [] };
       let homeSectionsData = { items: [], b2b_items: [] };
+      let menusData = { b2c_menus: [], b2b_menus: [] };
       let cart = [];
       let activeProduct = null;
       let slideTimer = null;
@@ -594,16 +576,69 @@
         loadParcelLockers();
 
         Promise.all([
+          fetch('/api/menus.json').then(r=>r.json()).catch(()=>({b2c_menus:[], b2b_menus:[]})),
           fetch('/api/banners.json').then(r=>r.json()).catch(()=>({items:[], b2b_items:[]})),
           fetch('/api/home_sections.json').then(r=>r.json()).catch(()=>({items:[], b2b_items:[]})),
           fetch('/api/products.json').then(r=>r.json()).catch(()=>({items:[]}))
-        ]).then(([bData, hData, pData]) => {
+        ]).then(([mData, bData, hData, pData]) => {
+          menusData = mData || { b2c_menus: [], b2b_menus: [] };
           bannersData = bData || { items: [], b2b_items: [] };
           homeSectionsData = hData || { items: [], b2b_items: [] };
           allProducts = (pData && pData.items) ? pData.items : [];
+          
+          registerDynamicMenus();
+          renderNavMenus();
           applyRoute(window.location.pathname);
         });
       };
+
+      // Adminban felvett vagy módosított menüpontok összekötése a SEO motorral
+      function registerDynamicMenus() {
+        const processMenu = (m, mode) => {
+          if (!m || !m.url) return;
+          let path = m.url.trim();
+          if (!path.startsWith('/')) path = '/' + path;
+          if (!path.endsWith('/')) path = path + '/';
+          m.cleanUrl = path;
+
+          const existing = SEO_PAGES[path] || {};
+          const isService = (m.type && m.type.indexOf('Szolgáltatás') !== -1);
+
+          SEO_PAGES[path] = {
+            mode: mode,
+            page: isService ? 'service-dynamic' : (existing.page || 'cat-dynamic'),
+            menuTitle: m.title,
+            subcategories: Array.isArray(m.subcategories) ? m.subcategories.map(s => typeof s === 'string' ? s : s.sub).filter(Boolean) : [],
+            title: m.seo_title || existing.title || (m.title + ' | 3DFlowment'),
+            desc: m.seo_desc || existing.desc || ('Fedezd fel a 3DFlowment ' + m.title + ' kínálatát! Saját gyártású, egyedi 3D nyomtatott termékek.'),
+            h1: m.h1 || existing.h1 || m.title,
+            intro: m.intro || existing.intro || '',
+            subH2: existing.subH2 || '',
+            subP: existing.subP || '',
+            cards: existing.cards || null
+          };
+        };
+
+        (menusData.b2c_menus || []).forEach(m => processMenu(m, 'b2c'));
+        (menusData.b2b_menus || []).forEach(m => processMenu(m, 'b2b'));
+      }
+
+      // Főmenük kirajzolása az Admin adatokból
+      function renderNavMenus() {
+        const navB2C = document.getElementById('nav-b2c');
+        const navB2B = document.getElementById('nav-b2b');
+
+        if (menusData.b2c_menus && menusData.b2c_menus.length > 0) {
+          navB2C.innerHTML = menusData.b2c_menus.map(m => 
+            `<a href="${m.cleanUrl}" onclick="return navClick(event, '${m.cleanUrl}')">${m.title}</a>`
+          ).join('');
+        }
+        if (menusData.b2b_menus && menusData.b2b_menus.length > 0) {
+          navB2B.innerHTML = menusData.b2b_menus.map(m => 
+            `<a href="${m.cleanUrl}" onclick="return navClick(event, '${m.cleanUrl}')">${m.title}</a>`
+          ).join('');
+        }
+      }
 
       window.onpopstate = function() {
         applyRoute(window.location.pathname);
@@ -628,17 +663,29 @@
         }
         const cfg = SEO_PAGES[path];
 
-        // Mód (Lakossági vs Üzleti) beállítása
         currentMode = cfg.mode;
         currentPage = cfg.page;
+        activeMenuTitle = cfg.menuTitle || '';
         currentSub = '';
+
         const isB2B = (currentMode === 'b2b');
         document.body.classList.toggle('b2b', isB2B);
         document.getElementById('lbl-b2c').style.color = isB2B ? 'var(--muted-text)' : 'var(--accent-color)';
         document.getElementById('lbl-b2b').style.color = isB2B ? 'var(--accent-color)' : 'var(--muted-text)';
         document.getElementById('nav-b2c').style.display = isB2B ? 'none' : 'flex';
         document.getElementById('nav-b2b').style.display = isB2B ? 'flex' : 'none';
-        document.getElementById('subnav-konyves').style.display = (currentPage === 'konyves') ? 'flex' : 'none';
+
+        // Alkategóriák dinamikus kirajzolása (bármelyik menüponthoz adhatsz alkategóriákat az adminban!)
+        const subBar = document.getElementById('subnav-bar');
+        if (cfg.subcategories && cfg.subcategories.length > 0) {
+          subBar.style.display = 'flex';
+          subBar.innerHTML = `<a onclick="filterSub('')">Összes</a>` + cfg.subcategories.map(sub => 
+            `<a onclick="filterSub('${sub.replace(/'/g, "\\'")}')">${sub}</a>`
+          ).join('');
+        } else {
+          subBar.style.display = 'none';
+          subBar.innerHTML = '';
+        }
 
         // SEO Meta elemek frissítése
         document.title = cfg.title;
@@ -651,7 +698,7 @@
         if (cfg.ctas) {
           ctasHtml = `<div class="seo-cta-row">` + cfg.ctas.map(c => `<button class="cart-btn" onclick="navigate('${c.url}')">${c.text}</button>`).join('') + `</div>`;
         }
-        hero.innerHTML = `<h1>${cfg.h1}</h1><p>${cfg.intro}</p>${ctasHtml}`;
+        hero.innerHTML = `<h1>${cfg.h1}</h1>${cfg.intro ? `<p>${cfg.intro}</p>` : ''}${ctasHtml}`;
 
         // Közös gyártási információs blokk
         const commonBox = document.getElementById('common-info-block');
@@ -662,13 +709,12 @@
         }
 
         const isHome = (currentPage === 'home');
-        const isServicePage = (currentPage === 'egyedi-b2c' || currentPage === 'egyedi-b2b' || currentPage === 'bernyomtatas');
+        const isServicePage = (currentPage === 'egyedi-b2c' || currentPage === 'egyedi-b2b' || currentPage === 'bernyomtatas' || currentPage === 'service-dynamic');
 
         renderBanners();
         document.getElementById('home-content').style.display = isHome ? 'block' : 'none';
         if (isHome) renderHomeSections();
 
-        // Főoldali SEO H2 kártyák
         const homeCards = document.getElementById('seo-home-cards');
         if (isHome && cfg.cards) {
           homeCards.style.display = 'grid';
@@ -677,7 +723,6 @@
           homeCards.style.display = 'none';
         }
 
-        // Szolgáltatás / Egyedi rendelés vs Termékkategória
         if (isServicePage) {
           document.getElementById('products-section').style.display = 'none';
           document.getElementById('custom-order-section').style.display = 'block';
@@ -695,7 +740,6 @@
         }
       }
 
-      // A KAPCSOLÓ VALÓDI URL-RE NAVIGÁL (/ <-> /uzleti/)
       function toggleMode() {
         const targetUrl = (currentMode === 'b2c') ? '/uzleti/' : '/';
         navigate(targetUrl);
@@ -736,11 +780,12 @@
         if(!items || items.length === 0) return;
         items.forEach(item => {
           const imgSrc = item.image ? `<img src="${item.image}" alt="${item.title}" loading="lazy">` : '';
+          const formattedText = (item.text || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
           container.innerHTML += `
             <div class="z-section">
               <div class="z-text">
                 <h2>${item.title}</h2>
-                <p>${item.text}</p>
+                <p>${formattedText}</p>
               </div>
               ${imgSrc ? `<div class="z-image">${imgSrc}</div>` : ''}
             </div>
@@ -748,6 +793,7 @@
         });
       }
 
+      // Rugalmas termékszűrő: a régi és az újonnan felvett főmenükkel is működik!
       function renderProducts(searchQuery = '') {
         const grid = document.getElementById('product-grid');
         grid.innerHTML = '';
@@ -756,20 +802,27 @@
         let filtered = allProducts.filter(row => {
           if (!row.title) return false;
           if (searchQuery) return row.title.toLowerCase().includes(searchQuery.toLowerCase());
-          const cat = (row.category || '').toLowerCase();
-          const sub = (row.subcategory || '').toLowerCase();
-          if (currentPage === 'konyves') {
-            if (!cat.includes('könyv')) return false;
-            if (currentSub && sub !== currentSub.toLowerCase()) return false;
+          
+          const cat = (row.category || '').toLowerCase().trim();
+          const sub = (row.subcategory || '').toLowerCase().trim();
+          const menuName = (activeMenuTitle || '').toLowerCase().trim();
+
+          if (currentSub && sub !== currentSub.toLowerCase().trim()) return false;
+
+          // Ha a termék kategóriája megegyezik az Adminban beállított menü nevével
+          if (menuName && (cat === menuName || cat.includes(menuName) || menuName.includes(cat))) {
             return true;
           }
+
+          // Visszafelé kompatibilitás a korábbi elnevezésekkel
+          if (currentPage === 'konyves') return cat.includes('könyv');
           if (currentPage === 'lego') return cat.includes('lego');
           if (currentPage === 'szezon') return cat.includes('szezon') || cat.includes('ünnep');
           if (currentPage === 'gyerek') return cat.includes('gyerek');
           if (currentPage === 'egyutt') return cat.includes('együttműködés');
           if (currentPage === 'it') return cat.includes('it');
           if (currentPage === 'rendszerezo') return cat.includes('rendszer');
-          return true;
+          return false;
         });
 
         if (filtered.length === 0) {
