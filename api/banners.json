@@ -5,13 +5,16 @@
       "subtitle": "Rendeld meg még most a karácsonyi díszeket, hogy biztosan ott legyen a karácsonyfádon.",
       "image": "/images/img_6513.jpeg",
       "btn_text": "Ünnepi dekorok",
-      "btn_link": "www.youtube.com"
+      "btn_link": "https://3dflowment.hu/unnepi-es-szezonalis-termekek/",
+      "alt_text": "3D nyomtatott cukorbot formájú karácsonyfadísz, piros-fehér karácsonyi dekoráció a karácsonyfára"
     },
     {
       "title": "Karácsonyfa díszgömbök",
       "subtitle": "Rendeld meg még most a karácsonyi díszeket, hogy biztosan ott legyen a karácsonyfádon.",
       "image": "/images/rendeld-meg-még-a-karácsonyi-szezon-előtt-.gif",
-      "btn_text": "Ünnepi dekorok"
+      "btn_text": "Ünnepi dekorok",
+      "btn_link": "https://3dflowment.hu/unnepi-es-szezonalis-termekek/",
+      "alt_text": "Egyedi, névre szóló 3D nyomtatott karácsonyfadísz gömb arany felirattal, személyre szabható karácsonyi dekoráció"
     }
   ]
 }
