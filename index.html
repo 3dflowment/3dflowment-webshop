@@ -755,12 +755,17 @@ function renderHomeSections() {
         if(!items || items.length === 0) return;
         items.forEach(item => {
           const imgSrc = item.image ? `<img src="${item.image}" alt="${item.title}" loading="lazy">` : '';
-          const formattedText = (item.text || '').replace(/\*\*(.*?)\*\*/g, '<strong><em>$1</em></strong>');
+          
+          // Szöveg formázása: ### alcímek átalakítása és **dőlt-kövér** kiemelések kezelése
+          let formattedText = (item.text || '');
+          formattedText = formattedText.replace(/^### (.*$)/gm, '<h3 style="color:var(--accent-color); font-size:18px; margin:15px 0 8px 0; font-family:var(--heading-font);">$1</h3>');
+          formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong><em>$1</em></strong>');
+
           container.innerHTML += `
             <div class="z-section">
               <div class="z-text">
                 <h2>${item.title}</h2>
-                <p>${formattedText}</p>
+                <div>${formattedText}</div>
               </div>
               ${imgSrc ? `<div class="z-image">${imgSrc}</div>` : ''}
             </div>
