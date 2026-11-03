@@ -9,39 +9,6 @@ collections:
   - name: "webshop_data"
     label: "Webshop Adatok"
     files:
-      - label: "Menürendszer & Kategóriák (Lakossági & Üzleti)"
-        name: "menus"
-        file: "api/menus.json"
-        fields:
-          - label: "Lakossági (B2C) Főmenük"
-            name: "b2c_menus"
-            widget: "list"
-            fields:
-              - {label: "Menüpont neve (pl. Könyves kiegészítők)", name: "title", widget: "string"}
-              - {label: "URL útvonal (pl. /konyves-kiegeszitok/)", name: "url", widget: "string"}
-              - {label: "Típus", name: "type", widget: "select", options: ["Termékkategória", "Egyedi megrendelés / Szolgáltatás"], default: "Termékkategória"}
-              - label: "Alkategóriák (Opcionális, pl. ACOTAR, Fourth Wing)"
-                name: "subcategories"
-                widget: "list"
-                required: false
-                field: {label: "Alkategória neve", name: "sub", widget: "string"}
-              - {label: "SEO H1 Főcím (Opcionális)", name: "h1", widget: "string", required: false}
-              - {label: "Kategória bevezető szöveg (Opcionális)", name: "intro", widget: "text", required: false}
-              - {label: "SEO Title (Böngésző fül címe - Opcionális)", name: "seo_title", widget: "string", required: false}
-              - {label: "SEO Meta Description (Opcionális)", name: "seo_desc", widget: "text", required: false}
-
-          - label: "Üzleti (B2B) Főmenük"
-            name: "b2b_menus"
-            widget: "list"
-            fields:
-              - {label: "Menüpont neve (pl. IT-kiegészítők)", name: "title", widget: "string"}
-              - {label: "URL útvonal (pl. /uzleti/it-kiegeszitok/)", name: "url", widget: "string"}
-              - {label: "Típus", name: "type", widget: "select", options: ["Termékkategória", "Egyedi megrendelés / Szolgáltatás"], default: "Termékkategória"}
-              - {label: "SEO H1 Főcím (Opcionális)", name: "h1", widget: "string", required: false}
-              - {label: "Kategória bevezető szöveg (Opcionális)", name: "intro", widget: "text", required: false}
-              - {label: "SEO Title (Opcionális)", name: "seo_title", widget: "string", required: false}
-              - {label: "SEO Meta Description (Opcionális)", name: "seo_desc", widget: "text", required: false}
-
       - label: "Kezdőlap Bannerek (Lakossági & Üzleti)"
         name: "banners"
         file: "api/banners.json"
@@ -50,39 +17,43 @@ collections:
             name: "items"
             widget: "list"
             fields:
-              - {label: "Főcím", name: "title", widget: "string", required: false}
+              - {label: "Főcím (H2)", name: "title", widget: "string", required: false}
               - {label: "Alcím", name: "subtitle", widget: "string", required: false}
               - {label: "Háttérkép", name: "image", widget: "image"}
+              - {label: "Kép SEO leírása (Alt)", name: "alt_text", widget: "string", required: false}
               - {label: "Gomb felirata", name: "btn_text", widget: "string", required: false}
-              - {label: "Gomb Linkje (URL)", name: "btn_link", widget: "string", required: false}
+              - {label: "Gomb Linkje (URL vagy kategória: konyves, lego, szezon, gyerek, egyutt, egyedi-b2c)", name: "btn_link", widget: "string", required: false}
           - label: "Üzleti (B2B) Bannerek"
             name: "b2b_items"
             widget: "list"
             fields:
-              - {label: "Főcím", name: "title", widget: "string", required: false}
+              - {label: "Főcím (H2)", name: "title", widget: "string", required: false}
               - {label: "Alcím", name: "subtitle", widget: "string", required: false}
               - {label: "Háttérkép", name: "image", widget: "image"}
+              - {label: "Kép SEO leírása (Alt)", name: "alt_text", widget: "string", required: false}
               - {label: "Gomb felirata", name: "btn_text", widget: "string", required: false}
-              - {label: "Gomb Linkje (URL)", name: "btn_link", widget: "string", required: false}
+              - {label: "Gomb Linkje (URL vagy kategória: it, rendszerezo, bernyomtatas, egyedi-b2b)", name: "btn_link", widget: "string", required: false}
 
-      - label: "Bemutatkozó Blokkok (Kezdőlap)"
+      - label: "Bemutatkozó Z-Blokkok (Kezdőlap)"
         name: "home_sections"
         file: "api/home_sections.json"
         fields:
-          - label: "Lakossági (B2C) Szekciók"
+          - label: "Lakossági (B2C) Z-Szekciók"
             name: "items"
             widget: "list"
             fields:
-              - {label: "Cím", name: "title", widget: "string"}
+              - {label: "Címsor (H2)", name: "title", widget: "string"}
               - {label: "Szöveg", name: "text", widget: "text"}
               - {label: "Kép", name: "image", widget: "image", required: false}
-          - label: "Üzleti (B2B) Szekciók"
+              - {label: "Kép SEO leírása (Alt)", name: "alt_text", widget: "string", required: false}
+          - label: "Üzleti (B2B) Z-Szekciók"
             name: "b2b_items"
             widget: "list"
             fields:
-              - {label: "Cím", name: "title", widget: "string"}
+              - {label: "Címsor (H2)", name: "title", widget: "string"}
               - {label: "Szöveg", name: "text", widget: "text"}
               - {label: "Kép", name: "image", widget: "image", required: false}
+              - {label: "Kép SEO leírása (Alt)", name: "alt_text", widget: "string", required: false}
 
       - label: "Terméktörzs"
         name: "products"
@@ -93,7 +64,7 @@ collections:
             widget: "list"
             fields:
               - {label: "Termék neve", name: "title", widget: "string"}
-              - {label: "Főmenü (Kategória pontos neve)", name: "category", widget: "string", hint: "Írd be pontosan annak a Főmenünek a nevét, ahová a terméket szánod (pl. Könyves kiegészítők, LEGO-kiegészítők, IT-kiegészítők)"}
+              - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "Együttműködések", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
               - {label: "Alkategória", name: "subcategory", widget: "string", required: false}
               - {label: "Ár (Ft)", name: "price", widget: "number"}
               - {label: "Főkép (Borítókép)", name: "image", widget: "image"}
@@ -103,7 +74,7 @@ collections:
                 required: false
                 field: {label: "Kép", name: "image", widget: "image"}
               - {label: "Termékvideó (MP4 fájl)", name: "video", widget: "file", required: false}
-              - {label: "SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Vakoknak és a Google-nek", required: false}
+              - {label: "SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Pl.: Saját gyártású 3D nyomtatott könyvtámasz", required: false}
               - {label: "Leírás", name: "desc", widget: "text", required: false}
               - {label: "Választható opciók (Vesszővel elválasztva)", name: "options", widget: "string", required: false}
               - {label: "Kérhet a vevő egyedi megjegyzést?", name: "allow_comment", widget: "boolean", default: false, required: false}
