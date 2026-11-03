@@ -48,13 +48,19 @@
       .subnav-bar a { color: var(--muted-text); font-size: 12px; cursor: pointer; text-decoration: none; white-space: nowrap; }
       .subnav-bar a:hover { color: white; }
 
-      /* BANNER (VÁGÁS NÉLKÜLI ILLESZKEDÉS ÉS VALÓDI HTML SZÖVEG) */
-      .carousel { position: relative; height: 420px; overflow: hidden; display: none; background-color: #050811; border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; background-size: contain; background-repeat: no-repeat; background-position: center; }
+/* BANNER (VÁGÁS NÉLKÜLI ILLESZKEDÉS ÉS VALÓDI HTML SZÖVEG) */
+      .carousel { position: relative; height: 450px; overflow: hidden; display: none; background-color: #050811; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.8s ease; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; text-align: center; padding: 40px 20px; background-size: contain; background-repeat: no-repeat; background-position: center; }
       .slide.active { opacity: 1; z-index: 1; }
-      .slide-content { background: rgba(2, 6, 23, 0.76); padding: 20px 32px; border-radius: 10px; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.12); max-width: 85%; }
-      .slide-title { font-family: var(--heading-font); font-size: 34px; font-weight: 700; color: var(--accent-color); margin: 0 0 8px 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.9); }
-      .slide p { font-size: 16px; margin: 0 0 16px 0; color: #fff; }
+      
+      /* Új, sokkal kisebb és elegánsabb szövegdoboz a banner alján */
+      .slide-content { background: rgba(0, 0, 0, 0.6); padding: 12px 24px; border-radius: 8px; backdrop-filter: blur(2px); border: 1px solid rgba(255,255,255,0.1); max-width: 80%; margin-bottom: 20px; }
+      .slide-title { font-family: var(--heading-font); font-size: 24px; font-weight: 700; color: var(--accent-color); margin: 0 0 4px 0; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
+      .slide p { font-size: 14px; margin: 0 0 10px 0; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+      
+      /* A gomb stílusának finomítása */
+      .banner-btn { background-color: var(--accent-color); color: var(--accent-text); font-weight: 600; padding: 6px 12px; border-radius: 4px; cursor: pointer; border: none; font-family: 'Montserrat'; font-size: 12px; transition: transform 0.2s; }
+      .banner-btn:hover { transform: scale(1.05); }
       .carousel-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 10px; }
       .dot { width: 11px; height: 11px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; }
       .dot.active { background: var(--accent-color); }
@@ -1077,34 +1083,7 @@
         });
       }
 
-      function handleBannerClick(link) {
-        if (!link || link.trim() === '') {
-          navigate(currentMode === 'b2b' ? '/uzleti/it-kiegeszitok/' : '/konyves-kiegeszitok/');
-          return;
-        }
-        const clean = link.trim();
-        const mapOldToNew = {
-          'konyves': '/konyves-kiegeszitok/',
-          'lego': '/lego-kiegeszitok/',
-          'szezon': '/unnepi-es-szezonalis-termekek/',
-          'gyerek': '/gyerekeknek/',
-          'egyutt': '/egyuttmukodesek/',
-          'egyedi-b2c': '/egyedi-megrendelesek/',
-          'it': currentMode === 'b2b' ? '/uzleti/it-kiegeszitok/' : '/it-kiegeszitok/',
-          'rendszerezo': currentMode === 'b2b' ? '/uzleti/rendszerezok/' : '/rendszerezok/',
-          'bernyomtatas': '/uzleti/3d-bernyomtatas/',
-          'egyedi-b2b': '/uzleti/egyedi-megrendelesek/'
-        };
-        if (mapOldToNew[clean]) {
-          navigate(mapOldToNew[clean]);
-        } else if (clean.startsWith('/')) {
-          navigate(clean);
-        } else {
-          window.location.href = clean;
-        }
-      }
-
-      function renderBanners() {
+function renderBanners() {
         const container = document.getElementById('carousel-slides');
         const dots = document.getElementById('carousel-dots');
         container.innerHTML = '';
@@ -1123,17 +1102,16 @@
         document.getElementById('home-carousel').style.display = 'block';
         currentSlide = 0;
 
-        // FONTOS SEO SZABÁLY: A banner címe .slide-title (div), hogy oldalanként csak egyetlen H1 legyen!
         items.forEach((b, i) => {
           const hasText = (b.title && b.title.trim() !== '') || (b.subtitle && b.subtitle.trim() !== '') || (b.btn_text && b.btn_text.trim() !== '');
-          const safeLink = (b.btn_link || '').replace(/'/g, "\\'");
+          const safeLink = (b.btn_link || '').trim();
           container.innerHTML += `
             <div class="slide ${i===0?'active':''}" style="background-image: url('${b.image}')">
               ${hasText ? `
                 <div class="slide-content">
                   ${b.title ? `<div class="slide-title">${b.title}</div>` : ''}
                   ${b.subtitle ? `<p>${b.subtitle}</p>` : ''}
-                  ${b.btn_text ? `<button class="cart-btn" onclick="handleBannerClick('${safeLink}')">${b.btn_text}</button>` : ''}
+                  ${b.btn_text ? `<a href="${safeLink || '#'}" class="banner-btn" style="text-decoration:none; display:inline-block;">${b.btn_text}</a>` : ''}
                 </div>
               ` : ''}
             </div>`;
