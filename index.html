@@ -573,10 +573,11 @@
           ]
         }
       };
-
-      let currentMode = 'b2c';
+let currentMode = 'b2c';
       let currentPage = 'home';
       let currentSub = '';
+      let currentBaseUrl = '/';
+      let currentQuery = '';
       let allProducts = [];
       let bannersData = { items: [], b2b_items: [] };
       let homeSectionsData = { items: [], b2b_items: [] };
@@ -585,7 +586,7 @@
       let slideTimer = null;
       let currentSlide = 0;
 
-window.onload = function() {
+      window.onload = function() {
         try {
           const savedCart = localStorage.getItem('3dflowment_cart');
           if (savedCart) { cart = JSON.parse(savedCart); updateCartBadge(); }
@@ -620,12 +621,13 @@ window.onload = function() {
           bannersData = bData || { items: [], b2b_items: [] };
           homeSectionsData = hData || { items: [], b2b_items: [] };
           allProducts = (pData && pData.items) ? pData.items : [];
-          applyRoute(window.location.pathname);
+          
+          applyRoute(window.location.pathname, window.location.search);
         });
       };
 
       window.onpopstate = function() {
-        applyRoute(window.location.pathname);
+        applyRoute(window.location.pathname, window.location.search);
       };
 
       function navClick(e, path) {
@@ -636,35 +638,61 @@ window.onload = function() {
 
       function navigate(path) {
         window.history.pushState({}, '', path);
-        applyRoute(path);
+        applyRoute(path, '');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
-      function applyRoute(rawPath) {
+      function applyRoute(rawPath, queryString = '') {
         let path = rawPath.endsWith('/') ? rawPath : rawPath + '/';
+        let isProductPage = false;
+        let productToShow = null;
+
+        if (path.startsWith('/termek/')) {
+          const prodSlug = path.split('/')[2];
+          productToShow = allProducts.find(p => p.url === prodSlug);
+          if (productToShow) {
+            isProductPage = true;
+            path = currentBaseUrl;
+          } else {
+            path = '/';
+          }
+        } else {
+          currentBaseUrl = path;
+          currentQuery = queryString;
+        }
+
         if (!SEO_PAGES[path]) {
           path = rawPath.startsWith('/uzleti') ? '/uzleti/' : '/';
         }
         const cfg = SEO_PAGES[path];
 
-        // Mód (Lakossági vs Üzleti) beállítása
         currentMode = cfg.mode;
         currentPage = cfg.page;
-        currentSub = '';
+        
+        const urlParams = new URLSearchParams(currentQuery);
+        currentSub = urlParams.get('sub') || '';
+
         const isB2B = (currentMode === 'b2b');
         document.body.classList.toggle('b2b', isB2B);
         document.getElementById('lbl-b2c').style.color = isB2B ? 'var(--muted-text)' : 'var(--accent-color)';
         document.getElementById('lbl-b2b').style.color = isB2B ? 'var(--accent-color)' : 'var(--muted-text)';
         document.getElementById('nav-b2c').style.display = isB2B ? 'none' : 'flex';
         document.getElementById('nav-b2b').style.display = isB2B ? 'flex' : 'none';
-        document.getElementById('subnav-konyves').style.display = (currentPage === 'konyves') ? 'flex' : 'none';
+        
+        const subnavKonyves = document.getElementById('subnav-konyves');
+        if (subnavKonyves) {
+          subnavKonyves.style.display = (currentPage === 'konyves') ? 'flex' : 'none';
+          Array.from(subnavKonyves.children).forEach(a => {
+            a.style.color = (a.innerText.toLowerCase() === currentSub.toLowerCase()) ? 'var(--accent-color)' : 'var(--muted-text)';
+          });
+        }
 
-        // SEO Meta elemek frissítése
-        document.title = cfg.title;
+        let pageTitle = cfg.title;
+        if (currentSub) pageTitle = `${currentSub} | ${cfg.title}`;
+        document.title = pageTitle;
         document.getElementById('seo-desc').setAttribute('content', cfg.desc);
-        document.getElementById('seo-canonical').setAttribute('href', window.location.origin + path);
+        document.getElementById('seo-canonical').setAttribute('href', window.location.origin + path + currentQuery);
 
-        // H1 és Bevezető renderelése
         const hero = document.getElementById('seo-header-block');
         let ctasHtml = '';
         if (cfg.ctas) {
@@ -672,12 +700,11 @@ window.onload = function() {
         }
         hero.innerHTML = `<h1>${cfg.h1}</h1><p>${cfg.intro}</p>${ctasHtml}`;
 
-        // Közös gyártási információs blokk
         const commonBox = document.getElementById('common-info-block');
         if (isB2B) {
-          commonBox.innerHTML = `<h2>Saját gyártás, megrendelésre készülő termékek</h2><p>A 3DFlowment termékei saját gyártásban, megrendelés után készülnek. A rendeléstől a feladásig általában 1–2 hét telik el. Az egyedi megrendelések és bérnyomtatások esetén a várható határidőt az igények és a gyártási részletek alapján egyeztetjük.\nFontos: az 1–2 hét a feladásig tartó időszak, nem a kézbesítési idő.</p>`;
+          commonBox.innerHTML = `<h2>Saját gyártás, megrendelésre készülő termékek</h2><p>A 3DFlowment termékei saját gyártásban, megrendelés után készülnek. A rendeléstől a feladásig általában 1–2 hét telik el.</p>`;
         } else {
-          commonBox.innerHTML = `<h2>Hogyan készülnek a 3DFlowment termékei?</h2><p>Termékeink saját gyártásban, megrendelés után készülnek. Az ötleteléstől és tervezéstől a tesztelésen át a kész termékig minden darab mögött valódi alkotómunka áll.\nA rendeléstől a feladásig általában 1–2 hét telik el. Ez a gyártás és feladás várható időtartama, nem a kézbesítési idő.</p>`;
+          commonBox.innerHTML = `<h2>Hogyan készülnek a 3DFlowment termékei?</h2><p>Termékeink saját gyártásban, megrendelés után készülnek. A rendeléstől a feladásig általában 1–2 hét telik el.</p>`;
         }
 
         const isHome = (currentPage === 'home');
@@ -687,7 +714,6 @@ window.onload = function() {
         document.getElementById('home-content').style.display = isHome ? 'block' : 'none';
         if (isHome) renderHomeSections();
 
-        // Főoldali SEO H2 kártyák
         const homeCards = document.getElementById('seo-home-cards');
         if (isHome && cfg.cards) {
           homeCards.style.display = 'grid';
@@ -696,7 +722,6 @@ window.onload = function() {
           homeCards.style.display = 'none';
         }
 
-        // Szolgáltatás / Egyedi rendelés vs Termékkategória
         if (isServicePage) {
           document.getElementById('products-section').style.display = 'none';
           document.getElementById('custom-order-section').style.display = 'block';
@@ -712,60 +737,19 @@ window.onload = function() {
           document.getElementById('custom-order-section').style.display = 'none';
           document.getElementById('products-section').style.display = 'none';
         }
-      }
 
-      // A KAPCSOLÓ VALÓDI URL-RE NAVIGÁL (/ <-> /uzleti/)
-      function toggleMode() {
-        const targetUrl = (currentMode === 'b2c') ? '/uzleti/' : '/';
-        navigate(targetUrl);
-      }
-
-      function getCurrentShippingCost() {
-        const methodEl = document.getElementById('shipping-method');
-        if (!methodEl) return SHIPPING_LOCKER_COST;
-        return (methodEl.value === 'GLS házhozszállítás') ? SHIPPING_HOME_COST : SHIPPING_LOCKER_COST;
-      }
-
-      function loadParcelLockers() {
-        fetch(SCRIPT_URL)
-          .then(r => r.json())
-          .then(data => {
-            if (data.foxpost && Array.isArray(data.foxpost)) {
-              document.getElementById('foxpost-datalist').innerHTML = data.foxpost.map(item => `<option value="${item.replace(/"/g, '&quot;')}"></option>`).join('');
-            }
-            if (data.gls && Array.isArray(data.gls)) {
-              document.getElementById('gls-datalist').innerHTML = data.gls.map(item => `<option value="${item.replace(/"/g, '&quot;')}"></option>`).join('');
-            }
-          })
-          .catch(err => console.log("Automata lista betöltési hiba:", err));
+        if (isProductPage && productToShow) {
+          setTimeout(() => { openModal(productToShow, true); }, 50);
+        }
       }
 
       function filterSub(subName) {
-        currentSub = subName;
-        renderProducts();
-      }
-
-function renderHomeSections() {
-        const container = document.getElementById('home-content');
-        container.innerHTML = '';
-        const items = (currentMode === 'b2b' && homeSectionsData.b2b_items && homeSectionsData.b2b_items.length > 0)
-          ? homeSectionsData.b2b_items
-          : (homeSectionsData.items || []);
-
-        if(!items || items.length === 0) return;
-        items.forEach(item => {
-          const imgSrc = item.image ? `<img src="${item.image}" alt="${item.title}" loading="lazy">` : '';
-          const formattedText = (item.text || '').replace(/\*\*(.*?)\*\*/g, '<strong><em>$1</em></strong>');
-          container.innerHTML += `
-            <div class="z-section">
-              <div class="z-text">
-                <h2>${item.title}</h2>
-                <p>${formattedText}</p>
-              </div>
-              ${imgSrc ? `<div class="z-image">${imgSrc}</div>` : ''}
-            </div>
-          `;
-        });
+        let newQuery = '';
+        if (currentSub.toLowerCase() !== subName.toLowerCase()) {
+          newQuery = `?sub=${encodeURIComponent(subName)}`;
+        }
+        window.history.pushState({}, '', currentBaseUrl + newQuery);
+        applyRoute(currentBaseUrl, newQuery);
       }
 
       function renderProducts(searchQuery = '') {
@@ -778,6 +762,7 @@ function renderHomeSections() {
           if (searchQuery) return row.title.toLowerCase().includes(searchQuery.toLowerCase());
           const cat = (row.category || '').toLowerCase();
           const sub = (row.subcategory || '').toLowerCase();
+          
           if (currentPage === 'konyves') {
             if (!cat.includes('könyv')) return false;
             if (currentSub && sub !== currentSub.toLowerCase()) return false;
@@ -798,9 +783,13 @@ function renderHomeSections() {
         }
 
         filtered.forEach(row => {
-          const card = document.createElement('div');
+          const card = document.createElement('a');
           card.className = 'card';
-          card.onclick = () => openModal(row);
+          card.style.textDecoration = 'none';
+          card.style.color = 'inherit';
+          card.href = row.url ? `/termek/${row.url}/` : '#';
+          card.onclick = (e) => { e.preventDefault(); openModal(row); };
+          
           const imgSrc = row.image || 'https://via.placeholder.com/250';
           const altText = row.alt_text || row.title; 
           card.innerHTML = `
@@ -814,19 +803,7 @@ function renderHomeSections() {
         });
       }
 
-      function handleSearch() {
-        const q = document.getElementById('search-input').value;
-        if(q.length > 1) {
-          document.getElementById('home-carousel').style.display = 'none';
-          document.getElementById('home-content').style.display = 'none';
-          document.getElementById('seo-home-cards').style.display = 'none';
-          renderProducts(q);
-        } else if (q.length === 0) {
-          applyRoute(window.location.pathname);
-        }
-      }
-
-      function openModal(product) {
+      function openModal(product, isDirectLoad = false) {
         activeProduct = product;
         const mainImg = document.getElementById('modal-img');
         const mainVid = document.getElementById('modal-video');
@@ -872,9 +849,37 @@ function renderHomeSections() {
         document.getElementById('modal-comment').value = '';
         commContainer.style.display = (product.allow_comment) ? 'block' : 'none';
 
+        if (product.url && !isDirectLoad) {
+          const prodUrl = `/termek/${product.url}/`;
+          window.history.pushState({}, '', prodUrl);
+          document.title = product.seo_title || `${product.title} | 3DFlowment`;
+          document.getElementById('seo-desc').setAttribute('content', product.seo_desc || product.desc || '');
+          document.getElementById('seo-canonical').setAttribute('href', window.location.origin + prodUrl);
+        } else if (product.url && isDirectLoad) {
+          document.title = product.seo_title || `${product.title} | 3DFlowment`;
+          document.getElementById('seo-desc').setAttribute('content', product.seo_desc || product.desc || '');
+        }
+
         document.getElementById('product-modal').style.display = 'flex';
       }
 
+      function closeModal() {
+        document.getElementById('modal-video').pause();
+        document.getElementById('product-modal').style.display = 'none';
+
+        if (activeProduct && activeProduct.url) {
+          window.history.pushState({}, '', currentBaseUrl + currentQuery);
+          const cfg = SEO_PAGES[currentBaseUrl] || SEO_PAGES['/'];
+          if (cfg) {
+            let pageTitle = cfg.title;
+            if (currentSub) pageTitle = `${currentSub} | ${cfg.title}`;
+            document.title = pageTitle;
+            document.getElementById('seo-desc').setAttribute('content', cfg.desc);
+            document.getElementById('seo-canonical').setAttribute('href', window.location.origin + currentBaseUrl + currentQuery);
+          }
+        }
+        activeProduct = null;
+      }
       function closeModal() {
         document.getElementById('modal-video').pause();
         document.getElementById('product-modal').style.display = 'none';
