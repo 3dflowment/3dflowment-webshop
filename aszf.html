@@ -14,6 +14,8 @@
     a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
     .back-btn { display: inline-flex; align-items: center; margin-bottom: 30px; color: var(--text-color); text-transform: uppercase; font-size: 13px; font-weight: 600; text-decoration: none; padding: 10px 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; transition: 0.2s; }
     .back-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+    .download-btn { display: inline-block; background: var(--accent-color); color: #000; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 6px; margin-bottom: 25px; font-size: 14px; }
+    .download-btn:hover { opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -21,34 +23,53 @@
     <a href="/" class="back-btn">← Vissza a webshopba</a>
     
     <h1>Általános Szerződési Feltételek (ÁSZF)</h1>
-    <p><em>Hatályos: 2026. [november 04 ]-től</em></p>
+    
+    <!-- IDE ÍRD BE A PDF PONTOS NEVÉT HA FELTÖLTÖTTED (pl. aszf.pdf) -->
+    <a href="/images/uploads/aszf.pdf" download class="download-btn">📥 ÁSZF letöltése PDF formátumban</a>
 
-    <h3>1. A Szolgáltató (Elfogadóhely) adatai</h3>
+    <p><em>Hatályos: 2026. 11.04-től</em></p>
+
+    <h3>1. A Szolgáltató (Üzemeltető) adatai</h3>
     <ul>
-      <li><strong>Név:</strong> Mayer-Csabai Zsuzsanna E.V. (3DFlowment)</li>
-      <li><strong>Székhely:</strong> [2364] Ócsa, [Hortenzia utca 6/2]</li>
-      <li><strong>Adószám:</strong> [91852452-1-33]</li>
-      <li><strong>Nyilvántartási szám:</strong> [62007449]</li>
+      <li><strong>Név:</strong> Mayer-Csabai Zsuzsanna E.V.</li>
+      <li><strong>Székhely:</strong> 2364 Ócsa, Hortenzia utca 6/2</li>
+      <li><strong>Adószám:</strong> 91852452-1-33</li>
+      <li><strong>Nyilvántartási szám:</strong> 62007449</li>
       <li><strong>E-mail cím:</strong> 3dflowment@gmail.com</li>
       <li><strong>Telefonszám:</strong> [+36 20 996 5299]</li>
+      <li><strong>A szerződés nyelve:</strong> Magyar</li>
     </ul>
 
     <h3>2. Alapvető rendelkezések</h3>
-    <p>A jelen ÁSZF tartalmazza a 3DFlowment weboldalon (https://3dflowment.hu) történő vásárlás jogi feltételeit. A megrendelés leadásával a vásárló elfogadja a jelen ÁSZF-ben foglaltakat. A webshopban feltüntetett árak bruttó árak, a Szolgáltató alanyi adómentes (AAM), így az árak 0% ÁFÁ-t tartalmaznak.</p>
+    <p>A jelen ÁSZF tartalmazza a 3DFlowment weboldalon (https://3dflowment.hu) történő vásárlás jogi feltételeit. A megrendelés leadásával a vásárló elfogadja a jelen ÁSZF-ben foglaltakat. A webshopban feltüntetett árak bruttó árak, a Szolgáltató alanyi adómentes (AAM), így az árak 0% ÁFÁ-t tartalmaznak. A feltüntetett árak nem tartalmazzák a szállítási költséget.</p>
 
-    <h3>3. Megrendelés és a teljesítés átlagos ideje</h3>
-    <p>A 3DFlowment termékei saját gyártásban, a megrendelés beérkezése után készülnek 3D nyomtatási technológiával. Ennek megfelelően <strong>a rendelések teljesítésének (kiszállításának) átlagos ideje 1–2 hét</strong>. Egyedi megrendelések és bérnyomtatás esetén a teljesítési időt egyedileg, e-mailben egyeztetjük.</p>
+    <h3>3. Megrendelés és a rendelések teljesítésének átlagos ideje</h3>
+    <p>A 3DFlowment webáruházban található termékek saját gyártásban, 3D nyomtatási technológiával készülnek. A készleten nem lévő, megrendelésre készülő termékek esetében a gyártás a megrendelés (illetve előre utalás esetén az összeg) beérkezése után kezdődik meg.</p>
+    <p><strong>A rendelések teljesítésének (a csomag futárszolgálatnak történő átadásának) átlagos ideje 1–2 hét.</strong> Egyedi megrendelések, bérnyomtatás vagy különleges igények esetén a teljesítési időt a Szolgáltató e-mailben, egyedileg egyezteti a Vásárlóval.</p>
 
     <h3>4. Fizetési módok</h3>
-    <p><strong>Banki átutalás (Előre utalás):</strong> A vásárló a megrendelés értékét a megadott bankszámlaszámra utalja át. A gyártás az összeg beérkezése után kezdődik meg.</p>
-    <p><strong>Online bankkártyás fizetés (Barion):</strong> Az online bankkártyás és egyéb fizetési módok a Barion rendszerén keresztül valósulnak meg. A bankkártya, illetve egyéb fizetéssel kapcsolatos adatok a kereskedőhöz nem jutnak el. A szolgáltatást nyújtó Barion Payment Zrt. a Magyar Nemzeti Bank felügyelete alatt álló intézmény, engedélyének száma: H-EN-I-1064/2013.</p>
+    <p>A Vásárló a megrendelési folyamat során az alábbi fizetési módok közül választhat:</p>
+    <ul>
+      <li><strong>Banki előre utalás:</strong> A Vásárló a megrendelés végösszegét a Szolgáltató által e-mailben megküldött bankszámlaszámra utalja át. A közlemény rovatban fel kell tüntetni a rendelési azonosítót. A gyártás és feldolgozás a sikeres jóváírást követően indul.</li>
+      <li><strong>Online bankkártyás fizetés (Barion):</strong> Az online bankkártyás és egyéb fizetési módok a Barion rendszerén keresztül valósulnak meg. A bankkártya, illetve egyéb fizetéssel kapcsolatos adatok a kereskedőhöz nem jutnak el. A szolgáltatást nyújtó Barion Payment Zrt. a Magyar Nemzeti Bank felügyelete alatt álló intézmény, engedélyének száma: H-EN-I-1064/2013.</li>
+    </ul>
 
     <h3>5. Szállítási feltételek</h3>
-    <p>A kiszállítás a GLS Hungary Kft. és a Foxpost Zrt. futárszolgálatokkal és csomagautomatáin keresztül történik. A szállítási díjak a kosár folyamat során kerülnek feltüntetésre.</p>
+    <p>A csomagok kézbesítését a Foxpost Zrt. (csomagautomaták) és a GLS General Logistics Systems Hungary Kft. (csomagautomaták és házhozszállítás) végzi. A szállítási költségek a kiválasztott szállítási mód függvényében a kosár folyamat során pontosan feltüntetésre kerülnek. A Szolgáltató a csomag feladásáról e-mailben értesíti a Vásárlót.</p>
 
-    <h3>6. Elállási jog (14 napos visszaküldés)</h3>
-    <p>A fogyasztót (magánszemély vásárlót) a 45/2014. (II. 26.) Korm. rendelet alapján 14 napos indokolás nélküli elállási jog illeti meg az előre megtervezett, webshopból rendelt termékek esetében. A visszaküldés költsége a vásárlót terheli.</p>
-    <p><strong>Kivétel az elállási jog alól (Egyedi termékek):</strong> Ugyanezen rendelet 29. § (1) bek. c) pontja alapján <strong>nem gyakorolható az elállási jog olyan nem előre gyártott termék esetében, amelyet a fogyasztó utasítása alapján vagy kifejezett kérésére állítottak elő (pl. egyedi 3D tervezés, bérnyomtatás, egyedi névre szóló feliratok)</strong>.</p>
+    <h3>6. Elállási jog</h3>
+    <p>A fogyasztót (szakmája, önálló foglalkozása vagy üzleti tevékenysége körén kívül eljáró természetes személyt) a 45/2014. (II. 26.) Korm. rendelet alapján 14 napos indokolás nélküli elállási jog illeti meg az előre megtervezett, standard (készletes) termékek esetében.<br>
+    A fogyasztó az elállási jogát a termék átvételének napjától számított 14 napon belül gyakorolhatja a Szolgáltatóhoz intézett egyértelmű nyilatkozat (e-mail) útján. A termék visszaküldésének közvetlen költségét a fogyasztó viseli.</p>
+    
+    <p><strong>Kivétel az elállási jog alól (Egyedi termékek):</strong><br>
+    A 45/2014. (II. 26.) Korm. rendelet 29. § (1) bekezdés c) pontja alapján <strong>a fogyasztó nem gyakorolhatja elállási jogát olyan nem előre gyártott termék esetében, amelyet a fogyasztó utasítása alapján vagy kifejezett kérésére állítottak elő</strong>, vagy amelyet egyértelműen a fogyasztó személyére szabtak (pl. egyedi 3D modellek, bérnyomtatás, egyedi felirattal, egyedi színkombinációban kért termékek).</p>
+
+    <h3>7. Szavatosság és Garancia (Kellékszavatosság)</h3>
+    <p>Hibás teljesítés esetén a Vásárló a Polgári Törvénykönyv szabályai szerint kellékszavatossági igényt érvényesíthet a Szolgáltatóval szemben. A Vásárló kérhet kijavítást vagy kicserélést, kivéve, ha az általa választott igény teljesítése lehetetlen, vagy a Szolgáltató számára aránytalan többletköltséggel járna.</p>
+
+    <h3>8. Panaszkezelés és jogérvényesítési lehetőségek</h3>
+    <p>A Vásárló a termékkel vagy a Szolgáltató tevékenységével kapcsolatos panaszait a 3dflowment@gmail.com e-mail címen teheti meg.<br>
+    Amennyiben a panaszkezelés nem vezet eredményre, a fogyasztó a lakóhelye szerint illetékes Békéltető Testülethez fordulhat (Pest Vármegyei Békéltető Testület), illetve igénybe veheti az Európai Unió online vitarendezési platformját (https://ec.europa.eu/consumers/odr).</p>
   </div>
 </body>
 </html>
