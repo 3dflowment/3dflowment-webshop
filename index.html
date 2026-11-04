@@ -594,11 +594,12 @@ let currentMode = 'b2c';
 
         loadParcelLockers();
 
+   const timestamp = new Date().getTime();
         Promise.all([
-          fetch('/api/menu.json').then(r=>r.json()).catch(()=>null),
-          fetch('/api/banners.json').then(r=>r.json()).catch(()=>({items:[], b2b_items:[]})),
-          fetch('/api/home_sections.json').then(r=>r.json()).catch(()=>({items:[], b2b_items:[]})),
-          fetch('/api/products.json').then(r=>r.json()).catch(()=>({items:[]}))
+          fetch('/api/menu.json?v=' + timestamp).then(r=>r.json()).catch(()=>null),
+          fetch('/api/banners.json?v=' + timestamp).then(r=>r.json()).catch(()=>({items:[], b2b_items:[]})),
+          fetch('/api/home_sections.json?v=' + timestamp).then(r=>r.json()).catch(()=>({items:[], b2b_items:[]})),
+          fetch('/api/products.json?v=' + timestamp).then(r=>r.json()).catch(()=>({items:[]}))
         ]).then(([mData, bData, hData, pData]) => {
           if (mData) {
             if (mData.b2c_menus && mData.b2c_menus.length > 0) {
