@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impresszum | 3DFlowment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-color: #0f172a; --card-bg: #1e293b; --text-color: #f1f5f9; --accent-color: #d4af37; --heading-font: 'Playfair Display', serif; }
+    body { margin: 0; padding: 20px; font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.7; }
+    .container { max-width: 800px; margin: 20px auto; padding: 40px; background: var(--card-bg); border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); box-sizing: border-box; }
+    h1, h2, h3 { font-family: var(--heading-font); color: var(--accent-color); margin-top: 0; }
+    a { color: var(--accent-color); text-decoration: none; font-weight: 600; }
+    .back-btn { display: inline-flex; align-items: center; margin-bottom: 30px; color: var(--text-color); text-transform: uppercase; font-size: 13px; font-weight: 600; text-decoration: none; padding: 10px 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; transition: 0.2s; }
+    .back-btn:hover { border-color: var(--accent-color); color: var(--accent-color); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-btn">← Vissza a webshopba</a>
+    
+    <h1>Impresszum</h1>
+    
+    <h3>Szolgáltató (Üzemeltető) adatai:</h3>
+    <p>
+      <strong>Név:</strong> Mayer-Csabai Zsuzsanna E.V. (3DFlowment)<br>
+      <strong>Székhely:</strong> [2364] Ócsa, [Hortenzia utca 6/2]<br>
+      <strong>Adószám:</strong> [91852452-1-33]<br>
+      <strong>Nyilvántartási szám:</strong> [62007449]<br>
+      <strong>E-mail cím:</strong> 3dflowment@gmail.com<br>
+      <strong>Telefonszám:</strong> [+36 20 996 5299]
+    </p>
+
+    <h3 style="margin-top: 40px;">Tárhelyszolgáltató adatai:</h3>
+    <p>
+      <strong>Név:</strong> Netlify, Inc.<br>
+      <strong>Székhely:</strong> 512 2nd Street, Suite 200, San Francisco, CA 94107, USA<br>
+      <strong>E-mail cím:</strong> support@netlify.com
+    </p>
+  </div>
+</body>
+</html>
