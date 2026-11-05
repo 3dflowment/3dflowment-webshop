@@ -16,5 +16,30 @@
       "btn_link": "https://3dflowment.hu/unnepi-es-szezonalis-termekek/",
       "alt_text": "Egyedi, névre szóló 3D nyomtatott karácsonyfadísz gömb arany felirattal, személyre szabható karácsonyi dekoráció"
     }
+  ],
+  "b2b_items": [
+    {
+      "title": "Egyedi cégnévre szóló processzor védő",
+      "alt_text": "Egyedi tervezésű 3d nyomtatott processzor védő, proci tartó, cégeknek, vállalkozásoknak",
+      "btn_link": "3dflowment.hu/uzlati/IT-rendszerezok",
+      "subtitle": "Rendeld meg Te is a saját cég neveddel!",
+      "image": "/images/uploads/bambu-lab-p2s-d-nyomtato-ams-nelkul.png"
+    },
+    {
+      "title": "Mindegy melyik szektorban dolgozol, **mi bármilyen elképzelésed megvalósítjuk!**",
+      "subtitle": "Ez például egy mérőkanál mosószerhez",
+      "btn_text": "Egyedi megrendelés ajánlat kérés",
+      "alt_text": "egyedi megrendelés, saját tervezés, 3d nyomtatott termék",
+      "btn_link": "https://3dflowment.hu/uzleti/egyedi-megrendelesek/",
+      "image": "/images/uploads/20260914_123004.jpg"
+    },
+    {
+      "title": "Bérnyomtatás kis vagy nagy mennyiségben egyaránt",
+      "btn_text": "Bérnyomtatás ajánlat kérés",
+      "alt_text": "bérnyomtatás, 3d nyomtatás",
+      "subtitle": "Ha van már egy meglévő fájlod, de nincs hozzá meg a nyomtatót, nincs gond! Mi megoldjuk!",
+      "btn_link": "https://3dflowment.hu/uzleti/3d-bernyomtatas/",
+      "image": "/images/uploads/bambu-lab-p2s-d-nyomtato-ams-nelkul.png"
+    }
   ]
 }
