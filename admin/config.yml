@@ -62,7 +62,7 @@ collections:
           - label: "Termékek"
             name: "items"
             widget: "list"
-        fields:
+            fields:
               - {label: "Termék neve", name: "title", widget: "string"}
               - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "Együttműködések", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
               - {label: "Alkategória", name: "subcategory", widget: "string", required: false}
