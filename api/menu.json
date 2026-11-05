@@ -52,6 +52,11 @@
       "title": "Egyedi megrendelések",
       "url": "/uzleti/egyedi-megrendelesek/",
       "type": "Egyedi megrendelés / Szolgáltatás"
+    },
+        {
+      "title": "Együttműködések",
+      "url": "/uzleti/egyuttmukodesek/",
+      "type": "Termékkategória"
     }
   ]
 }
