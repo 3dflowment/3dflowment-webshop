@@ -8,7 +8,6 @@
     <link rel="canonical" id="seo-canonical" href="https://3dflowment.hu/">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- STRUKTURÁLT ADATOK (SEO JSON-LD) -->
     <script type="application/ld+json" id="schema-org">
     {
       "@context": "https://schema.org",
@@ -100,26 +99,62 @@
       .price { font-size: 17px; font-weight: 700; color: var(--accent-color); margin: 8px 0 0 0; }
 
       .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center; padding: 10px; box-sizing: border-box; }
-      .modal-content { background:var(--card-bg); padding:28px; border-radius:10px; max-width:850px; width:100%; max-height:90vh; overflow-y:auto; display:flex; gap:25px; flex-wrap:wrap; position:relative; box-sizing:border-box; }
-      .modal-close { position:sticky; top:0; float:right; margin-left:auto; font-size:28px; color:white; cursor:pointer; line-height:1; z-index:10; background:rgba(15,23,42,0.8); width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:50%; }
+      
+      /* NORMAL TERMÉK MODAL */
+      #product-modal .modal-content { background:var(--card-bg); padding:28px; border-radius:10px; max-width:850px; width:100%; max-height:90vh; overflow-y:auto; display:flex; gap:25px; flex-wrap:wrap; position:relative; box-sizing:border-box; }
+      .modal-close { position:absolute; top:15px; right:15px; font-size:28px; color:white; cursor:pointer; line-height:1; z-index:10; background:rgba(15,23,42,0.8); width:34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:50%; }
       .modal-img { flex:1; min-width:260px; }
       .modal-img > img { width:100%; max-height:400px; object-fit:contain; background:rgba(0,0,0,0.25); border-radius:8px; }
       .modal-details { flex:1; min-width:260px; }
       .modal-details h2 { margin-top:0; color:var(--accent-color); font-size: 22px; }
       .prod-ship-badge { font-size: 12px; color: var(--muted-text); background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px; margin: 12px 0; border-left: 3px solid var(--accent-color); }
 
+      /* KOSÁR ÉS CHECKOUT MODAL FIX (Egymás alatti megjelenés hiba nélkül) */
+      #cart-modal .modal-content { 
+        display: block !important; 
+        background: var(--card-bg); 
+        padding: 25px; 
+        border-radius: 10px; 
+        max-width: 650px; 
+        width: 100%; 
+        max-height: 90vh; 
+        overflow-y: auto; 
+        overflow-x: hidden;
+        position: relative; 
+        box-sizing: border-box; 
+      }
+      .cart-item-row { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 15px 0; 
+        border-bottom: 1px solid rgba(255,255,255,0.08); 
+        font-size: 13px; 
+        gap: 8px; 
+      }
+      .cart-item-row > div:first-child { width: 100%; }
+      .cart-item-row > div:last-child { 
+        width: 100%; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding-top: 8px; 
+        border-top: 1px dashed rgba(255,255,255,0.05); 
+      }
+
       .input-group { margin-bottom: 14px; text-align: left; width: 100%; }
       .input-group label { display:block; font-size:12px; margin-bottom:5px; color:var(--muted-text); font-weight:500; }
       .input-group select, .input-group textarea, .input-group input[type="text"], .input-group input[type="email"], .input-group input[type="tel"], .input-group input[type="number"] { width:100%; padding:10px; background:#0f172a; border:1px solid rgba(255,255,255,0.18); color:white; border-radius:4px; font-family:'Montserrat'; box-sizing:border-box; font-size:13px; }
       .input-group select option { background:#0f172a; color:white; }
-      .input-row { display:flex; gap:10px; }
-      .add-to-cart-btn { background:var(--accent-color); color:var(--accent-text); padding:13px; width:100%; font-weight:700; border:none; border-radius:4px; cursor:pointer; margin-top:10px; font-size:14px; }
+      .input-row { display:flex; flex-wrap:wrap; gap:10px; }
+      .input-row > .input-group { flex: 1; min-width: 200px; }
+      .add-to-cart-btn { background:var(--accent-color); color:var(--accent-text); padding:13px; width:100%; font-weight:700; border:none; border-radius:4px; cursor:pointer; margin-top:10px; font-size:14px; transition:0.2s; }
+      .add-to-cart-btn:hover { opacity:0.9; }
 
       .same-addr-btn { display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.06); padding:10px 14px; border-radius:6px; border:1px solid var(--accent-color); cursor:pointer; margin-bottom:14px; font-size:13px; font-weight:600; color:var(--text-color); }
       .same-addr-btn input { width:18px; height:18px; accent-color:var(--accent-color); cursor:pointer; }
-
-      .cart-item-row { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:13px; gap:10px; flex-wrap: wrap; }
-      .cart-remove-btn { background:rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.4); border-radius:4px; padding:4px 8px; cursor:pointer; font-size:11px; }
+      .cart-remove-btn { background:rgba(239,68,68,0.2); color:#fca5a5; border:1px solid rgba(239,68,68,0.4); border-radius:4px; padding:6px 12px; cursor:pointer; font-size:11px; font-weight:bold; }
+      
       .summary-box { background:rgba(0,0,0,0.25); padding:15px; border-radius:6px; margin:15px 0; border:1px solid rgba(255,255,255,0.08); }
       .summary-line { display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; color:var(--muted-text); }
       .summary-total { display:flex; justify-content:space-between; font-size:18px; font-weight:700; color:var(--accent-color); border-top:1px solid rgba(255,255,255,0.12); padding-top:10px; margin-top:8px; }
@@ -145,9 +180,8 @@
         .seo-hero { padding: 18px 14px; margin-bottom: 25px; }
         .seo-hero h1 { font-size: 23px; }
         .seo-info-grid { grid-template-columns: 1fr; gap: 15px; }
-        .modal-content { padding: 18px 15px; max-height: 94vh; gap: 15px; }
-        .input-row { flex-direction: column; gap: 0; }
-        .input-row .input-group { flex: 1 1 auto !important; }
+        #product-modal .modal-content { padding: 18px 15px; max-height: 94vh; gap: 15px; }
+        .input-row .input-group { flex: 1 1 100%; }
       }
     </style>
   </head>
@@ -178,6 +212,7 @@
       <nav id="nav-b2b" class="category-bar" style="display:none;">
         <a href="/uzleti/it-kiegeszitok/" onclick="return navClick(event, '/uzleti/it-kiegeszitok/')">IT-kiegészítők</a>
         <a href="/uzleti/rendszerezok/" onclick="return navClick(event, '/uzleti/rendszerezok/')">Rendszerezők</a>
+        <a href="/uzleti/egyuttmukodesek/" onclick="return navClick(event, '/uzleti/egyuttmukodesek/')">Együttműködések</a>
         <a href="/uzleti/3d-bernyomtatas/" onclick="return navClick(event, '/uzleti/3d-bernyomtatas/')">Bérnyomtatás</a>
         <a href="/uzleti/egyedi-megrendelesek/" onclick="return navClick(event, '/uzleti/egyedi-megrendelesek/')">Egyedi megrendelések</a>
       </nav>
@@ -234,7 +269,7 @@
           <div class="price" id="modal-price">0 Ft</div>
           <p id="modal-desc" style="color:var(--muted-text); font-size:14px; line-height:1.6; white-space:pre-wrap;"></p>
           
-          <div class="prod-ship-badge">
+          <div class="prod-ship-badge" id="prod-ship-badge">
             🛠️ <strong>Saját gyártás megrendelésre:</strong> A rendeléstől a feladásig általában 1–2 hét telik el (ez a gyártási és feladási idő, nem a kézbesítési idő).
           </div>
 
@@ -243,7 +278,7 @@
             <select id="modal-options"></select>
           </div>
           
-          <div class="input-group">
+          <div class="input-group" id="qty-container">
             <label>Mennyiség (db):</label>
             <input type="number" id="modal-qty" value="1" min="1">
           </div>
@@ -253,14 +288,17 @@
             <textarea id="modal-comment" rows="2"></textarea>
           </div>
 
-          <button class="add-to-cart-btn" onclick="addToCart()">HOZZÁADÁS A KOSÁRHOZ</button>
+          <button id="add-to-cart-btn" class="add-to-cart-btn" onclick="addToCart()">HOZZÁADÁS A KOSÁRHOZ</button>
+          
+          <!-- PARTNER GOMB EGYÜTTMŰKÖDÉSEKHEZ -->
+          <button id="partner-btn" class="add-to-cart-btn" style="display:none; background:#1e293b; border:1px solid var(--accent-color); color:var(--accent-color);" onclick="openPartnerLink()">MEGNÉZEM A PARTNER OLDALÁN ↗</button>
         </div>
       </div>
     </div>
 
-    <!-- KOSÁR MODAL -->
+    <!-- KOSÁR MODAL (JAVÍTOTT ELRENDEZÉSSEL) -->
     <div id="cart-modal" class="modal-overlay">
-      <div class="modal-content" style="max-width:620px; flex-direction:column; gap:10px;">
+      <div class="modal-content">
         <span class="modal-close" onclick="closeCart()">×</span>
         <h2 style="margin:0 0 10px 0; color:var(--accent-color);">🛒 Kosár & Megrendelés</h2>
         
@@ -315,7 +353,7 @@
           </div>
 
           <div class="input-row">
-            <div class="input-group" style="flex:0 0 120px;">
+            <div class="input-group" style="flex: 0 0 120px; min-width:100px;">
               <label>Irányítószám *</label>
               <input type="text" id="bill-zip" placeholder="2364">
             </div>
@@ -361,7 +399,7 @@
 
             <div id="diff-address-fields" style="display:none;">
               <div class="input-row">
-                <div class="input-group" style="flex:0 0 120px;">
+                <div class="input-group" style="flex: 0 0 120px; min-width:100px;">
                   <label>Száll. Irányítószám *</label>
                   <input type="text" id="ship-zip" placeholder="2364">
                 </div>
@@ -377,20 +415,25 @@
             </div>
           </div>
 
-          <div class="input-group">
+      <div class="input-group">
             <label>Fizetési mód *</label>
             <select id="payment-method">
               <option value="Banki átutalás (Előre utalás)">Banki átutalás (Előre utalás)</option>
             </select>
           </div>
 
+          <label class="same-addr-btn" style="margin-top: 15px; border-color: rgba(255,255,255,0.2);">
+            <input type="checkbox" id="accept-terms-chk">
+            <span style="font-size: 12px; font-weight: 400;">Elolvastam és elfogadom az <a href="/aszf.html" target="_blank" style="color:var(--accent-color);">ÁSZF-et</a> és az <a href="/adatvedelem.html" target="_blank" style="color:var(--accent-color);">Adatvédelmi tájékoztatót</a>. *</span>
+          </label>
+
           <button id="submit-order-btn" class="add-to-cart-btn" onclick="submitOrder()">MEGRENDELÉS LEADÁSA</button>
         </div>
       </div>
     </div>
-    
+
     <footer>
-        <div style="margin-bottom: 15px;">
+      <div style="margin-bottom: 15px;">
         <a href="/aszf.html">Általános Szerződési Feltételek (ÁSZF)</a> | 
         <a href="/adatvedelem.html">Adatvédelmi Tájékoztató</a> | 
         <a href="/impresszum.html">Impresszum</a>
@@ -409,7 +452,23 @@
       </div>
     </footer>
 
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:var(--nav-bg); padding:15px 20px; box-sizing:border-box; z-index:9999; border-top:2px solid var(--accent-color); flex-wrap:wrap; justify-content:center; align-items:center; gap:15px; box-shadow:0 -5px 15px rgba(0,0,0,0.5);">
+      <div style="font-size:12px; color:var(--muted-text); flex:1; min-width:280px; max-width: 900px; line-height: 1.5;">
+        Weboldalunk a kosár működése, a biztonságos fizetés (Barion) és a legjobb felhasználói élmény biztosítása érdekében sütiket (cookie-kat) és helyi tárolást használ. A weboldal böngészésével hozzájárulsz ezek használatához. További részleteket az <a href="/adatvedelem.html" style="color:var(--accent-color); text-decoration:none; font-weight: 600;">Adatvédelmi Tájékoztatóban</a> találsz.
+      </div>
+      <button onclick="acceptCookies()" style="background:var(--accent-color); color:var(--accent-text); border:none; padding:10px 20px; border-radius:4px; font-weight:700; cursor:pointer; font-family:'Montserrat', sans-serif; font-size:12px; white-space:nowrap; transition: 0.2s;">RENDBEN, ELFOGADOM</button>
+    </div>
+
     <script>
+      if (!localStorage.getItem('3dflowment_cookies')) {
+        document.getElementById('cookie-banner').style.display = 'flex';
+      }
+      function acceptCookies() {
+        localStorage.setItem('3dflowment_cookies', 'true');
+        document.getElementById('cookie-banner').style.display = 'none';
+      }
+
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHS7KvBLYT-33Tm2zbmthUS4DV3MtUE3yxSxHEkjNJ80z38eqSHCQKORiY90dUD7_z3w/exec";
       const SHIPPING_LOCKER_COST = 1799;
       const SHIPPING_HOME_COST = 2500;
@@ -469,26 +528,19 @@
           subH2: 'Apró meglepetések a gyerekek világához',
           subP: 'A kínálatunkban szereplő termékek eltérő rendeltetésűek és korosztályúak lehetnek, ezért vásárlás előtt mindig ellenőrizd az adott termék leírását és korosztályi ajánlását.'
         },
-        '/it-kiegeszitok/': {
-          mode: 'b2c', page: 'it',
-          title: '3D nyomtatott IT-kiegészítők | 3DFlowment',
-          desc: 'Fedezd fel a 3DFlowment saját gyártású IT-kiegészítőit! Praktikus, kreatív 3D nyomtatott megoldások a mindennapi használathoz.',
-          h1: 'Praktikus 3D nyomtatott IT-kiegészítők',
-          intro: 'A mindennap használt technikai eszközeink mellett az apró kiegészítők is sokat számítanak. A 3DFlowment IT-kiegészítői között saját gyártású, előre megtervezett termékeket találsz, amelyek praktikus társak lehetnek otthon vagy a munkahelyeden.'
-        },
-        '/rendszerezok/': {
-          mode: 'b2c', page: 'rendszerezo',
-          title: '3D nyomtatott rendszerezők és tárolók | 3DFlowment',
-          desc: 'Rendezd át a mindennapjaidat! Fedezd fel a 3DFlowment saját gyártású 3D nyomtatott rendszerezőit és praktikus tárolóit.',
-          h1: '3D nyomtatott rendszerezők a rendezettebb mindennapokért',
-          intro: 'Szereted, ha mindennek megvan a helye? A 3DFlowment rendszerezői között olyan saját gyártású termékeket találsz, amelyek segíthetnek átláthatóbbá tenni a környezetedet.\nFedezd fel az előre megtervezett rendszerezőket, és válaszd ki a számodra megfelelő megoldást!'
-        },
         '/egyuttmukodesek/': {
           mode: 'b2c', page: 'egyutt',
           title: 'Kreatív együttműködések | 3DFlowment',
-          desc: 'Fedezd fel a 3DFlowment és hazai grafikusok, alkotók közös 3D nyomtatott termékeit!',
+          desc: 'Fedezd fel a 3DFlowment és hazai grafikusok, alkotók közös 3D nyomtatott termékeit, projektjeit!',
           h1: 'Kreatív együttműködések és közös alkotások',
-          intro: 'A termékek grafikáihoz valódi grafikusokkal, művészekkel és más kreatív alkotókkal dolgozunk együtt. Ebben a kategóriában a közös projektjeinkből született, saját gyártású darabokat találod.'
+          intro: 'A termékek grafikáihoz és az egyedi projektekhez valódi grafikusokkal, művészekkel dolgozunk együtt. Ebben a kategóriában azokat a közös projekteket is megtalálod, amiket mi terveztünk vagy gyártottunk, de exkluzívan a partnereinknél vásárolhatók meg.'
+        },
+        '/uzleti/egyuttmukodesek/': {
+          mode: 'b2b', page: 'egyutt',
+          title: 'Üzleti és Kreatív együttműködések | 3DFlowment',
+          desc: 'Fedezd fel a 3DFlowment üzleti partnereivel közösen létrehozott, 3D nyomtatott projektjeit!',
+          h1: 'Üzleti és partneri együttműködések',
+          intro: 'Ebben a kategóriában azokat az egyedi projekteket és termékeket találod, amelyeket üzleti partnereinkkel közösen hoztunk létre, és az ő weboldalukon keresztül érhetők el.'
         },
         '/egyedi-megrendelesek/': {
           mode: 'b2c', page: 'egyedi-b2c',
@@ -830,12 +882,16 @@
           
           const imgSrc = row.image || 'https://via.placeholder.com/250';
           const altText = row.alt_text || row.title; 
+          
+          // Ha partner link, akkor egyedi ár felirat helyett Partner terméke
+          const árSzöveg = row.partner_link ? 'Partner terméke' : (row.price ? row.price.toLocaleString('hu-HU') + ' Ft' : 'Egyedi ár');
+          
           card.innerHTML = `
             <div>
               <img src="${imgSrc}" alt="${altText}" loading="lazy">
               <h3>${row.title}</h3>
             </div>
-            <div class="price">${row.price ? row.price.toLocaleString('hu-HU') + ' Ft' : 'Egyedi ár'}</div>
+            <div class="price">${árSzöveg}</div>
           `;
           grid.appendChild(card);
         });
@@ -850,6 +906,12 @@
           renderProducts(q);
         } else if (q.length === 0) {
           applyRoute(window.location.pathname, window.location.search);
+        }
+      }
+
+      function openPartnerLink() {
+        if (activeProduct && activeProduct.partner_link) {
+          window.open(activeProduct.partner_link, '_blank');
         }
       }
 
@@ -881,23 +943,43 @@
         }
 
         document.getElementById('modal-title').innerText = product.title;
-        document.getElementById('modal-price').innerText = product.price ? product.price.toLocaleString('hu-HU') + ' Ft' : 'Egyedi ár';
         document.getElementById('modal-desc').innerText = product.desc || '';
-        document.getElementById('modal-qty').value = 1;
-
+        
+        // EGYÜTTMŰKÖDÉS (PARTNER) LOGIKA
         const optContainer = document.getElementById('modal-options-container');
-        const select = document.getElementById('modal-options');
-        if (product.options && product.options.trim() !== '') {
-          const opts = product.options.split(',');
-          select.innerHTML = opts.map(o => `<option value="${o.trim()}">${o.trim()}</option>`).join('');
-          optContainer.style.display = 'block';
-        } else {
-          optContainer.style.display = 'none';
-        }
-
+        const qtyContainer = document.getElementById('qty-container');
         const commContainer = document.getElementById('modal-comment-container');
-        document.getElementById('modal-comment').value = '';
-        commContainer.style.display = (product.allow_comment) ? 'block' : 'none';
+        const kosarGomb = document.getElementById('add-to-cart-btn');
+        const partnerGomb = document.getElementById('partner-btn');
+        const shipBadge = document.getElementById('prod-ship-badge');
+        const arKijelzo = document.getElementById('modal-price');
+
+        if (product.partner_link && product.partner_link.trim() !== '') {
+          arKijelzo.innerText = 'Partner terméke';
+          qtyContainer.style.display = 'none';
+          optContainer.style.display = 'none';
+          commContainer.style.display = 'none';
+          shipBadge.style.display = 'none';
+          kosarGomb.style.display = 'none';
+          partnerGomb.style.display = 'block';
+        } else {
+          arKijelzo.innerText = product.price ? product.price.toLocaleString('hu-HU') + ' Ft' : 'Egyedi ár';
+          qtyContainer.style.display = 'block';
+          document.getElementById('modal-qty').value = 1;
+          shipBadge.style.display = 'block';
+          kosarGomb.style.display = 'block';
+          partnerGomb.style.display = 'none';
+          
+          if (product.options && product.options.trim() !== '') {
+            const opts = product.options.split(',');
+            document.getElementById('modal-options').innerHTML = opts.map(o => `<option value="${o.trim()}">${o.trim()}</option>`).join('');
+            optContainer.style.display = 'block';
+          } else {
+            optContainer.style.display = 'none';
+          }
+          commContainer.style.display = (product.allow_comment) ? 'block' : 'none';
+          document.getElementById('modal-comment').value = '';
+        }
 
         if (product.url && !isDirectLoad) {
           const prodUrl = `/termek/${product.url}/`;
@@ -1023,7 +1105,7 @@
                 <div style="color:var(--muted-text); font-size:12px;">${item.qty} db × ${item.price.toLocaleString('hu-HU')} Ft</div>
                 ${commText}
               </div>
-              <div style="display:flex; align-items:center; gap:12px;">
+              <div>
                 <strong>${lineTotal.toLocaleString('hu-HU')} Ft</strong>
                 <button class="cart-remove-btn" onclick="removeFromCart(${idx})">Törlés</button>
               </div>
@@ -1058,7 +1140,9 @@
 
       function submitOrder() {
         if (cart.length === 0) return alert("A kosarad üres!");
-
+        if (!document.getElementById('accept-terms-chk').checked) {
+          return alert("A megrendeléshez kérlek, fogadd el az ÁSZF-et és az Adatvédelmi tájékoztatót!");
+        }
         const customerType = document.getElementById('buyer-type').value;
         const taxNumber = document.getElementById('buyer-tax').value.trim();
         const billingName = document.getElementById('buyer-name').value.trim();
@@ -1198,25 +1282,6 @@
         currentSlide = idx;
         document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === idx));
         document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
-      }
-    </script>
- <!-- COOKIE BANNER -->
-    <div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; width:100%; background:var(--nav-bg); padding:15px 20px; box-sizing:border-box; z-index:9999; border-top:2px solid var(--accent-color); flex-wrap:wrap; justify-content:center; align-items:center; gap:15px; box-shadow:0 -5px 15px rgba(0,0,0,0.5);">
-      <div style="font-size:12px; color:var(--muted-text); flex:1; min-width:280px; max-width: 900px; line-height: 1.5;">
-        Weboldalunk a kosár működése, a biztonságos fizetés (Barion) és a legjobb felhasználói élmény biztosítása érdekében sütiket (cookie-kat) és helyi tárolást használ. A weboldal böngészésével hozzájárulsz ezek használatához. További részleteket az <a href="/adatvedelem.html" style="color:var(--accent-color); text-decoration:none; font-weight: 600;">Adatvédelmi Tájékoztatóban</a> találsz.
-      </div>
-      <button onclick="acceptCookies()" style="background:var(--accent-color); color:var(--accent-text); border:none; padding:10px 20px; border-radius:4px; font-weight:700; cursor:pointer; font-family:'Montserrat', sans-serif; font-size:12px; white-space:nowrap; transition: 0.2s;">RENDBEN, ELFOGADOM</button>
-    </div>
-
-    <script>
-      // Ellenőrizzük, hogy elfogadta-e már
-      if (!localStorage.getItem('3dflowment_cookies')) {
-        document.getElementById('cookie-banner').style.display = 'flex';
-      }
-      // Gombnyomásra mentjük az elfogadást és elrejtjük a sávot
-      function acceptCookies() {
-        localStorage.setItem('3dflowment_cookies', 'true');
-        document.getElementById('cookie-banner').style.display = 'none';
       }
     </script>
   </body>
