@@ -62,11 +62,11 @@ collections:
           - label: "Termékek"
             name: "items"
             widget: "list"
-            fields:
+        fields:
               - {label: "Termék neve", name: "title", widget: "string"}
               - {label: "Főmenü (Kategória)", name: "category", widget: "select", options: ["Könyves kiegészítők", "LEGO szerelmeseinek", "Szezonális & Ünnepi dekor", "Gyerekeknek", "Együttműködések", "IT kiegészítők", "Rendszerezők", "Bérnyomtatás"]}
               - {label: "Alkategória", name: "subcategory", widget: "string", required: false}
-              - {label: "Ár (Ft)", name: "price", widget: "number"}
+              - {label: "Ár (Ft)", name: "price", widget: "number", required: false}
               - {label: "Főkép (Borítókép)", name: "image", widget: "image"}
               - label: "További képek (Galéria)"
                 name: "gallery"
@@ -81,3 +81,4 @@ collections:
               - {label: "SEO cím (Meta Title)", name: "seo_title", widget: "string", hint: "Max 60 karakter. Ez jelenik meg a Google találatoknál kékkel.", required: false}
               - {label: "Meta leírás", name: "seo_desc", widget: "text", hint: "Max 150 karakter. Rövid, figyelemfelkeltő leírás a Google-nek.", required: false}
               - {label: "SEO URL (pl. konyvjelzo-acotar)", name: "url", widget: "string", hint: "Ékezetek és szóköz nélkül, csak kisbetűk és kötőjel! Ebből lesz a termék linkje (pl. /termek/konyvjelzo-acotar/).", required: false}
+              - {label: "Partner weboldal linkje (CSAK együttműködéseknél, ha máshol vehető meg)", name: "partner_link", widget: "string", required: false}
