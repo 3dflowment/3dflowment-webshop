@@ -374,7 +374,7 @@
             <label>Szállítási mód *</label>
             <select id="shipping-method" onchange="toggleShippingFields()">
               <option value="Foxpost automata">Foxpost automata (1 799 Ft)</option>
-              <option value="GLS automata">GLS automata (1 799 Ft)</option>
+              <option value="GLS automata">GLS automata (1 590 Ft)</option>
               <option value="GLS házhozszállítás">GLS házhozszállítás (2 500 Ft)</option>
             </select>
           </div>
@@ -469,9 +469,12 @@
         document.getElementById('cookie-banner').style.display = 'none';
       }
 
-      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHS7KvBLYT-33Tm2zbmthUS4DV3MtUE3yxSxHEkjNJ80z38eqSHCQKORiY90dUD7_z3w/exec";
-      const SHIPPING_LOCKER_COST = 1799;
-      const SHIPPING_HOME_COST = 2500;
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOJVi_7Rms1VRKNIMd6d0Drehq-KZseXk6mgJp8LeT_7QPHi3ilFpPQXN66mSyDrLB/exec";
+  
+  // Itt tudod a jövőben bármikor átírni az árakat:
+  const SHIPPING_FOXPOST_COST = 1799;
+  const SHIPPING_GLS_AUTOMATA_COST = 1590;
+  const SHIPPING_GLS_HOME_COST = 2500;
 
       const SEO_PAGES = {
         '/': {
@@ -788,13 +791,18 @@
         const targetUrl = (currentMode === 'b2c') ? '/uzleti/' : '/';
         navigate(targetUrl);
       }
-
-      function getCurrentShippingCost() {
-        const methodEl = document.getElementById('shipping-method');
-        if (!methodEl) return SHIPPING_LOCKER_COST;
-        return (methodEl.value === 'GLS házhozszállítás') ? SHIPPING_HOME_COST : SHIPPING_LOCKER_COST;
-      }
-
+function getCurrentShippingCost() {
+    const methodEl = document.getElementById('shipping-method');
+    if (!methodEl) return SHIPPING_FOXPOST_COST;
+    
+    const method = methodEl.value;
+    if (method === 'Foxpost automata') return SHIPPING_FOXPOST_COST;
+    if (method === 'GLS automata') return SHIPPING_GLS_AUTOMATA_COST;
+    if (method === 'GLS házhozszállítás') return SHIPPING_GLS_HOME_COST;
+    
+    return SHIPPING_FOXPOST_COST;
+  }
+      
       function loadParcelLockers() {
         fetch(SCRIPT_URL)
           .then(r => r.json())
