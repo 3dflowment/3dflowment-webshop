@@ -34,7 +34,34 @@
       "title": "LEGO virághoz váza",
       "image": "/images/uploads/váza.png",
       "category": "LEGO szerelmeseinek",
-      "options": "bézs, fehér, piros, zöld, barna, citrom, narancssárga, lila"
+      "options": "bézs, fehér, piros, zöld, barna, citrom, narancssárga, lila, fekete"
+    },
+    {
+      "alt_text": "Óriás építőkocka dizájnos 3D nyomtatott papírzsebkendő tartó doboz",
+      "price": 5000,
+      "allow_comment": false,
+      "url": "epitokocka-alaku-papirzsebkendo-tarto-dobozos",
+      "desc": "Vidám és praktikus kiegészítő, amely azonnal feldobja a nappalit, az íróasztalt vagy a gyerekszobát! Ez a 3D nyomtatott építőkocka dizájnos tartó tökéletesen illeszkedik a szabványos 100 darabos papírzsebkendő dobozokra. Egyszerűen csak csúsztasd rá a bolti dobozra, és máris stílusos dekorációvá válik.\n\nFontos: A termék egyedi 3D nyomtatott kiegészítő, nem hivatalos LEGO® termék.",
+      "seo_desc": "Dobd fel a szobát ezzel a 3D nyomtatott, építőkocka alakú zsebkendőtartóval! Tökéletesen illik a 100 db-os papírzsepi dobozokra. Kreatív dekoráció.",
+      "seo_title": "Építőkocka Alakú Papírzsebkendő Tartó (100 db-os)",
+      "title": "Építőkocka alakú papírzsebkendő tartó doboz (100 db-os)",
+      "video": "",
+      "image": "/images/uploads/100-db-os-papírzsebitartó-dobozos.jpg",
+      "category": "LEGO szerelmeseinek",
+      "options": "sárga, narancs, piros, fehér, fekete, zöld, lila"
+    },
+    {
+      "alt_text": "építőkocka alakú 3D nyomtatott asztali zsebkendőtartó 10 darabos papírzsebkendővel[cite: 5]",
+      "allow_comment": false,
+      "url": "10-darabos-epitokocka-alaku-zsebkendo-tarto",
+      "desc": "Unod, hogy a 10 darabos papírzsebkendők csomagolása mindig szétszakad a táskádban vagy az asztalodon? Ez az egyedi, 3D nyomtatott, építőkocka alakú tartó tökéletes és stílusos megoldás a 10 darabos papírzsebkendőkhöz! [cite: 5] Praktikus és mutatós asztali kiegészítő, amely megvédi a zsepiket és játékos hangulatot varázsol az íróasztalra, éjjeliszekrényre vagy a gyerekszobába.\n\nKönnyen utántölthető és strapabíró.\n\n\nFontos: A termék egyedi 3D nyomtatott kiegészítő, nem hivatalos LEGO® termék.",
+      "seo_desc": "Védd és tárold stílusosan a papírzsepit ezzel a 3D nyomtatott, építőkocka alakú 10 db-os zsebkendőtartóval! Ideális asztali és gyerekszobai kiegészítő.",
+      "seo_title": "Építőkocka Alakú Zsebkendőtartó (10 db-os)",
+      "title": "Építőkocka alakú zsebadagolós papírzsebkendő tartó (10 db-os)",
+      "video": "/images/uploads/20261009_224135.mp4",
+      "image": "/images/uploads/10-db-os-zsebkendotarto-építokocka-formaju.jpg",
+      "category": "LEGO szerelmeseinek",
+      "options": "barna, fehér, fekete, piros, zöld, lila, narancs, citrom"
     }
   ]
 }
