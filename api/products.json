@@ -2,7 +2,7 @@
   "items": [
     {
       "alt_text": "Fourth Wing fantasy könyves LED hangulatlámpa, booknook sárkányokkal, csillagokkal és varázslatos könyvillusztrációval, meleg arany fényben.",
-      "price": 4500,
+      "price": 4200,
       "allow_comment": false,
       "url": "fourth-wing-konyvtamasz",
       "desc": "\"Téged választottalak, és a sárkányok nem hibáznak.\" Te is legyél olyan magabiztos, mint Train és válassz helyesen! Fourth Wing által inspirált könyvtámasz (booknook).   Világítás nélkül is gyönyörű, de a háttérvilágítással lesz igazi kincse a polcodnak. \n\nA fényfüzér eleme a terméknek.",
@@ -22,6 +22,19 @@
       "partner_link": "https://ecospark.hu/termek/merokanal/",
       "video": "",
       "image": "/images/uploads/20260914_123004.jpg"
+    },
+    {
+      "alt_text": "Fehér, építőkocka alakú 3D nyomtatott váza Lego botanikai virágcsokorhoz",
+      "price": 4500,
+      "allow_comment": false,
+      "url": "vaza-lego-viragcsokorhoz",
+      "desc": "Fehér, építőkocka alakú 3D nyomtatott váza Lego botanikai virágcsokorhoz. Tökéletes kiegészítője a Lego Botanikai kollekció darabjainak! ... Fontos: A termék egyedi 3D nyomtatott kiegészítő, nem hivatalos LEGO® termék. A képen látható virág nem a termék része.\n\nMéretei: 6,5X10X16 cm\n\nA termék nincsen készleten. A megrendelés leadását követően készül el. A termék kb. 1 hét alatt készül el. Karácsonyi időszakban ez az idő több is lehet. Köszönöm a türelmet és a megértést!",
+      "seo_desc": "Keresed a tökéletes vázát a Lego botanikai csokrodhoz? Válaszd ezt a 3D nyomtatott, építőkocka alakú vázát! Mutatós és kreatív lakásdekoráció.",
+      "seo_title": "Váza Lego Virágcsokorhoz - 3D Nyomtatott Design",
+      "title": "LEGO virághoz váza",
+      "image": "/images/uploads/váza.png",
+      "category": "LEGO szerelmeseinek",
+      "options": "bézs, fehér, piros, zöld, barna, citrom, narancssárga, lila"
     }
   ]
 }
