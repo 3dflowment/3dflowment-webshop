@@ -803,18 +803,33 @@ function getCurrentShippingCost() {
     return SHIPPING_FOXPOST_COST;
   }
       
+   let foxpostListMemory = [];
+      let glsListMemory = [];
+
+      function updateDatalist(inputId, listId, sourceArray) {
+        const val = document.getElementById(inputId).value.trim().toLowerCase();
+        const dl = document.getElementById(listId);
+        if (val.length < 2) { 
+          dl.innerHTML = ''; 
+          return; 
+        }
+        const matches = sourceArray.filter(item => item.toLowerCase().includes(val)).slice(0, 50);
+        dl.innerHTML = matches.map(item => `<option value="${item.replace(/"/g, '&quot;')}"></option>`).join('');
+      }
+
       function loadParcelLockers() {
-        fetch(SCRIPT_URL)
+        const fpInput = document.getElementById('foxpost-custom');
+        const glsInput = document.getElementById('gls-custom');
+        if (fpInput) fpInput.addEventListener('input', () => updateDatalist('foxpost-custom', 'foxpost-datalist', foxpostListMemory));
+        if (glsInput) glsInput.addEventListener('input', () => updateDatalist('gls-custom', 'gls-datalist', glsListMemory));
+
+        fetch(SCRIPT_URL, { method: 'GET', redirect: 'follow' })
           .then(r => r.json())
           .then(data => {
-            if (data.foxpost && Array.isArray(data.foxpost)) {
-              document.getElementById('foxpost-datalist').innerHTML = data.foxpost.map(item => `<option value="${item.replace(/"/g, '&quot;')}"></option>`).join('');
-            }
-            if (data.gls && Array.isArray(data.gls)) {
-              document.getElementById('gls-datalist').innerHTML = data.gls.map(item => `<option value="${item.replace(/"/g, '&quot;')}"></option>`).join('');
-            }
+            if (data.foxpost && Array.isArray(data.foxpost)) foxpostListMemory = data.foxpost;
+            if (data.gls && Array.isArray(data.gls)) glsListMemory = data.gls;
           })
-          .catch(err => console.log("Automata lista betöltési hiba:", err));
+          .catch(err => console.error("Automata lista betöltési hiba:", err));
       }
 
       function filterSub(subName) {
