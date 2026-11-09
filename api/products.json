@@ -28,13 +28,13 @@
       "price": 4500,
       "allow_comment": false,
       "url": "vaza-lego-viragcsokorhoz",
-      "desc": "Fehér, építőkocka alakú 3D nyomtatott váza Lego botanikai virágcsokorhoz. Tökéletes kiegészítője a Lego Botanikai kollekció darabjainak! ... Fontos: A termék egyedi 3D nyomtatott kiegészítő, nem hivatalos LEGO® termék. A képen látható virág nem a termék része.\n\nMéretei: 6,5X10X16 cm\n\nA termék nincsen készleten. A megrendelés leadását követően készül el. A termék kb. 1 hét alatt készül el. Karácsonyi időszakban ez az idő több is lehet. Köszönöm a türelmet és a megértést!",
+      "desc": "Fehér, építőkocka alakú 3D nyomtatott váza Lego botanikai virágcsokorhoz. Tökéletes kiegészítője a Lego Botanikai kollekció darabjainak! ... Fontos: A termék egyedi 3D nyomtatott kiegészítő, nem hivatalos LEGO® termék. A képen látható virág nem a termék része.\n\nMéretei: 6,5X10X16 cm\n\nA termék nincsen készleten. A megrendelés leadását követően készül el. A termék kb. 1 hét alatt készül el. Karácsonyi időszakban ez az idő több is lehet. Köszönöm a türelmet és a megértést!\n\nFontos: A termék egyedi 3D nyomtatott kiegészítő, nem hivatalos LEGO® termék.",
       "seo_desc": "Keresed a tökéletes vázát a Lego botanikai csokrodhoz? Válaszd ezt a 3D nyomtatott, építőkocka alakú vázát! Mutatós és kreatív lakásdekoráció.",
       "seo_title": "Váza Lego Virágcsokorhoz - 3D Nyomtatott Design",
       "title": "LEGO virághoz váza",
       "image": "/images/uploads/váza.png",
       "category": "LEGO szerelmeseinek",
-      "options": "bézs, fehér, piros, zöld, barna, citrom, narancssárga, lila, fekete"
+      "options": "bézs, fehér, piros, zöld, citrom, narancssárga, lila, fekete, rózsaszín, sötét barna, világos kék, sötét kék"
     },
     {
       "alt_text": "Óriás építőkocka dizájnos 3D nyomtatott papírzsebkendő tartó doboz",
@@ -48,7 +48,7 @@
       "video": "",
       "image": "/images/uploads/100-db-os-papírzsebitartó-dobozos.jpg",
       "category": "LEGO szerelmeseinek",
-      "options": "sárga, narancs, piros, fehér, fekete, zöld, lila"
+      "options": "sárga, narancs, piros, fehér, fekete, zöld, lila, rózsaszín, sötét barna, világos kék, sötét kék"
     },
     {
       "alt_text": "építőkocka alakú 3D nyomtatott asztali zsebkendőtartó 10 darabos papírzsebkendővel[cite: 5]",
@@ -59,10 +59,10 @@
       "seo_desc": "Védd és tárold stílusosan a papírzsepit ezzel a 3D nyomtatott, építőkocka alakú 10 db-os zsebkendőtartóval! Ideális asztali és gyerekszobai kiegészítő.",
       "seo_title": "Építőkocka Alakú Zsebkendőtartó (10 db-os)",
       "title": "Építőkocka alakú zsebadagolós papírzsebkendő tartó (10 db-os)",
-      "video": "",
+      "video": "/images/uploads/epitokocka-formaju-10-db-os-zseitarto.mp4",
       "image": "/images/uploads/10-db-os-zsebkendotarto-építokocka-formaju.jpg",
       "category": "LEGO szerelmeseinek",
-      "options": "barna, fehér, fekete, piros, zöld, lila, narancs, citrom"
+      "options": "sötét barna, fehér, fekete, piros, zöld, lila, narancs, citrom, rózsaszín, sötét kék, világos kék"
     }
   ]
 }
