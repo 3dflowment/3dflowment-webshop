@@ -241,8 +241,16 @@
       <div id="home-content"></div>
       <div id="seo-home-cards" class="seo-info-grid" style="display:none;"></div>
 
-      <div id="custom-order-section" style="display:none;">
+ <div id="custom-order-section" style="display:none;">
         <div id="service-steps-box" class="seo-info-grid"></div>
+        
+        <!-- REFERENCIA GALÉRIA BLOKK -->
+        <div id="custom-gallery-wrapper" style="display:none; margin: 45px 0;">
+          <h2 style="color:var(--accent-color); text-align:center; font-size:26px; margin-bottom:10px;">Eddigi egyedi munkáink</h2>
+          <p style="color:var(--muted-text); text-align:center; font-size:14px; max-width:650px; margin:0 auto 25px auto;">Néhány példa a korábban megvalósított egyedi ötletekből és projektekből:</p>
+          <div id="custom-gallery-grid" class="grid"></div>
+        </div>
+
         <div style="text-align:center; background:var(--card-bg); padding:30px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); margin-top:25px;">
           <h2 style="color:var(--accent-color); margin-top:0;">Vedd fel velünk a kapcsolatot / Kérj ajánlatot!</h2>
           <p style="color:var(--muted-text); font-size:14px; max-width:650px; margin:0 auto 20px auto; line-height:1.7;">
@@ -554,6 +562,10 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzNkNXsy4gnWgaFgCrz
           cards: [
             { h2: 'Az ötlettől a kész termékig', p: 'Az egyedi megrendelések során az igényedhez igazodva egyeztetjük a tervezés és a gyártás részleteit. Megbeszéljük, mire van szükséged, milyen célt kell szolgálnia a terméknek, és milyen lehetőségek állnak rendelkezésre a megvalósításhoz.' },
             { h2: 'Mesélj az ötletedről!', p: 'Írd le, mit szeretnél megvalósítani, és ha van, csatolj képet, vázlatot vagy referenciafájlt is. A részletek átbeszélése után tudunk visszajelezni a lehetőségekről.' }
+          ],
+       gallery: [
+            { image: '/images/kik-vagyunk-mi.png', title: 'Egyedi PS5 kontrollertartó', desc: 'Saját elképzelés alapján tervezett kontrollertartó' },
+            { image: '/images/egyedi-megrendeles-3dnyomtatott-giliszta-farm.jpg', title: 'Személyre szabott gilisztafarm', desc: 'Egyedi színösszeállítással' }
           ]
         },
         '/uzleti/': {
@@ -612,6 +624,10 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzNkNXsy4gnWgaFgCrz
           cards: [
             { h2: 'Az ötlettől a kész termékig', p: 'Az egyedi megrendelések során az igényedhez igazodva egyeztetjük a tervezés és a gyártás részleteit. Megbeszéljük, mire van szükséged, milyen célt kell szolgálnia a terméknek, és milyen lehetőségek állnak rendelkezésre a megvalósításhoz.' },
             { h2: 'Milyen egyedi megrendelésekkel kereshetsz minket?', p: 'Az elképzeléseknek csak a műszaki és gyártási lehetőségek szabnak határt. Egyedi tárgyak, kiegészítők, speciális alkatrészek vagy más kreatív ötletek esetén is érdemes felvenned velünk a kapcsolatot.' }
+          ],
+          gallery: [
+            { image: '/images/kik-vagyunk-mi.png', title: 'Egyedi PS5 kontrollertartó', desc: 'Saját elképzelés alapján tervezett kontrollertartó' },
+            { image: '/images/egyedi-megrendeles-3dnyomtatott-giliszta-farm.jpg', title: 'Személyre szabott gilisztafarm', desc: 'Egyedi színösszeállítással' }
           ]
         }
       };
@@ -771,6 +787,24 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzNkNXsy4gnWgaFgCrz
           document.getElementById('custom-order-section').style.display = 'block';
           const stepsBox = document.getElementById('service-steps-box');
           stepsBox.innerHTML = (cfg.cards || []).map(c => `<div class="seo-info-card"><h2>${c.h2}</h2><p>${c.p}</p></div>`).join('');
+       
+          // GALÉRIA KIRAJZOLÁSA
+          const galWrapper = document.getElementById('custom-gallery-wrapper');
+          const galGrid = document.getElementById('custom-gallery-grid');
+          if (cfg.gallery && cfg.gallery.length > 0) {
+            galWrapper.style.display = 'block';
+            galGrid.innerHTML = cfg.gallery.map(item => `
+              <div class="card" style="cursor: zoom-in;" onclick="window.open('${item.image}', '_blank')">
+                <div>
+                  <img src="${item.image}" alt="${item.title}" loading="lazy">
+                  <h3>${item.title}</h3>
+                  ${item.desc ? `<p style="color:var(--muted-text); font-size:12px; margin:4px 0 0 0;">${item.desc}</p>` : ''}
+                </div>
+              </div>
+            `).join('');
+          } else {
+            galWrapper.style.display = 'none';
+          }
         } else if (!isHome) {
           document.getElementById('custom-order-section').style.display = 'none';
           document.getElementById('products-section').style.display = 'block';
