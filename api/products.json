@@ -6,10 +6,13 @@
       "allow_comment": false,
       "url": "fourth-wing-konyvtamasz",
       "desc": "\"Téged választottalak, és a sárkányok nem hibáznak.\" Te is legyél olyan magabiztos, mint Train és válassz helyesen! Fourth Wing által inspirált könyvtámasz (booknook).   Világítás nélkül is gyönyörű, de a háttérvilágítással lesz igazi kincse a polcodnak. \n\nA fényfüzér eleme a terméknek.",
+      "gallery": [
+        "/images/uploads/fourth-wing-1-.jpg"
+      ],
       "seo_desc": "Fedezd fel a Fourth Wing által inspirált, 3D nyomtatott könyvtámaszt! Különleges dekoráció fantasy rajongóknak.",
       "seo_title": "Fourth Wing könyvtámasz | 3DFlowment",
       "title": "Fourth Wing inspirálta 3D nyomtatott könyvtámasz (booknook)",
-      "image": "/images/fourth-wing-1-.jpg",
+      "image": "/images/uploads/fourth-wing-booknook.jpg",
       "category": "Könyves kiegészítők",
       "options": "",
       "subcategory": "Fourth Wing"
@@ -111,11 +114,27 @@
       "allow_comment": false,
       "url": "3d-nyomtatott-vilagito-asztali-karacsonyfa",
       "desc": "Varázsolj meghitt ünnepi hangulatot az otthonodba ezzel a gyönyörű, 3D nyomtatott világító asztali karácsonyfával!\n\n\nEz a zöld, csillaggal díszített, letisztult formájú fenyőfa belső világítással rendelkezik, amely meleg fénnyel világít át a csillag és gömb alakú kivágásokon. Tökéletes asztali dísznek, éjjeliszekrényre, vagy akár a gyerekszobába is, mint hangulatvilágítás.\n\n\nMiért fogod szeretni?\n\n- Meghitt hangulat: A kellemes belső fény azonnal ünnepi atmoszférát teremt.\n\n- Biztonságos és tartós: A 3D nyomtatott kialakításnak köszönhetően masszív, kisgyermekes családokba is ideális választás.\n\n- Kompakt méret: Bárhol elfér, mégis látványos dekoráció.",
+      "gallery": [
+        "/images/uploads/vilagitos-karacsonyfadisz.jpg"
+      ],
       "seo_desc": "Teremts ünnepi hangulatot ezzel a 3D nyomtatott, világító asztali karácsonyfával! Tartós, biztonságos és csodásan mutat minden asztalon.",
       "seo_title": "Világító Asztali Karácsonyfa - 3D Nyomtatott Dekoráció",
       "title": "3D nyomtatott világító asztali karácsonyfa",
-      "image": "/images/uploads/vilagitos-karacsonyfadisz.jpg",
+      "image": "/images/uploads/karacsonyfa-booknook-konyvtamasz.jpg",
       "category": "Szezonális & Ünnepi dekor"
+    },
+    {
+      "alt_text": "Fekete-fehér 3D nyomtatott ACOTAR inspirálta könyvszámláló hegyekkel és csillagokkal, cserélhető számokkal, könyvek és vörös rózsák között",
+      "price": 4200,
+      "allow_comment": false,
+      "url": "acotar-inspiralta-konyvszamlalo-book-tracker",
+      "desc": "\"A csillagoknak, akik hallgatnak, és az álmoknak, amik valóra válnak...\"\n\nKövesd nyomon az idei olvasmányaidat ezzel a gyönyörű, Velaris és az Éjszaka Udvara inspirálta 3D nyomtatott könyvszámlálóval (book tracker)! A \"Books Read This Year\" feliratú, hegyeket és a három csillagot ábrázoló tábla tökéletes és motiváló kiegészítője minden Sarah J. Maas és romantasy rajongó könyvespolcának.\n\nA csomag tartalmazza a fekete alapon fehér számokkal ellátott, hatszögletű cserélhető lapkákat is (0-9), így minden kiolvasott könyv után könnyedén frissítheted az állást, és büszkén mutathatod, hol tartasz az éves olvasási célodban!\n\nTermék jellemzői:\n- Anyaga: Minőségi, strapabíró 3D nyomtatott PLA.\n- Dizájn: Könyvmolyoknak és fantasy rajongóknak tervezve.\n- Cserélhető számok: A kis hatszögek egyszerűen beilleszthetők a tábla mélyedéseibe.",
+      "seo_desc": "Számold az elolvasott könyveidet stílusosan! ACOTAR és Velaris inspirálta 3D nyomtatott könyvszámláló cserélhető számokkal. Tökéletes ajándék könyvmolyoknak.",
+      "seo_title": "ACOTAR Inspirálta Könyvszámláló - Éjszaka Udvara Book Tracker",
+      "title": "ACOTAR inspirálta könyvszámláló",
+      "image": "/images/uploads/acotar-insiralta-konyvszamlalo-fanart.jpg",
+      "category": "Könyves kiegészítők",
+      "subcategory": "ACOTAR"
     }
   ]
 }
