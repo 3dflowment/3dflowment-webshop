@@ -30,6 +30,11 @@
       "title": "Egyedi megrendelések",
       "url": "/egyedi-megrendelesek/",
       "type": "Egyedi megrendelés / Szolgáltatás"
+    },
+    {
+      "title": "Rólunk",
+      "url": "/rolunk/",
+      "type": "Termékkategória",
     }
   ],
   "b2b_menus": [
