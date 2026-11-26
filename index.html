@@ -258,9 +258,6 @@
       </div>
     </div>
 
-      <div id="common-info-block" class="common-production-box"></div>
-    </div>
-
     <!-- TERMÉK MODAL -->
     <div id="product-modal" class="modal-overlay">
       <div class="modal-content">
@@ -802,11 +799,6 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzNkNXsy4gnWgaFgCrz
           card.innerHTML = `<div><img src="${imgSrc}" alt="${row.alt_text || row.title}" loading="lazy"><h3>${row.title}</h3></div><div class="price">${arSzoveg}</div>`;
           grid.appendChild(card);
         });
-      }
-
-        if (isProductPage && productToShow) {
-          setTimeout(() => { openModal(productToShow, true); }, 50);
-        }
       }
 
       function toggleMode() {
