@@ -92,6 +92,10 @@
       @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
       @media (max-width: 430px) { .grid { grid-template-columns: 1fr; } }
 
+  .locker-dropdown { max-height: 180px; overflow-y: auto; background: #ffffff; border: 1px solid var(--accent-color); border-radius: 6px; margin-top: 4px; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+      .locker-option { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid var(--border-color); cursor: pointer; color: var(--text-color); }
+      .locker-option:hover, .locker-option:active { background: #f1f5f9; }
+  
       .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; text-align: center; cursor: pointer; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; color: inherit; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
       .card:hover { transform: translateY(-4px); border-color: var(--accent-color); box-shadow: 0 8px 18px rgba(0,0,0,0.08); }
       .card img { width: 100%; height: 220px; object-fit: contain; background: #f8fafc; border-radius: 6px; margin-bottom: 12px; }
@@ -143,10 +147,11 @@
         .cart-btn { padding: 7px 10px; font-size: 12px; }
         .category-bar { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding: 8px 12px; gap: 10px; -webkit-overflow-scrolling: touch; }
         .subnav-bar { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding: 8px 12px; }
-        .carousel { height: 240px; }
-        .slide-content { padding: 12px 16px; max-width: 92%; }
-        .slide-title { font-size: 20px; }
-        .slide p { font-size: 13px; margin-bottom: 10px; }
+        .carousel { height: 340px; }
+        .slide { padding: 0; background-position: top center; }
+        .slide-content { width: 100%; max-width: 100%; box-sizing: border-box; margin-bottom: 0; border-radius: 0; padding: 10px 14px 28px 14px; background: rgba(255, 255, 255, 0.9); border-left: none; border-right: none; }
+        .slide-title { font-size: 16px; margin-bottom: 4px; }
+        .slide p { font-size: 12px; margin-bottom: 8px; }
         .container { padding: 20px 14px; }
         .seo-hero { padding: 18px 14px; margin-bottom: 25px; }
         .seo-hero h1 { font-size: 23px; }
@@ -382,16 +387,16 @@
             </select>
           </div>
 
-          <div class="input-group" id="foxpost-group">
+         <div class="input-group" id="foxpost-group">
             <label>Válassz Foxpost automatát * <small style="color:var(--accent-color);">(Kezdj el gépelni: város vagy irányítószám)</small></label>
-            <input type="text" id="foxpost-custom" list="foxpost-datalist" placeholder="Pl. 2364, Ócsa, Budapest..." autocomplete="off">
-            <datalist id="foxpost-datalist"></datalist>
+            <input type="text" id="foxpost-custom" placeholder="Pl. 2364, Ócsa, Budapest..." autocomplete="off">
+            <div id="foxpost-dropdown" class="locker-dropdown"></div>
           </div>
 
           <div class="input-group" id="gls-group" style="display:none;">
-            <label>Válassz GLS automatát * <small style="color:var(--accent-color);">(Írd ide az automata címét!)</small></label>
-            <input type="text" id="gls-custom" list="gls-datalist" placeholder="Pl. 2364, Ócsa Falu Tamás utca 65. CBA" autocomplete="off">
-            <datalist id="gls-datalist"></datalist>
+            <label>Válassz GLS automatát * <small style="color:var(--accent-color);">(Kezdj el gépelni: város vagy irányítószám)</small></label>
+            <input type="text" id="gls-custom" placeholder="Pl. 2364, Ócsa Falu Tamás utca 65." autocomplete="off">
+            <div id="gls-dropdown" class="locker-dropdown"></div>
           </div>
 
           <div id="home-delivery-group" style="display:none;">
@@ -820,22 +825,35 @@ function getCurrentShippingCost() {
    let foxpostListMemory = [];
       let glsListMemory = [];
 
-      function updateDatalist(inputId, listId, sourceArray) {
-        const val = document.getElementById(inputId).value.trim().toLowerCase();
-        const dl = document.getElementById(listId);
+      function updateDatalist(inputId, dropId, sourceArray) {
+        const inputEl = document.getElementById(inputId);
+        const dropEl = document.getElementById(dropId);
+        const val = inputEl.value.trim().toLowerCase();
         if (val.length < 2) { 
-          dl.innerHTML = ''; 
+          dropEl.style.display = 'none';
+          dropEl.innerHTML = ''; 
           return; 
         }
-        const matches = sourceArray.filter(item => item.toLowerCase().includes(val)).slice(0, 50);
-        dl.innerHTML = matches.map(item => `<option value="${item.replace(/"/g, '&quot;')}"></option>`).join('');
+        const matches = sourceArray.filter(item => item.toLowerCase().includes(val)).slice(0, 30);
+        if (matches.length === 0) {
+          dropEl.style.display = 'none';
+          return;
+        }
+        dropEl.innerHTML = matches.map(item => `<div class="locker-option">${item}</div>`).join('');
+        dropEl.style.display = 'block';
+        Array.from(dropEl.children).forEach(opt => {
+          opt.onclick = () => {
+            inputEl.value = opt.innerText;
+            dropEl.style.display = 'none';
+          };
+        });
       }
 
       function loadParcelLockers() {
         const fpInput = document.getElementById('foxpost-custom');
         const glsInput = document.getElementById('gls-custom');
-        if (fpInput) fpInput.addEventListener('input', () => updateDatalist('foxpost-custom', 'foxpost-datalist', foxpostListMemory));
-        if (glsInput) glsInput.addEventListener('input', () => updateDatalist('gls-custom', 'gls-datalist', glsListMemory));
+        if (fpInput) fpInput.addEventListener('input', () => updateDatalist('foxpost-custom', 'foxpost-dropdown', foxpostListMemory));
+        if (glsInput) glsInput.addEventListener('input', () => updateDatalist('gls-custom', 'gls-dropdown', glsListMemory));
 
         fetch(SCRIPT_URL, { method: 'GET', redirect: 'follow' })
           .then(r => r.json())
