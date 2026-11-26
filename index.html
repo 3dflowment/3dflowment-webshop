@@ -179,6 +179,7 @@
         <a href="/gyerekeknek/" onclick="return navClick(event, '/gyerekeknek/')">Gyerekeknek</a>
         <a href="/egyuttmukodesek/" onclick="return navClick(event, '/egyuttmukodesek/')">Együttműködések</a>
         <a href="/egyedi-megrendelesek/" onclick="return navClick(event, '/egyedi-megrendelesek/')">Egyedi megrendelések</a>
+        <a href="/rolunk/" onclick="return navClick(event, '/rolunk/')">Rólunk</a>
       </nav>
       <nav id="nav-b2b" class="category-bar" style="display:none;">
         <a href="/uzleti/it-kiegeszitok/" onclick="return navClick(event, '/uzleti/it-kiegeszitok/')">IT-kiegészítők</a>
@@ -202,35 +203,60 @@
     </div>
 
     <div class="container">
-      <div id="seo-header-block" class="seo-hero"></div>
+      <!-- FŐCÍM (Kategóriáknál már csak egy letisztult cím, nincs nagy doboz!) -->
+      <div id="seo-header-block"></div>
 
-      <div id="products-section" style="display:none;">
-        <div id="product-grid" class="grid"></div>
-        <div id="seo-category-sub" class="seo-sub-box"></div>
+      <!-- FŐOLDALI KIEMELT TERMÉKEK (Csak a főoldalon látszik) -->
+      <div id="home-featured-section" style="display:none; margin-bottom: 50px;">
+        <h2 style="color:var(--text-color); font-size:24px; margin:0 0 20px 0; text-align:center;">Kiemelt termékeink</h2>
+        <div id="home-featured-grid" class="grid"></div>
+        <div style="text-align:center; margin-top:25px;">
+          <button class="cart-btn" id="home-all-btn" onclick="navigate('/konyves-kiegeszitok/')" style="padding:12px 24px;">Összes termék böngészése →</button>
+        </div>
       </div>
 
-      <div id="home-content"></div>
-      <div id="seo-home-cards" class="seo-info-grid" style="display:none;"></div>
+      <!-- KATEGÓRIA TERMÉKLISTA -->
+      <div id="products-section" style="display:none;">
+        <div id="product-grid" class="grid"></div>
+      </div>
 
+      <!-- RÓLUNK (Z-BLOKKOK) - Most már csak a /rolunk/ oldalon jelenik meg! -->
+      <div id="home-content" style="display:none;"></div>
+
+      <!-- RÖVID RÓLUNK KEDVCSINÁLÓ (Csak a főoldal alján) -->
+      <div id="home-about-teaser" style="display:none; background:var(--card-bg); border:1px solid var(--border-color); border-radius:10px; padding:30px; text-align:center; margin:40px 0; box-shadow:0 2px 8px rgba(0,0,0,0.03);">
+        <h2 style="color:var(--text-color); margin-top:0; font-size:22px;">Kik állnak a 3DFlowment mögött?</h2>
+        <p style="color:var(--muted-text); font-size:14px; max-width:620px; margin:0 auto 20px auto; line-height:1.7;">
+          Egy kétfős hazai vállalkozás vagyunk: magunk tervezzük vagy más alkotókkal együtt dolgozva készítjük el a modelleinket, teszteljük és nyomtatjuk a termékeinket, valódi fotókkal és valódi alkotókkal együttműködve.
+        </p>
+        <button class="cart-btn" onclick="navigate('/rolunk/')" style="background:transparent; color:var(--accent-color); border:1px solid var(--accent-color); padding:10px 20px;">Ismerj meg minket →</button>
+      </div>
+
+      <!-- EGYEDI MEGRENDELÉSEK & BÉRNYOMTATÁS -->
       <div id="custom-order-section" style="display:none;">
-        <!-- REFERENCIA GALÉRIA BLOKK (Most már ez van legfelül, nincs felette a service-steps-box!) -->
-        <div id="custom-gallery-wrapper" style="display:none; margin: 0 0 45px 0;">
-          <h2 style="color:var(--accent-color); text-align:center; font-size:26px; margin-bottom:10px;">Eddigi bérnyomtatásaink</h2>
-          <p style="color:var(--muted-text); text-align:center; font-size:14px; max-width:650px; margin:0 auto 25px auto;">Néhány példa a korábban megvalósított egyedi ötletekből és projektekből:</p>
+        <div id="custom-gallery-wrapper" style="display:none; margin: 0 0 40px 0;">
+          <h2 style="color:var(--text-color); text-align:center; font-size:24px; margin-bottom:20px;">Eddigi egyedi munkáink</h2>
           <div id="custom-gallery-grid" class="grid"></div>
         </div>
 
-        <!-- A KÉT SZÖVEGES BLOKK (Ide került le, a galéria ALÁ!) -->
         <div id="service-steps-box" class="seo-info-grid"></div>
 
-        <div style="text-align:center; background:var(--card-bg); padding:30px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); margin-top:25px;">
-          <h2 style="color:var(--accent-color); margin-top:0;">Vedd fel velünk a kapcsolatot / Kérj ajánlatot!</h2>
-          <p style="color:var(--muted-text); font-size:14px; max-width:650px; margin:0 auto 20px auto; line-height:1.7;">
-            Írd meg nekünk az elképzelésedet vagy küldd el a 3D modelledet e-mailben a <a href="mailto:3dflowment@gmail.com" style="color:var(--accent-color); font-weight:700;">3dflowment@gmail.com</a> címre, és egyeztetjük a megvalósítás részleteit!
+        <div style="text-align:center; background:var(--card-bg); padding:28px; border-radius:10px; border:1px solid var(--border-color); margin-top:25px;">
+          <h2 style="color:var(--text-color); margin-top:0; font-size:20px;">Írd meg az ötletedet!</h2>
+          <p style="color:var(--muted-text); font-size:14px; max-width:600px; margin:0 auto 18px auto; line-height:1.6;">
+            Küldj egy üzenetet, fotót vagy 3D modellt a <a href="mailto:3dflowment@gmail.com" style="color:var(--accent-color); font-weight:700;">3dflowment@gmail.com</a> címre, és egyeztetjük a részleteket.
           </p>
-          <a href="mailto:3dflowment@gmail.com?subject=3DFlowment%20Egyedi%20Ajánlatkérés" class="cart-btn" style="text-decoration:none; display:inline-block; padding:12px 24px;">✉️ Ajánlatkérés küldése e-mailben</a>
+          <a href="mailto:3dflowment@gmail.com?subject=3DFlowment%20Egyedi%20Ajánlatkérés" class="cart-btn" style="text-decoration:none; display:inline-block; padding:12px 24px;">✉️ Ajánlatkérés e-mailben</a>
         </div>
       </div>
+
+      <!-- LETISZTULT, EGYSOROS BIZALOM-SÁV (A nagy szövegdoboz helyett) -->
+      <div id="common-info-block" style="margin-top:45px; padding:16px 20px; background:var(--card-bg); border:1px solid var(--border-color); border-radius:8px; display:flex; justify-content:center; gap:24px; flex-wrap:wrap; font-size:13px; color:var(--muted-text); font-weight:500;">
+        <span> Saját hazai 3D gyártás</span>
+        <span> Valódi termékfotók</span>
+        <span> Gyártási és feladási idő: 1–2 hét</span>
+      </div>
+    </div>
 
       <div id="common-info-block" class="common-production-box"></div>
     </div>
@@ -460,145 +486,111 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzNkNXsy4gnWgaFgCrz
         '/': {
           mode: 'b2c', page: 'home',
           title: 'Egyedi 3D nyomtatott termékek és ajándékok | 3DFlowment',
-          desc: 'Fedezd fel a 3DFlowment egyedi 3D nyomtatott termékeit! Könyves kiegészítők, LEGO-kiegészítők, szezonális dekorációk és kreatív ajándékötletek.',
-          h1: 'Egyedi 3D nyomtatott termékek minden alkalomra',
-          intro: 'Üdvözlünk a 3DFlowment világában! Olyan saját gyártású, 3D nyomtatott termékeket készítünk, amelyekkel különlegesebbé teheted a mindennapokat, meglepheted szeretteidet, vagy örömet szerezhetsz saját magadnak.\nLegyen szó könyves kiegészítőkről, LEGO-rajongóknak szóló apróságokról, ünnepi dekorációkról vagy praktikus hétköznapi tárgyakról, nálunk mindig találsz felfedeznivalót.',
-          ctas: [
-            { text: 'Megnézem a könyves kiegészítőket', url: '/konyves-kiegeszitok/' },
-            { text: 'Építőkocka-kiegészítők', url: '/epitokocka-kiegeszitok/' },
-            { text: 'Egyedi terméket szeretnék', url: '/egyedi-megrendelesek/' }
-          ],
-          cards: [
-            { h2: 'Apró ötletek, különleges élmények', p: 'Termékeinket különböző hobbik, érdeklődési körök és hétköznapi helyzetek inspirálják. Fedezd fel kategóriáinkat, és találd meg a hozzád illő darabokat!' },
-            { h2: 'Két alkotó, rengeteg ötlet', p: 'A 3DFlowment egy kis, kétfős vállalkozás, ahol a kreativitás és a folyamatos fejlődés a mindennapok része. Folyamatosan tanulunk, kísérletezünk és új termékeken dolgozunk, hogy mindig legyen valami új felfedeznivaló a webshopban.' },
-            { h2: 'Az ötlettől a kész termékig', p: 'Termékeink mögött ötletelés, tervezés, tesztelés és saját gyártás áll. Egy új termék sokszor egy apró inspirációból indul, majd több próbán és finomításon keresztül jut el a webshopig.' },
-            { h2: 'Valódi termékek, valódi kreativitás', p: 'Fontos számunkra a hitelesség. A termékfotóink a tényleges termékeket mutatják be, nem AI-val átalakított látványképek. A termékek grafikáihoz valódi grafikusokkal, művészekkel és kreatív alkotókkal dolgozunk együtt.' }
-          ]
+          desc: 'Saját gyártású 3D nyomtatott könyves kiegészítők, építőkocka-kiegészítők, szezonális dekorációk és egyedi ajándékok.',
+          h1: '' // Főoldalon a banner után rögtön a kiemelt termékek jönnek!
+        },
+        '/rolunk/': {
+          mode: 'b2c', page: 'rolunk',
+          title: 'Rólunk | 3DFlowment',
+          desc: 'Ismerd meg a 3DFlowment csapatát és azt, hogyan készülnek a saját gyártású 3D nyomtatott termékeink.',
+          h1: 'Rólunk',
+          intro: 'Így dolgozunk, és ez történik mostanában a műhelyünkben.'
         },
         '/konyves-kiegeszitok/': {
           mode: 'b2c', page: 'konyves',
-          title: '3D nyomtatott könyves kiegészítők és ajándékok | 3DFlowment',
-          desc: 'Tedd különlegesebbé az olvasás élményét! Fedezd fel egyedi 3D nyomtatott könyvjelzőinket, könyvtámaszainkat és könyves kiegészítőinket.',
-          h1: 'Egyedi könyves kiegészítők könyvmolyoknak',
-          intro: 'Egy jó könyv mellé különleges kiegészítők is járnak! A 3DFlowment könyves kategóriájában olyan 3D nyomtatott termékeket találsz, amelyek még hangulatosabbá és személyesebbé tehetik az olvasással töltött pillanatokat.\nFedezd fel könyvjelzőinket, könyvtámaszainkat és egyéb könyves kiegészítőinket! Akár saját magadnak keresel valami különlegeset, akár egy könyvmoly ismerősödet lepnéd meg, érdemes körülnézned.',
-          subH2: 'Kiegészítők minden könyvmolynak',
-          subP: 'Az olvasás nemcsak a történetekről szól, hanem az apró részletekről és a hangulatról is. Válogass a könyves polcodhoz és olvasási szokásaidhoz illő kiegészítők közül!'
+          title: '3D nyomtatott könyves kiegészítők | 3DFlowment',
+          desc: 'Egyedi 3D nyomtatott könyvjelzők, könyvtámaszok és könyves kiegészítők.',
+          h1: 'Könyves kiegészítők'
         },
         '/epitokocka-kiegeszitok/': {
           mode: 'b2c', page: 'lego',
           title: 'Építőkocka-kiegészítők és rendszerezők | 3DFlowment',
-          desc: 'Építőkocka-rajongó vagy? Fedezd fel kreatív 3D nyomtatott kiegészítőinket és praktikus rendszerező megoldásainkat a gyűjteményedhez!',
-          h1: '3D nyomtatott kiegészítők építőkocka-rajongóknak',
-          intro: 'Az építőkockák iránti rajongás nem ér véget az építéssel! Egy jól megválasztott kiegészítő segíthet még különlegesebbé tenni a gyűjteményedet, az építési élményt vagy a kedvenc készleteid bemutatását.\nA 3DFlowment építőkocka-kiegészítői között kreatív, saját gyártású termékeket találsz, amelyekkel új színt vihetsz a hobbidba.',
-          subH2: 'Tedd még különlegesebbé a gyűjteményedet',
-          subP: 'Fedezd fel aktuális kínálatunkat, és találd meg a kedvenc készleteidhez vagy építési szokásaidhoz illő kiegészítőket!'
+          desc: 'Kreatív 3D nyomtatott kiegészítők és rendszerezők építőkocka-gyűjteményekhez.',
+          h1: 'Építőkocka-kiegészítők'
         },
         '/unnepi-es-szezonalis-termekek/': {
           mode: 'b2c', page: 'szezon',
-          title: '3D nyomtatott ünnepi dekorációk és ajándékok | 3DFlowment',
-          desc: 'Készülj az ünnepekre különleges 3D nyomtatott dekorációkkal és ajándékokkal! Fedezd fel a 3DFlowment szezonális kínálatát.',
-          h1: 'Ünnepi dekorációk és szezonális 3D nyomtatott termékek',
-          intro: 'Az év különleges alkalmaihoz különleges apróságok is illenek. A 3DFlowment szezonális kínálatában az ünnepekhez és az évszakokhoz kapcsolódó saját gyártású termékeket találsz.\nLegyen szó ünnepi dekorációról, ajándékról vagy egy hangulatos kiegészítőről, nézz körül, és találd meg az alkalomhoz illő darabot!',
-          subH2: 'Különleges pillanatokhoz különleges részletek',
-          subP: 'A szezonális kínálat időről időre változik, ezért érdemes visszatérned, ha új ötleteket keresel az aktuális ünnepekre vagy alkalmakra.'
+          title: 'Ünnepi és szezonális 3D nyomtatott termékek | 3DFlowment',
+          desc: 'Ünnepi dekorációk és szezonális 3D nyomtatott ajándékok.',
+          h1: 'Ünnepi & Szezonális'
         },
         '/gyerekeknek/': {
           mode: 'b2c', page: 'gyerek',
           title: '3D nyomtatott termékek gyerekeknek | 3DFlowment',
-          desc: 'Fedezd fel a gyerekeknek szóló kreatív 3D nyomtatott termékeket! Egyedi apróságok és ötletes kiegészítők a 3DFlowment kínálatából.',
-          h1: 'Kreatív 3D nyomtatott termékek gyerekeknek',
-          intro: 'A gyerekek világában a fantázia és a kreativitás mindig fontos szerepet kap. Ebben a kategóriában olyan 3D nyomtatott termékeket gyűjtöttünk össze, amelyek a kisebbeknek és családjaiknak szóló kínálatunk részét képezik.\nNézz körül, fedezd fel az aktuális termékeket, és találd meg a következő kedvenc apróságot!',
-          subH2: 'Apró meglepetések a gyerekek világához',
-          subP: 'A kínálatunkban szereplő termékek eltérő rendeltetésűek és korosztályúak lehetnek, ezért vásárlás előtt mindig ellenőrizd az adott termék leírását és korosztályi ajánlását.'
+          desc: 'Kreatív 3D nyomtatott apróságok és kiegészítők gyerekeknek.',
+          h1: 'Gyerekeknek'
         },
         '/egyuttmukodesek/': {
           mode: 'b2c', page: 'egyutt',
           title: 'Kreatív együttműködések | 3DFlowment',
-          desc: 'Fedezd fel a 3DFlowment és hazai grafikusok, alkotók közös 3D nyomtatott termékeit, projektjeit!',
-          h1: 'Kreatív együttműködések és közös alkotások',
-          intro: 'A termékek grafikáihoz és az egyedi projektekhez valódi grafikusokkal, művészekkel dolgozunk együtt. Ebben a kategóriában azokat a közös projekteket is megtalálod, amiket mi terveztünk vagy gyártottunk, de exkluzívan a partnereinknél vásárolhatók meg.'
+          desc: 'Hazai grafikusokkal és alkotókkal közösen készült 3D nyomtatott projektek.',
+          h1: 'Együttműködések',
+          intro: 'Hazai grafikusokkal és alkotókkal közösen létrehozott darabok, amelyek exkluzívan a partnereinknél érhetők el.'
         },
         '/uzleti/egyuttmukodesek/': {
           mode: 'b2b', page: 'egyutt',
-          title: 'Üzleti és Kreatív együttműködések | 3DFlowment',
-          desc: 'Fedezd fel a 3DFlowment üzleti partnereivel közösen létrehozott, 3D nyomtatott projektjeit!',
-          h1: 'Üzleti és partneri együttműködések',
-          intro: 'Ebben a kategóriában azokat az egyedi projekteket és termékeket találod, amelyeket üzleti partnereinkkel közösen hoztunk létre, és az ő weboldalukon keresztül érhetők el.'
+          title: 'Üzleti együttműködések | 3DFlowment',
+          desc: 'Üzleti partnereinkkel közösen létrehozott 3D nyomtatott projektek.',
+          h1: 'Üzleti együttműködések',
+          intro: 'Üzleti partnereinkkel közösen gyártott egyedi projektek.'
         },
         '/egyedi-megrendelesek/': {
           mode: 'b2c', page: 'egyedi-b2c',
           title: 'Egyedi 3D tervezés és gyártás | 3DFlowment',
-          desc: 'Van egy ötleted, amit szeretnél megvalósítani? Egyedi 3D tervezéssel és saját gyártással segítünk elképzelésedből kézzelfogható terméket létrehozni.',
-          h1: 'Egyedi 3D tervezés és gyártás a saját elképzeléseid alapján',
-          intro: 'Nem minden ötlet fér bele egy előre elkészített termékkategóriába. Lehet, hogy egy különleges kiegészítőre, egyedi kialakítású tárgyra vagy egy konkrét problémára keresel megoldást. A 3DFlowment egyedi megrendeléseinél az elképzelésedből indulunk ki, és közösen keressük meg a megvalósítás megfelelő módját.\nNem kell kész terméktervvel érkezned: az ötleteddel is megkereshetsz minket!',
+          desc: 'Egyedi 3D tervezés és saját gyártás a te elképzelésed alapján.',
+          h1: 'Egyedi megrendelések',
+          intro: 'Van egy konkrét ötleted, ajándékterved vagy egy hiányzó alkatrészed? Nem kell kész 3D tervvel érkezned.',
           cards: [
-            { h2: 'Az ötlettől a kész termékig', p: 'Az egyedi megrendelések során az igényedhez igazodva egyeztetjük a tervezés és a gyártás részleteit. Megbeszéljük, mire van szükséged, milyen célt kell szolgálnia a terméknek, és milyen lehetőségek állnak rendelkezésre a megvalósításhoz.' },
-            { h2: 'Mesélj az ötletedről!', p: 'Írd le, mit szeretnél megvalósítani, és ha van, csatolj képet, vázlatot vagy referenciafájlt is. A részletek átbeszélése után tudunk visszajelezni a lehetőségekről.' }
+            { h2: 'Hogyan működik?', p: '1. Megírod az ötletedet (akár fotóval vagy vázlattal).\n2. Megtervezzük és pontos árat adunk.\n3. Jóváhagyás után kinyomtatjuk és elküldjük.' },
+            { h2: 'Mivel kereshetsz minket?', p: 'Egyedi ajándékok, feliratos tárgyak, különleges dekorációk vagy praktikus háztartási kiegészítők.' }
+          ],
+          gallery: [
+            { image: '/images/kik-vagyunk-mi.png', title: 'Egyedi PS5 kontrollertartó', desc: 'Saját elképzelés alapján tervezett kontrollertartó' },
+            { image: '/images/egyedi-megrendeles-3dnyomtatott-giliszta-farm.jpg', title: 'Személyre szabott gilisztafarm', desc: 'Egyedi színösszeállítással' }
           ]
-          
         },
         '/uzleti/': {
           mode: 'b2b', page: 'home',
-          title: '3D nyomtatás cégeknek és egyedi megoldások | 3DFlowment',
-          desc: 'Fedezd fel 3D nyomtatott IT-kiegészítőinket és rendszerezőinket, vagy valósítsd meg egyedi elképzelésedet saját gyártásunkkal és 3D nyomtatással!',
-          h1: '3D nyomtatás üzleti igényekre – a kész termékektől az egyedi ötletekig',
-          intro: 'A 3D nyomtatás rengeteg lehetőséget kínál, legyen szó praktikus mindennapi kiegészítőkről vagy teljesen egyedi elképzelések megvalósításáról. A 3DFlowment üzleti kínálatában előre megtervezett IT-kiegészítőket és rendszerezőket találsz, de akkor is számíthatsz ránk, ha valami igazán egyedit szeretnél létrehozni.\nSaját gyártásunkkal, kreatív szemléletünkkel és személyre szabott megoldásokkal segítünk megvalósítani az elképzeléseidet.',
-          ctas: [
-            { text: 'IT-kiegészítők megtekintése', url: '/uzleti/it-kiegeszitok/' },
-            { text: 'Egyedi ajánlatot kérek', url: '/uzleti/egyedi-megrendelesek/' },
-            { text: '3D bérnyomtatás érdekel', url: '/uzleti/3d-bernyomtatas/' }
-          ],
-          cards: [
-            { h2: 'Praktikus 3D nyomtatott kiegészítők a mindennapokra', p: 'Fedezd fel előre megtervezett termékeinket! IT-kiegészítőinkkel és rendszerezőinkkel praktikusabbá és rendezettebbé teheted a munkakörnyezetedet. Válogass kínálatunkból, és találd meg a számodra megfelelő megoldást!' },
-            { h2: 'Van egy ötleted? Valósítsuk meg együtt!', p: 'Nem találtad meg azt, amit keresel? Egyedi elképzelésed van, vagy olyan termékre lenne szükséged, amelyet nem lehet egyszerűen levenni a polcról? Az egyedi megrendelések keretében az elképzelésedhez igazodva dolgozunk a megfelelő megoldáson, a tervezéstől a gyártásig.' },
-            { h2: '3D bérnyomtatás saját gyártással', p: 'Már rendelkezel nyomtatható 3D modellel? Vedd fel velünk a kapcsolatot, és egyeztessünk a gyártási lehetőségekről! Saját 3D nyomtatási kapacitásunkkal egyedi megrendelések megvalósításában is partnerként állunk rendelkezésedre.' },
-            { h2: 'Saját gyártás, valódi odafigyelés', p: 'A 3DFlowmentnél a termékek saját gyártásban, megrendelésre készülnek. Fontos számunkra a részletekre való odafigyelés, a folyamatos fejlődés és az, hogy a vásárlóink azt kapják, amit a termékfotókon és leírásokban látnak.' }
-          ]
+          title: '3D nyomtatás cégeknek | 3DFlowment',
+          desc: '3D nyomtatott IT-kiegészítők, rendszerezők és bérnyomtatás cégeknek.',
+          h1: ''
         },
         '/uzleti/it-kiegeszitok/': {
           mode: 'b2b', page: 'it',
-          title: '3D nyomtatott IT kiegészítők | 3DFlowment',
-          desc: 'Fedezd fel a 3DFlowment praktikus, saját gyártású IT-kiegészítőit! Válogass előre megtervezett 3D nyomtatott termékeink közül.',
-          h1: '3D nyomtatott IT-kiegészítők a praktikusabb munkakörnyezetért',
-          intro: 'A jól megválasztott kiegészítők egyszerűbbé és kényelmesebbé tehetik a mindennapi számítógép-használatot. A 3DFlowment IT-kiegészítői előre megtervezett, saját gyártású termékek, amelyeket praktikus felhasználásra és a mindennapi igényekre terveztünk.\nNézz körül kínálatunkban, és találd meg azokat a kiegészítőket, amelyek hasznos társak lehetnek az otthoni vagy munkahelyi környezetedben!',
-          subH2: 'Praktikus kiegészítők, átgondolt kialakítással',
-          subP: 'Termékeinket úgy tervezzük, hogy ne csak jól nézzenek ki, hanem a mindennapokban is hasznosak legyenek. Fedezd fel aktuális kínálatunkat, és válassz az előre elkészített megoldások közül!'
+          title: '3D nyomtatott IT-kiegészítők | 3DFlowment',
+          desc: 'Praktikus, saját gyártású 3D nyomtatott IT-kiegészítők.',
+          h1: 'IT-kiegészítők'
         },
         '/uzleti/rendszerezok/': {
           mode: 'b2b', page: 'rendszerezo',
-          title: '3D nyomtatott rendszerezők és tárolók | 3DFlowment',
-          desc: 'Tedd átláthatóbbá a környezetedet 3D nyomtatott rendszerezőkkel! Fedezd fel a 3DFlowment saját gyártású, praktikus termékeit.',
-          h1: '3D nyomtatott rendszerezők az átláthatóbb mindennapokért',
-          intro: 'Egy rendezett munkakörnyezet nemcsak esztétikusabb, hanem a mindennapi feladatokat is kényelmesebbé teheti. A 3DFlowment rendszerezői előre megtervezett, saját gyártású termékek, amelyek segítenek átláthatóbbá tenni a környezetedet.\nVálogass kínálatunkból, és találd meg a számodra megfelelő rendszerezőt! Termékeink megrendelés után készülnek el, így a gyártási idővel is érdemes számolnod.',
-          subH2: 'Találd meg a megfelelő rendszerezőt',
-          subP: 'Akár az asztalodon, akár a mindennapi használati tárgyaid között szeretnél nagyobb rendet, érdemes körülnézned a kínálatunkban. Fedezd fel az elérhető kialakításokat és válaszd ki a neked tetsző megoldást!'
+          title: '3D nyomtatott rendszerezők | 3DFlowment',
+          desc: 'Átlátható, saját gyártású 3D nyomtatott rendszerezők munkahelyre és irodába.',
+          h1: 'Rendszerezők'
         },
         '/uzleti/3d-bernyomtatas/': {
           mode: 'b2b', page: 'bernyomtatas',
-          title: '3D bérnyomtatás és egyedi gyártás | 3DFlowment',
-          desc: '3D bérnyomtatást keresel? A 3DFlowment saját gyártással segít megvalósítani nyomtatható modelljeidet. Vedd fel velünk a kapcsolatot!',
-          h1: '3D bérnyomtatás saját gyártással',
-          intro: 'Van egy 3D modelled, amelyet szeretnél kézzelfogható formában is megvalósítani? A 3DFlowment saját gyártással vállal 3D nyomtatási megrendeléseket. Küldd el az elképzelésedet vagy a rendelkezésedre álló modellt, és egyeztessünk a megvalósítás lehetőségeiről!',
-          gallery: [
-            { image: '/images/ps5-kontrollertarto.png', title: 'Egyedi PS5 kontrollertartó', desc: 'Saját elképzelés alapján tervezett kontrollertartó' },
-            { image: '/images/egyedi-megrendeles-3dnyomtatott-giliszta-farm.jpg', title: 'Személyre szabott gilisztafarm', desc: 'Egyedi színösszeállítással' }
-          ],
+          title: '3D bérnyomtatás | 3DFlowment',
+          desc: 'Saját gyártású 3D bérnyomtatás meglévő 3D modellek alapján.',
+          h1: '3D bérnyomtatás',
+          intro: 'Már van kész nyomtatható 3D modelled (STL/3MF)? Küldd el, és elkészítjük.',
           cards: [
-            { h2: 'Hogyan működik a 3D bérnyomtatás?', p: '1. Vedd fel velünk a kapcsolatot, és ismertesd a gyártási igényedet.\n2. Küldd el a rendelkezésedre álló 3D modellt vagy a kapcsolódó információkat.\n3. Egyeztetjük a részleteket és a gyártás lehetőségeit.\n4. Az egyeztetés és az ajánlat elfogadása után elkészítjük a megrendelést.' },
-            { h2: 'Egyedi igények, személyes egyeztetés', p: 'Minden megrendelés más, ezért a gyártás részleteit az adott modellhez és igényhez igazítva egyeztetjük. Ha nem vagy biztos abban, hogy az elképzelésed megvalósítható-e, akkor is érdemes megkeresned minket!' }
+            { h2: 'A folyamat röviden', p: '1. Elküldöd a 3D fájlt és a kért darabszámot.\n2. Egyeztetjük az anyagot (PLA/PETG) és az árat.\n3. Legyártjuk és postázzuk.' },
+            { h2: 'Kis széria is jöhet', p: 'Akár 1 darabos prototípustól a kisebb céges szériákig vállaljuk a gyártást.' }
           ]
         },
         '/uzleti/egyedi-megrendelesek/': {
           mode: 'b2b', page: 'egyedi-b2b',
-          title: 'Egyedi 3D tervezés és gyártás | 3DFlowment',
-          desc: 'Van egy ötleted, amit szeretnél megvalósítani? Egyedi 3D tervezéssel és saját gyártással segítünk elképzelésedből kézzelfogható terméket létrehozni.',
-          h1: 'Egyedi 3D tervezés és gyártás a saját elképzeléseid alapján',
-          intro: 'Nem minden ötlet fér bele egy előre elkészített termékkategóriába. Lehet, hogy egy különleges kiegészítőre, egyedi kialakítású tárgyra vagy egy konkrét problémára keresel megoldást. A 3DFlowment egyedi megrendeléseinél az elképzelésedből indulunk ki, és közösen keressük meg a megvalósítás megfelelő módját.\nNem kell kész terméktervvel érkezned: az ötleteddel is megkereshetsz minket!',
+          title: 'Üzleti egyedi 3D tervezés | 3DFlowment',
+          desc: 'Egyedi céges 3D tervezés és gyártás.',
+          h1: 'Egyedi üzleti megrendelések',
+          intro: 'Céges ajándékok, bemutató állványok vagy speciális alkatrészek tervezése és kis szériás gyártása.',
           cards: [
-            { h2: 'Az ötlettől a kész termékig', p: 'Az egyedi megrendelések során az igényedhez igazodva egyeztetjük a tervezés és a gyártás részleteit. Megbeszéljük, mire van szükséged, milyen célt kell szolgálnia a terméknek, és milyen lehetőségek állnak rendelkezésre a megvalósításhoz.' },
-            { h2: 'Milyen egyedi megrendelésekkel kereshetsz minket?', p: 'Az elképzeléseknek csak a műszaki és gyártási lehetőségek szabnak határt. Egyedi tárgyak, kiegészítők, speciális alkatrészek vagy más kreatív ötletek esetén is érdemes felvenned velünk a kapcsolatot.' }
+            { h2: 'Hogyan működik?', p: '1. Megírod a műszaki vagy céges igényt.\n2. Elkészítjük a tervet és az ajánlatot.\n3. Mintadarab után indul a gyártás.' },
+            { h2: 'Tipikus munkák', p: 'Logózott kiegészítők, üzletberendezési tartók, egyedi pótalkatrészek.' }
+          ],
+          gallery: [
+            { image: '/images/egyedi-uzleti-1.jpg', title: 'Céges logós kulcstartók', desc: 'Kis szériás promóciós ajándék' }
           ]
-          
         }
       };
 
