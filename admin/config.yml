@@ -68,11 +68,7 @@ collections:
               - {label: "Alkategória", name: "subcategory", widget: "string", required: false}
               - {label: "Ár (Ft)", name: "price", widget: "number", required: false}
               - {label: "Főkép (Borítókép)", name: "image", widget: "image"}
-              - label: "További képek (Galéria)"
-                name: "gallery"
-                widget: "list"
-                required: false
-                field: {label: "Kép", name: "image", widget: "image"}
+              - {label: "További képek (Galéria)", name: "gallery", widget: "list", required: false, field: {label: "Kép", name: "image", widget: "image"}}
               - {label: "Termékvideó (MP4 fájl)", name: "video", widget: "file", required: false}
               - {label: "SEO helyettesítő szöveg (Alt)", name: "alt_text", widget: "string", hint: "Pl.: Saját gyártású 3D nyomtatott könyvtámasz", required: false}
               - {label: "Leírás", name: "desc", widget: "text", required: false}
