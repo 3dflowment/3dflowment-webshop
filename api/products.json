@@ -141,7 +141,7 @@
       "price": 4500,
       "allow_comment": false,
       "url": "uvegtron-throne-of-glass-aelin-kulcslyuk-dekoracio",
-      "desc": "\"Tűzszívű, ne félj!\"\n\nHozd el az Üvegtrón (Throne of Glass) világának varázsát a könyvespolcodra ezzel a látványos, Aelin Galathynius inspirálta 3D nyomtatott kulcslyuk dekorációval!\n\nFontos: A termék egyedi 3D nyomtatott rajongói kiegészítő (fan art), nem hivatalos licencelt termék.\n\nA fényfüzér a termék része.",
+      "desc": "\"Tűzszívű, ne félj!\"\n\nHozd el az Üvegtrón (Throne of Glass) világának varázsát a könyvespolcodra ezzel a látványos, Aelin Galathynius inspirálta 3D nyomtatott kulcslyuk dekorációval!\n\nA booknookhoz meleg fényű, egyszínű led világítást tudok biztosítani. Ez eltér a képen látottól. A képen színes led világítással látható.\n\nFontos: A termék egyedi 3D nyomtatott rajongói kiegészítő (fan art), nem hivatalos licencelt termék.",
       "seo_desc": "Tedd különlegessé a polcodat ezzel a 3D nyomtatott, Üvegtrón (Throne of Glass) inspirálta Aelin Galathynius kulcslyuk dekorációval!",
       "seo_title": "Üvegtrón Aelin Kulcslyuk Dekoráció – Throne of Glass",
       "title": "Üvegtrón (Throne of Glass) inspirálta Aelin Galathynius kulcslyuk dekoráció",
@@ -195,6 +195,18 @@
       "category": "Könyves kiegészítők",
       "options": "Álló verzió, Könyvek közé illeszthető (bal), Könyvek közé illeszthető (jobb)",
       "subcategory": "Egyéb"
+    },
+    {
+      "alt_text": "Sötétkék, kulcslyuk alakú 3D nyomtatott TOG (Üvegtrón) világító booknook szarvas, lángoló szív és harcosnő sziluettel, kék-zöld fényekkel",
+      "price": 4500,
+      "allow_comment": false,
+      "url": "tog-uvegtron-vilagito-kulcslyuk-booknook",
+      "desc": "\"Meg fogsz hajolni... de nem törsz meg.\"\n\nA booknookhoz meleg fényű, egyszínű led világítást tudok biztosítani. Ez eltér a képen látottól. A képen színes led világítással látható.\n\nFontos: A termék egyedi 3D nyomtatott rajongói kiegészítő (fan art), nem hivatalos licencelt termék.",
+      "seo_desc": "Hozd el a TOG (Üvegtrón) világát a polcodra ezzel a 3D nyomtatott, világító kulcslyuk booknookkal! Egyedi ajándék Sarah J. Maas rajongóknak.",
+      "seo_title": "TOG / Üvegtrón Világító Kulcslyuk Booknook – 3D Nyomtatott",
+      "title": "Üvegtrón inspirálta világító kulcslyuk booknook",
+      "image": "/images/uploads/üvegtrón-kulcslyuk-booknook.png",
+      "category": "Könyves kiegészítők"
     }
   ]
 }
